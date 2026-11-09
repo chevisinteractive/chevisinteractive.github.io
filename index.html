@@ -65,6 +65,11 @@
     background:linear-gradient(to bottom,rgba(5,7,13,.5),transparent 20%,transparent 80%,rgba(5,7,13,.5)),
                linear-gradient(to right,rgba(5,7,13,.42),transparent 13%,transparent 87%,rgba(5,7,13,.42))}
   .bannerpanel img,.bannerpanel video{position:absolute;inset:0;z-index:1;display:block;width:100%;height:100%;object-fit:cover}
+  @media (pointer:coarse){
+    .bannerpanel{transition:none}
+    .bannerpanel::after{box-shadow:inset 0 0 26px rgba(5,7,13,.55)}
+    .bannerpanel video,.bannerpanel .bannerimg{transition:opacity .6s ease}
+  }
   .bannerpanel .bannerimg{opacity:0;transform:scale(1.05);
     transition:opacity 1.4s ease,transform 2.4s ease}
   .bannerpanel video{transition:opacity 1.4s ease}
@@ -283,8 +288,13 @@
     if(reduced){ v.removeAttribute('autoplay'); v.pause(); panel.classList.add('settled'); settled=true;
       if(btn) btn.innerHTML='▶&ensp;Play the reveal with sound'; }
     if(btn){ btn.addEventListener('click', function(){
-      settled=false; panel.classList.remove('settled');
-      v.currentTime=0; v.muted=false; v.play(); btn.classList.add('hide');
+      settled=false; panel.classList.remove('settled'); btn.classList.add('hide');
+      v.pause();
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){
+        try{ v.currentTime=0; }catch(e){}
+        v.muted=false;
+        var p=v.play(); if(p && p.catch) p.catch(function(){ v.muted=true; var q=v.play(); if(q&&q.catch) q.catch(function(){}); });
+      }); });
     }); }
     function firstGesture(){ if(!settled && v.muted && !v.ended && v.currentTime>0){
       v.muted=false; if(btn) btn.classList.add('hide'); } }
