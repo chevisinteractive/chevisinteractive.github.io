@@ -55,15 +55,18 @@
 
   /* hero */
   header{padding:138px 0 84px;text-align:center;position:relative}
-  .bannerpanel{position:relative;border-radius:26px;overflow:hidden;
+  .bannerpanel{position:relative;border-radius:26px;overflow:hidden;aspect-ratio:16/9;
     border:1px solid rgba(56,189,248,.28);
-    box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(139,92,246,.12),0 0 90px rgba(56,189,248,.16)}
-  .bannerpanel img,.bannerpanel video{display:block;width:100%;height:auto}
-  .bannerpanel .bannerimg{position:absolute;inset:0;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);
+    box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(139,92,246,.12),0 0 90px rgba(56,189,248,.16);
+    transition:aspect-ratio 1.6s cubic-bezier(.22,.8,.24,1)}
+  .bannerpanel.settled{aspect-ratio:3/1}
+  .bannerpanel img,.bannerpanel video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
+  .bannerpanel .bannerimg{opacity:0;transform:scale(1.05);
     transition:opacity 1.4s ease,transform 2.4s ease}
-  .bannerpanel video{position:relative;transition:opacity 1.4s ease}
+  .bannerpanel video{transition:opacity 1.4s ease}
   .bannerpanel.settled video{opacity:0}
   .bannerpanel.settled .bannerimg{opacity:1;transform:scale(1)}
+  .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .soundbtn{position:absolute;right:16px;bottom:16px;z-index:3;display:inline-flex;align-items:center;gap:8px;
     padding:10px 16px;border-radius:999px;border:1px solid rgba(125,211,252,.45);cursor:pointer;
     background:rgba(5,8,15,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
@@ -155,13 +158,13 @@
 
 <header>
   <div class="wrap">
+    <h1 class="vh">Chevis Interactive — Indie Game Studio</h1>
     <div class="bannerpanel reveal" id="heroPanel">
       <img class="bannerimg" src="assets/chevis-banner.jpg" alt="Chevis Interactive — interlocking gradient monogram over a network of light">
       <video id="introVideo" autoplay muted playsinline preload="auto" poster="assets/chevis-banner.jpg" src="assets/chevis-intro.mp4" aria-label="Chevis Interactive logo reveal — particles of light form the gradient monogram and wordmark"></video>
       <button class="soundbtn" id="soundBtn" type="button">🔊&ensp;Play with sound</button>
     </div>
-    <h1>CHEVIS <span class="grad">INTERACTIVE</span><span class="thin">Indie Game Studio</span></h1>
-    <p class="tag">An independent studio making <strong>polished, honest games</strong> for Android — built slowly, finished properly, and priced fairly.</p>
+    <p class="tag" style="margin-top:40px">An independent studio making <strong>polished, honest games</strong> for Android — built slowly, finished properly, and priced fairly.</p>
     <div class="cta">
       <a class="btn grad" href="#games">See the games</a>
       <a class="btn ghost" href="#contact">Get in touch</a>
@@ -269,11 +272,12 @@
     if(!v||!panel) return;
     var settled=false;
     function settle(){ if(settled) return; settled=true; panel.classList.add('settled');
-      if(btn) btn.classList.add('hide');
+      if(btn){ btn.classList.remove('hide'); btn.innerHTML='↻&ensp;Replay with sound'; }
       setTimeout(function(){ v.pause(); },1500); }
     v.addEventListener('ended', settle);
     var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(reduced){ v.removeAttribute('autoplay'); v.pause(); if(btn) btn.textContent='▶ Play the reveal'; }
+    if(reduced){ v.removeAttribute('autoplay'); v.pause(); panel.classList.add('settled'); settled=true;
+      if(btn) btn.innerHTML='▶&ensp;Play the reveal with sound'; }
     if(btn){ btn.addEventListener('click', function(){
       settled=false; panel.classList.remove('settled');
       v.currentTime=0; v.muted=false; v.play(); btn.classList.add('hide');
