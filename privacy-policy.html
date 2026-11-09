@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tome Privacy Policy — Chevis Interactive</title>
+<style>
+  body { background:#07090f; color:#e8eaf2; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height:1.65; margin:0; }
+  main { max-width: 760px; margin: 0 auto; padding: 40px 20px 64px; }
+  h1 { font-size: 1.9rem; margin-bottom: .2em; }
+  h2 { font-size: 1.2rem; margin-top: 2em; background: linear-gradient(90deg,#22d3ee,#a78bfa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  a { color:#22d3ee; }
+  .meta { color:#9aa3b8; font-size:.95rem; }
+  ul { padding-left: 1.2em; }
+</style>
+</head>
+<body>
+<main>
+<h1>Tome Privacy Policy</h1>
+<p class="meta"><strong>Publisher:</strong> Chevis Interactive<br>
+<strong>App:</strong> Tome: Audiobook Player (Android)<br>
+<strong>Effective date:</strong> November 7, 2026<br>
+<strong>Contact:</strong> <a href="mailto:chevisinteractive@gmail.com">chevisinteractive@gmail.com</a></p>
+
+<p>Tome is an audiobook player that plays audiobook files you already own and store in your own Google Drive. This policy explains, in plain language, what Tome accesses, what it stores, and what it never does.</p>
+
+<h2>The short version</h2>
+<ul>
+<li>Tome plays <strong>your</strong> audiobooks from <strong>your</strong> Google Drive. Your files are never uploaded to us or to anyone else.</li>
+<li>Tome contains <strong>no ads, no analytics, and no third-party trackers</strong>.</li>
+<li>We never sell, rent, or share your personal data.</li>
+<li>The only information stored on our side is a small trial record (described below) used to run Tome's free trial.</li>
+</ul>
+
+<h2>What Tome accesses</h2>
+<p><strong>Your Google Drive audiobook files (read-only).</strong> When you sign in with Google, you grant Tome read-only access to your Drive so it can browse and stream your audiobook files (such as .m4b files) in My Drive, Shared, and Starred. Tome cannot change, move, or delete your Drive files. Playback streams directly between Google Drive and your device.</p>
+<p><strong>Your Google account identity.</strong> Tome uses Google Sign-In to know which account's Drive to browse and to tie your trial and purchase to you. Tome receives your account identifier and email address from Google Sign-In.</p>
+<p><strong>Files on your device (optional).</strong> If you use guest mode, Tome can play audio files stored on your device. Guest mode works without an account, and nothing about that usage leaves your device.</p>
+
+<h2>What Tome stores, and where</h2>
+<p><strong>On your device:</strong> your playback position for each book, bookmarks, playback speed, listening statistics, and any books you download for offline listening. This stays on your device and is removed if you uninstall Tome.</p>
+<p><strong>In your own Google Drive (backup):</strong> so you never lose your place, Tome saves a small backup file containing your playback progress, bookmarks, and listening statistics in a hidden app-specific folder in <strong>your</strong> Drive (the Drive "appDataFolder"). Only Tome can read this folder, it lives in your Google account under your control, and we at Chevis Interactive cannot see it.</p>
+<p><strong>In our Firebase (trial record only):</strong> Tome offers a 30-day free trial followed by a one-time purchase. To run that trial fairly (for example, so it can't be reset by reinstalling the app), we store a trial record in our Firebase Firestore database containing:</p>
+<ul>
+<li>your account identifier (Firebase user ID),</li>
+<li>your trial start date and first-play date (recorded with a server timestamp).</li>
+</ul>
+<p>That is all the trial record contains. It contains no audiobook files, no book titles, no listening history, and no payment information. We use it only to determine whether your trial is active.</p>
+<p><strong>Your purchase:</strong> Tome's one-time purchase is processed entirely by <strong>Google Play Billing</strong>. Google handles your payment; we never see or store your card or payment details. We only receive confirmation from Google Play that the purchase exists, so the app can unlock and restore it on your devices.</p>
+
+<h2>What Tome never does</h2>
+<ul>
+<li>No advertising of any kind, and no advertising SDKs.</li>
+<li>No analytics or usage trackers.</li>
+<li>No selling, renting, or sharing of your data with data brokers or advertisers.</li>
+<li>Your audiobook files are never uploaded to Chevis Interactive or any third party — they stream from your Drive to your device only.</li>
+<li>We do not read, copy, or keep any of your Drive files' contents on our servers.</li>
+</ul>
+
+<h2>Services Tome relies on</h2>
+<p>Tome uses Google services to function: Google Drive (your files and backup), Google Sign-In and Firebase Authentication (account identity), Firebase Firestore (the trial record described above), and Google Play Billing (purchases). Information handled by those services is also subject to Google's privacy policy.</p>
+
+<h2>How to delete your data</h2>
+<ul>
+<li><strong>Local data:</strong> uninstall Tome, or clear the app's storage in Android settings.</li>
+<li><strong>Drive backup:</strong> you can delete Tome's backup data from your Google Drive settings (Drive → Settings → Manage apps → Tome → delete hidden app data). Deleting it removes your backed-up progress; it does not affect your audiobook files.</li>
+<li><strong>Firebase trial record:</strong> email <a href="mailto:chevisinteractive@gmail.com">chevisinteractive@gmail.com</a> from the Google account you used with Tome and ask us to delete your trial record. We will delete it within 30 days and confirm by email. Note that deleting the trial record does not cancel or refund a purchase (purchases are managed by Google Play), and if you sign in again afterward, a new trial record may be created.</li>
+<li><strong>Audiobook files:</strong> these are yours, in your Drive; Tome never had copies, so there is nothing for us to delete.</li>
+</ul>
+
+<h2>Data security</h2>
+<p>Data moving between Tome, Google Drive, and Firebase is encrypted in transit (HTTPS/TLS). Access to trial records is restricted by Firebase security rules so that each user can only ever access their own record.</p>
+
+<h2>Children</h2>
+<p>Tome is a general-purpose media player and is not directed at children. It contains no content of its own; it plays files you provide.</p>
+
+<h2>Changes to this policy</h2>
+<p>If we change how Tome handles data, we will update this policy, change the effective date above, and, if the change is significant, note it in the app's Play Store listing.</p>
+
+<h2>Contact</h2>
+<p>Questions about this policy or your data: <a href="mailto:chevisinteractive@gmail.com">chevisinteractive@gmail.com</a> (Chevis Interactive).</p>
+</main>
+</body>
+</html>
