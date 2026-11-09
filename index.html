@@ -67,7 +67,7 @@
   .bannerpanel img,.bannerpanel video{position:absolute;inset:0;z-index:1;display:block;width:100%;height:100%;object-fit:cover}
   @media (pointer:coarse){
     .bannerpanel{transition:none}
-    .bannerpanel::after{box-shadow:inset 0 0 26px rgba(5,7,13,.55)}
+    .bannerpanel::after{box-shadow:none}
     .bannerpanel video,.bannerpanel .bannerimg{transition:opacity .6s ease}
   }
   .bannerpanel .bannerimg{opacity:0;transform:scale(1.05);
@@ -170,7 +170,7 @@
     <h1 class="vh">Chevis Interactive — Indie Game Studio</h1>
     <div class="bannerpanel reveal" id="heroPanel">
       <img class="bannerimg" src="assets/chevis-banner.jpg" alt="Chevis Interactive — interlocking gradient monogram over a network of light">
-      <video id="introVideo" autoplay muted playsinline preload="auto" poster="assets/chevis-banner.jpg" src="assets/chevis-intro-audio2.mp4" aria-label="Chevis Interactive logo reveal — particles of light form the gradient monogram and wordmark"></video>
+      <video id="introVideo" autoplay muted playsinline preload="auto" poster="assets/chevis-banner.jpg" src="assets/chevis-intro-audio2.mp4?v=3" aria-label="Chevis Interactive logo reveal — particles of light form the gradient monogram and wordmark"></video>
       <button class="soundbtn" id="soundBtn" type="button">🔊&ensp;Play with sound</button>
     </div>
     <p class="tag" style="margin-top:40px">An independent studio making <strong>polished, honest games</strong> for Android — built slowly, finished properly, and priced fairly.</p>
@@ -272,14 +272,16 @@
 </footer>
 
 <script>
-  // The reveal plays once, then tucks away into the still banner.
-  // Browsers forbid autoplay with sound, so it opens muted; the first tap,
-  // click, or keypress anywhere lets the audio in, and the sound button
-  // restarts it with full audio on demand.
+  // The reveal plays once (muted autoplay — browsers forbid autoplay with
+  // sound), then tucks away into the still banner. Sound NEVER unmutes the
+  // autoplay element: on Android, unmuting a muted-autoplay video stalls the
+  // decoder and freezes the picture. Instead, a tap on the panel or the
+  // sound button swaps in a FRESH video element, created inside the tap,
+  // which is allowed to play with sound and starts in the normal pipeline.
   (function(){
     var v=document.getElementById('introVideo'), panel=document.getElementById('heroPanel'), btn=document.getElementById('soundBtn');
     if(!v||!panel) return;
-    var settled=false;
+    var settled=false, lockUntil=0;
     function settle(){ if(settled) return; settled=true; panel.classList.add('settled');
       if(btn){ btn.classList.remove('hide'); btn.innerHTML='↻&ensp;Replay with sound'; }
       setTimeout(function(){ v.pause(); },1500); }
@@ -287,20 +289,21 @@
     var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(reduced){ v.removeAttribute('autoplay'); v.pause(); panel.classList.add('settled'); settled=true;
       if(btn) btn.innerHTML='▶&ensp;Play the reveal with sound'; }
-    if(btn){ btn.addEventListener('click', function(){
-      settled=false; panel.classList.remove('settled'); btn.classList.add('hide');
-      v.pause();
-      requestAnimationFrame(function(){ requestAnimationFrame(function(){
-        try{ v.currentTime=0; }catch(e){}
-        v.muted=false;
-        var p=v.play(); if(p && p.catch) p.catch(function(){ v.muted=true; var q=v.play(); if(q&&q.catch) q.catch(function(){}); });
-      }); });
-    }); }
-    function firstGesture(){ if(!settled && v.muted && !v.ended && v.currentTime>0){
-      v.muted=false; if(btn) btn.classList.add('hide'); } }
-    ['pointerdown','keydown'].forEach(function(ev){
-      window.addEventListener(ev, firstGesture, {once:true});
-    });
+    function startWithSound(){
+      var now=Date.now(); if(now<lockUntil) return; lockUntil=now+700;
+      settled=false; panel.classList.remove('settled'); if(btn) btn.classList.add('hide');
+      var nv=document.createElement('video');
+      nv.id='introVideo'; nv.src=v.src; nv.poster=v.poster; nv.preload='auto';
+      nv.playsInline=true; nv.setAttribute('playsinline',''); nv.muted=false; nv.autoplay=false;
+      nv.addEventListener('ended', settle);
+      try{ v.pause(); }catch(e){}
+      panel.replaceChild(nv, v); v=nv;
+      var p=v.play();
+      if(p && p.catch) p.catch(function(){ v.muted=true; var q=v.play(); if(q&&q.catch) q.catch(function(){});
+        if(btn){ btn.classList.remove('hide'); btn.innerHTML='🔊&ensp;Play with sound'; } });
+    }
+    panel.addEventListener('pointerdown', startWithSound);
+    if(btn) btn.addEventListener('click', startWithSound);
   })();
   // ambient orbs — slow rising motes in cyan and violet, echoing the banner's particle field
   (function(){
