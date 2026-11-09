@@ -58,7 +58,7 @@
   .bannerpanel{position:relative;border-radius:26px;overflow:hidden;
     border:1px solid rgba(56,189,248,.28);
     box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(139,92,246,.12),0 0 90px rgba(56,189,248,.16)}
-  .bannerpanel img{display:block;width:100%;height:auto}
+  .bannerpanel img,.bannerpanel video{display:block;width:100%;height:auto}
   .bannerpanel::after{content:"";position:absolute;inset:0;border-radius:26px;pointer-events:none;
     box-shadow:inset 0 0 0 1px rgba(255,255,255,.06),inset 0 -60px 80px -40px rgba(5,8,15,.55)}
   h1{font-family:"Poppins",sans-serif;font-weight:800;font-size:clamp(38px,6.8vw,68px);line-height:1.08;letter-spacing:.005em;margin-top:52px}
@@ -143,7 +143,7 @@
 
 <header>
   <div class="wrap">
-    <div class="bannerpanel reveal"><img src="assets/chevis-banner.jpg" alt="Chevis Interactive — interlocking gradient monogram over a network of light"></div>
+    <div class="bannerpanel reveal"><video id="introVideo" autoplay muted loop playsinline preload="auto" poster="assets/chevis-banner.jpg" src="assets/chevis-intro.mp4" aria-label="Chevis Interactive logo reveal — particles of light form the gradient monogram and wordmark"></video></div>
     <h1>CHEVIS <span class="grad">INTERACTIVE</span><span class="thin">Indie Game Studio</span></h1>
     <p class="tag">An independent studio making <strong>polished, honest games</strong> for Android — built slowly, finished properly, and priced fairly.</p>
     <div class="cta">
@@ -244,6 +244,13 @@
 </footer>
 
 <script>
+  // respect reduced-motion: hold the banner poster instead of playing the reveal
+  (function(){
+    if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      var v=document.getElementById('introVideo');
+      if(v){ v.removeAttribute('autoplay'); v.pause(); }
+    }
+  })();
   // ambient orbs — slow rising motes in cyan and violet, echoing the banner's particle field
   (function(){
     var colors=['rgba(34,211,238,.55)','rgba(139,92,246,.55)','rgba(56,189,248,.45)','rgba(167,139,250,.45)'];
