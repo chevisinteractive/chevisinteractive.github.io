@@ -181,6 +181,13 @@
   .chip.live{color:#67e8f9;border:1px solid rgba(67,223,242,.45);background:rgba(67,223,242,.08)}
   .chip.soon{color:#c4b5fd;border:1px solid rgba(128,102,245,.45);background:rgba(128,102,245,.10)}
   .chip.itch{color:#fda4af;border:1px solid rgba(244,114,182,.40);background:rgba(244,114,182,.08)}
+  /* browser-editions announcement band */
+  .websoon{margin:26px auto 6px;max-width:760px;padding:16px 22px;border-radius:16px;text-align:center;
+    border:1.5px solid transparent;background:linear-gradient(#0a101e,#0a101e) padding-box,var(--grad-diag) border-box;
+    font-size:15.5px;line-height:1.55;color:var(--muted)}
+  .websoon strong{color:var(--ink)}
+  .websoon .ws-tag{display:block;font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px;
+    background:var(--grad-diag);-webkit-background-clip:text;background-clip:text;color:transparent}
   .scene-body h3{font-family:"Poppins",sans-serif;font-size:clamp(24px,3.2vw,32px);font-weight:700;margin-top:16px}
   .scene-body p{color:var(--muted);font-size:15.5px;margin-top:12px;line-height:1.7;max-width:52ch}
   .scene-body p .gold{color:var(--gold);font-weight:600}
@@ -279,6 +286,10 @@
     <div class="kicker">The Lineup</div>
     <h2>Three titles, <span class="grad">one standard</span></h2>
     <p class="sub">Every Chevis title is held to the same bar: obnoxiously smooth, clean to play, and respectful of the person holding the phone.</p>
+    <div class="websoon reveal">
+      <span class="ws-tag">Coming soon · Browser editions</span>
+      <strong>Royal Spades</strong> and <strong>Royal Stacks</strong> are coming to your browser — playable on <strong>PC, Mac &amp; Windows</strong> with nothing to install. Same games, same standard, open a tab and play.
+    </div>
     <div class="divider" aria-hidden="true"></div>
 
     <article class="scene reveal">
@@ -289,7 +300,7 @@
         </div>
       </div>
       <div class="scene-body">
-        <span class="chip live">Live · Google Play</span>
+        <span class="chip live">Live · Google Play</span> <span class="chip soon">Browser edition · Coming soon</span>
         <h3>Royal Spades</h3>
         <p>The classic card game, dealt properly. Bid, trump, and outplay sharp opponents — solo or at staked tables with friends. Daily rewards, quests, and <span class="gold">coins to win</span>, with a full Royal Pass season to climb.</p>
         <div class="scene-foot"><span class="free">FREE</span><a class="go" href="https://play.google.com/store/apps/details?id=com.chevisinteractive.myapp" target="_blank" rel="noopener">Play free →</a></div>
@@ -304,7 +315,7 @@
         </div>
       </div>
       <div class="scene-body">
-        <span class="chip itch">Supporter Edition · itch.io</span>
+        <span class="chip itch">Supporter Edition · itch.io</span> <span class="chip soon">Browser edition · Coming soon</span>
         <h3>Royal Stacks</h3>
         <p>A poker roguelike deck-builder. Crown your face cards, fuse your jokers, and climb eight floors of a royal court in exile — every run a new hand, every hand a story. Noir-luxe, ruthless, and endlessly replayable.</p>
         <div class="scene-foot"><span class="price">$4.99 <small>Supporter Edition</small></span><a class="go" href="https://chevisinteractive.itch.io/royal-stacks" target="_blank" rel="noopener">Take a look →</a></div>
