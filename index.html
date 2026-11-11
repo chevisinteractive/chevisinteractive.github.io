@@ -83,6 +83,11 @@
   #meshBack,#mesh{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
   #meshBack{z-index:0;opacity:.55}
   #mesh{z-index:1}
+  /* full-page mesh (Patrick, 2026-11-11) — the same geometric diamond-node
+     field, extended past the hero as a fixed viewport layer behind all
+     content. Subtle by design: dimmer and slower than the hero pair, so
+     sections stay readable while the whole page stays alive. */
+  #meshPage{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:.5}
   .cursor-glow{position:absolute;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:1;
     background:radial-gradient(circle, rgba(74,144,226,.13) 0%, transparent 65%);
     transform:translate(-50%,-50%);left:50%;top:32%;opacity:0;transition:opacity .6s ease}
@@ -245,6 +250,7 @@
 </head>
 <body>
 <div class="ambient"></div>
+<canvas id="meshPage" aria-hidden="true"></canvas>
 <div class="progress" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
 
 <nav id="mainNav">
@@ -558,6 +564,67 @@
       new IntersectionObserver(function(en){ inView=en[0].isIntersecting; if(inView) kick(); },{threshold:0}).observe(hero);
     }
     var resizeT; window.addEventListener('resize', function(){ clearTimeout(resizeT); resizeT=setTimeout(function(){ isMobile=window.innerWidth<680; LINK=isMobile?118:150; build(); if(reduced) draw(0); else kick(); },180); });
+    build(); draw(0); running=!reduced;
+  })();
+</script>
+
+<script>
+  /* full-page mesh — fixed viewport canvas behind all content (Patrick,
+     2026-11-11: "geometric moving shapes on the entire page"). Same diamond
+     nodes + gradient links as the hero mesh, but dimmer/slower (subtle
+     version), reacting to the pointer anywhere on the page. Pauses when
+     the tab is hidden; reduced motion gets one static frame. */
+  (function(){
+    var canvas=document.getElementById('meshPage');
+    if(!canvas) return;
+    var reduced=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var ctx=canvas.getContext('2d');
+    var W=0,H=0, nodes=[], mouse={x:-9999,y:-9999}, DPR=Math.min(window.devicePixelRatio||1,1.5);
+    var LINK=150, MOUSE_R=190;
+    var STOPS=[[67,223,242],[94,219,211],[74,144,226],[128,102,245]];
+    function lerpColor(t){ var seg=Math.min(2,Math.floor(t*3)), f=t*3-seg; var a=STOPS[seg], b=STOPS[seg+1]; return Math.round(a[0]+(b[0]-a[0])*f)+','+Math.round(a[1]+(b[1]-a[1])*f)+','+Math.round(a[2]+(b[2]-a[2])*f); }
+    function build(){
+      W=window.innerWidth; H=window.innerHeight;
+      canvas.width=W*DPR; canvas.height=H*DPR; canvas.style.width=W+'px'; canvas.style.height=H+'px';
+      ctx.setTransform(DPR,0,0,DPR,0,0);
+      var mobile=W<680;
+      var count=mobile?20:Math.max(28,Math.min(44,Math.floor(W*H/34000)));
+      nodes=[];
+      for(var i=0;i<count;i++) nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.18,vy:(Math.random()-.5)*.18,r:.7+Math.random()*1.5,hue:Math.random(),ph:Math.random()*Math.PI*2,ps:.5+Math.random()*1.0});
+    }
+    var running=false;
+    function draw(t){
+      if(document.hidden){ running=false; return; }
+      running=true;
+      ctx.clearRect(0,0,W,H);
+      var i,j,a,b,dx,dy,d;
+      for(i=0;i<nodes.length;i++) for(j=i+1;j<nodes.length;j++){
+        a=nodes[i]; b=nodes[j]; dx=a.x-b.x; dy=a.y-b.y; d=Math.sqrt(dx*dx+dy*dy);
+        if(d<LINK){
+          var mx=(a.x+b.x)/2-mouse.x, my=(a.y+b.y)/2-mouse.y, md=Math.sqrt(mx*mx+my*my);
+          var boost=md<MOUSE_R?(1-md/MOUSE_R)*.22:0;
+          ctx.strokeStyle='rgba('+lerpColor((a.hue+b.hue)/2)+','+((1-d/LINK)*.16+boost)+')';
+          ctx.lineWidth=boost>.04?1.2:1;
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+        }
+      }
+      for(i=0;i<nodes.length;i++){
+        a=nodes[i]; dx=a.x-mouse.x; dy=a.y-mouse.y; d=Math.sqrt(dx*dx+dy*dy);
+        var near=d<MOUSE_R?(1-d/MOUSE_R):0;
+        var pulse=1+Math.sin((t||0)*.0011*a.ps+a.ph)*.28;
+        var rad=a.r*pulse+near*2.0;
+        ctx.fillStyle='rgba('+lerpColor(a.hue)+','+(0.26+near*.45)+')';
+        ctx.beginPath(); ctx.moveTo(a.x,a.y-rad*1.4); ctx.lineTo(a.x+rad,a.y); ctx.lineTo(a.x,a.y+rad*1.4); ctx.lineTo(a.x-rad,a.y); ctx.closePath(); ctx.fill();
+        if(near>.30){ ctx.strokeStyle='rgba('+lerpColor(a.hue)+','+near*.45+')'; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(a.x,a.y,rad*3.0,0,Math.PI*2); ctx.stroke(); }
+        if(!reduced){ a.x+=a.vx; a.y+=a.vy; if(a.x<0||a.x>W) a.vx*=-1; if(a.y<0||a.y>H) a.vy*=-1; a.x=Math.max(0,Math.min(W,a.x)); a.y=Math.max(0,Math.min(H,a.y)); if(near>0&&d>0){ a.x+=dx/d*-.08*near; a.y+=dy/d*-.08*near; } }
+      }
+      if(!reduced && !document.hidden) requestAnimationFrame(draw); else running=false;
+    }
+    function kick(){ if(!running && !reduced && !document.hidden){ running=true; requestAnimationFrame(draw); } }
+    window.addEventListener('pointermove', function(e){ mouse.x=e.clientX; mouse.y=e.clientY; }, {passive:true});
+    window.addEventListener('pointerleave', function(){ mouse.x=-9999; mouse.y=-9999; });
+    document.addEventListener('visibilitychange', function(){ kick(); });
+    var resizeT; window.addEventListener('resize', function(){ clearTimeout(resizeT); resizeT=setTimeout(function(){ LINK=window.innerWidth<680?118:150; build(); if(reduced) draw(0); else kick(); },180); });
     build(); draw(0); running=!reduced;
   })();
 </script>
