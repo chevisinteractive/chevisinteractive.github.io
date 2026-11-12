@@ -162,7 +162,7 @@
   .scene.flip{grid-template-columns:.92fr 1.08fr}
   .scene.flip .scene-media{order:2}
   .scene.flip .scene-body{order:1}
-  @media (max-width:880px){.scene,.scene.flip{grid-template-columns:1fr;gap:26px}.scene.flip .scene-media{order:0}.scene.flip .scene-body{order:1}}
+  @media (max-width:880px){.scene,.scene.flip{grid-template-columns:1fr;gap:26px}.scene .scene-media,.scene.flip .scene-media{order:2}.scene .scene-body,.scene.flip .scene-body{order:1}}
   .scene-media{position:relative}
   .scene-media .phone{margin:0 auto;width:min(238px,64vw);aspect-ratio:945/2048;overflow:hidden;border-radius:26px;
     box-shadow:0 24px 48px rgba(0,0,0,.5),0 0 0 1px rgba(148,184,255,.22)}
