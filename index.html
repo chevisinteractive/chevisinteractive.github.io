@@ -224,6 +224,22 @@
     .play-badge img{height:46px}
   }
 
+  /* Demo hero — the playable demo leads the page (Patrick's order,
+     2026-11-14): demo first, hero video directly below it. Same
+     gradient tag and button language as the demo slot; gold is not
+     used here (gold is for currency/rewards only). */
+  .hero-demo{margin:0 auto 38px;max-width:780px}
+  .hero-demo .ds-tag{display:block;font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+    background:var(--grad-diag);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero-title{font-family:"Poppins",sans-serif;font-weight:700;font-size:clamp(34px,5.4vw,54px);line-height:1.12;margin-top:16px;letter-spacing:.005em}
+  .hero-demo .hero-sub{margin:16px auto 0;max-width:600px;color:var(--muted);font-size:clamp(16px,2.2vw,18.5px);line-height:1.6}
+  .hero-demo .hero-sub strong{color:var(--ink)}
+  .hero-demo .demo-actions{margin-top:26px;justify-content:center}
+  @media (max-width:680px){
+    .hero-demo{margin-bottom:30px}
+    .hero-demo .demo-actions{gap:14px}
+  }
+
   .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
   @media (max-width:920px){.principles{grid-template-columns:1fr}}
   .principle{padding:28px;border-radius:20px;background:rgba(10,16,30,.6);border:1px solid rgba(27,39,64,.8);transition:transform .3s var(--ease),border-color .3s var(--ease)}
@@ -294,6 +310,15 @@
   <div class="hero-diamonds" aria-hidden="true"></div>
   <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
   <div class="wrap" style="position:relative;z-index:2">
+    <div class="hero-demo">
+      <span class="ds-tag">Playable demo · Royal Spades Light</span>
+      <p class="hero-title">Play Royal Spades free, right in your browser</p>
+      <p class="hero-sub"><strong>Royal Spades Light</strong> is a free taste of the full Android game. No install, no account.</p>
+      <div class="demo-actions">
+        <a class="btn grad" href="https://royal-spades-web.pages.dev" target="_blank" rel="noopener">Play the web demo</a>
+        <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.chevisinteractive.myapp" target="_blank" rel="noopener"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" height="52" loading="lazy" decoding="async"></a>
+      </div>
+    </div>
     <div class="bannerpanel reveal" id="heroPanel">
       <img class="bannerimg" src="assets/chevis-banner.jpg" alt="Chevis Interactive — interlocking gradient monogram over a network of light" width="1500" height="500" fetchpriority="high">
       <video id="introVideo" autoplay muted playsinline preload="auto" poster="assets/chevis-banner.jpg" src="assets/chevis-intro-audio2.mp4" aria-label="Chevis Interactive logo reveal — particles of light form the gradient monogram and wordmark"></video>
