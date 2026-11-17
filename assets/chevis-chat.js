@@ -1,10 +1,12 @@
 /* Chevis quick chat — chat / lead-capture widget for chevisinteractive.github.io.
-   Fully static. Quick answers come from the local knowledge base below
-   (scripted, instant, no backend and no API keys). Lead capture posts to
-   FormSubmit (zero-cost static form endpoint for the studio inbox); if
-   that endpoint is unavailable or not yet activated, it falls back to a
-   prefilled email in the visitor's own mail app. Nothing here phones
-   home anywhere else. */
+   Fully static. A guided chat: visitors pick from option buttons and every
+   answer comes from the local knowledge base below (scripted, instant, no
+   backend and no API keys). There is deliberately no free-text chat input —
+   the conversation only branches along paths the bot knows. Lead capture
+   posts to FormSubmit (zero-cost static form endpoint for the studio
+   inbox); if that endpoint is unavailable or not yet activated, it falls
+   back to a prefilled email in the visitor's own mail app. Nothing here
+   phones home anywhere else. */
 (function () {
   "use strict";
 
@@ -17,13 +19,26 @@
       "We build two things:\n\n" +
       "• Websites for local businesses — designed, built, and looked after month to month.\n" +
       "• Games and apps for Android — Royal Spades, Royal Stacks, and Tome, all made in-house.\n\n" +
-      "Tap “What's the AI Setup?” for the newest thing we offer, or use the form below and we will email you back.",
+      "Tap “What's the AI Setup?” for the newest thing we offer, or tap “Start a project” and we will email you back.",
     cost:
       "Straight numbers:\n\n" +
       "• A website build starts at <span class=\"price\">$2,500</span> — design, build, hosting and domain set up, your review before anything goes live.\n" +
       "• The Care Plan is <span class=\"price\">$199/mo</span> after launch — hosting management, updates and small edits done for you, backups, and a short monthly report.\n" +
       "• The AI Setup is <span class=\"price\">$299</span> one time — and free with any website build.\n\n" +
       "You own the website and the domain. If you ever leave, they go with you.",
+    included:
+      "A build covers the whole job:\n\n" +
+      "• Design and build of the website, start to finish.\n" +
+      "• Hosting and domain set up for you.\n" +
+      "• Your review before anything goes live — nothing launches until you have seen it.\n\n" +
+      "You own the website and the domain. If you ever leave, they go with you.",
+    careplan:
+      "The Care Plan is <span class=\"price\">$199/mo</span>, and it starts after your site goes live. We look after the site month to month, so you never have to think about it:\n\n" +
+      "• Hosting management, with the site watched and kept online.\n" +
+      "• Updates and small edits done for you — hours, prices, photos, announcements.\n" +
+      "• Backups and security updates kept current.\n" +
+      "• A short monthly report in plain language.\n\n" +
+      "The AI Setup is looked after under the Care Plan too.",
     ai:
       "The AI Setup is a smart chat and lead-capture widget for your own website — this very chat is one, running on our site.\n\n" +
       "It answers your customers' common questions instantly, day or night, and captures the name, email, and details of anyone who wants a callback, straight to your inbox. No backend, nothing for you to maintain.\n\n" +
@@ -34,42 +49,37 @@
       "• Royal Stacks — a poker roguelike deck-builder. Crown your face cards, fuse your jokers, and climb the court. Supporter Edition on itch.io.\n" +
       "• Tome — an audiobook player for the library you already own, streaming your audiobooks from your own Google Drive. Coming soon.\n\n" +
       "The games are all on the home page if you want a closer look.",
-    contact:
-      "The studio reads its own email: " + STUDIO_EMAIL + ".\n\n" +
-      "Or tap “Start a project” below and leave your details here — it lands in the same inbox.",
-    fallback:
-      "That one is beyond my scripted answers. Two good options:\n\n" +
-      "• Tap “Start a project” and leave your details — a human at the studio will email you back.\n" +
-      "• Or email us directly at " + STUDIO_EMAIL + "."
+    home:
+      "Back to the start — what would you like to know?"
   };
 
-  var CHIPS = [
-    { label: "What do you build?", key: "build" },
-    { label: "What does a website cost?", key: "cost" },
-    { label: "What's the AI Setup?", key: "ai" },
-    { label: "Tell me about your games", key: "games" },
-    { label: "Start a project →", key: "lead", cta: true }
-  ];
+  /* ---------- guided option tree ----------
+     Every answer offers the next steps below it, so the conversation only
+     branches along paths the bot knows. "lead" opens the lead form; its
+     "Back to quick answers" returns to the start options. */
+  var OPTION_LABELS = {
+    build: "What do you build?",
+    cost: "What does a website cost?",
+    included: "What's included in a build?",
+    careplan: "What's the Care Plan?",
+    ai: "What's the AI Setup?",
+    games: "Tell me about your games",
+    lead: "Start a project →",
+    start: "Back to start"
+  };
 
-  /* keyword routing for typed questions */
-  var ROUTES = [
-    { key: "cost", words: ["cost", "price", "pricing", "much", "quote", "charge", "fee", "$"] },
-    { key: "ai", words: ["ai", "chatbot", "chat bot", "widget", "lead", "setup", "bot"] },
-    { key: "games", words: ["game", "spades", "stacks", "tome", "audiobook", "android", "play", "itch"] },
-    { key: "contact", words: ["contact", "email", "human", "person", "talk", "call", "phone", "reach"] },
-    { key: "build", words: ["build", "website", "site", "web", "service", "offer", "do you do", "make"] }
-  ];
+  var NODES = {
+    start: ["build", "cost", "ai", "games", "lead"],
+    build: ["cost", "ai", "lead", "start"],
+    cost: ["included", "careplan", "ai", "lead", "start"],
+    included: ["careplan", "lead", "start"],
+    careplan: ["cost", "ai", "lead", "start"],
+    ai: ["careplan", "cost", "lead", "start"],
+    games: ["lead", "cost", "start"]
+  };
 
-  function route(text) {
-    var t = " " + text.toLowerCase() + " ";
-    for (var i = 0; i < ROUTES.length; i++) {
-      var words = ROUTES[i].words;
-      for (var j = 0; j < words.length; j++) {
-        if (t.indexOf(words[j]) !== -1) return ROUTES[i].key;
-      }
-    }
-    return null;
-  }
+  var TYPING_MS = 550; /* typing-dots pause before an answer */
+  var STEP_MS = 420;   /* pause before the second half of a long answer */
 
   /* ---------- DOM ---------- */
   function el(tag, cls, text) {
@@ -110,20 +120,10 @@
   log.setAttribute("aria-live", "polite");
 
   var chipsRow = el("div", "chevis-chat-chips");
-  var inputRow = el("form", "chevis-chat-inputrow");
-  var input = el("input", "chevis-chat-input");
-  input.type = "text";
-  input.placeholder = "Ask about websites, prices, games…";
-  input.setAttribute("aria-label", "Type a question");
-  input.setAttribute("autocomplete", "off");
-  var sendBtn = el("button", "chevis-chat-send", "Send");
-  sendBtn.type = "submit";
-  inputRow.appendChild(input); inputRow.appendChild(sendBtn);
 
   panel.appendChild(head);
   panel.appendChild(log);
   panel.appendChild(chipsRow);
-  panel.appendChild(inputRow);
 
   document.body.appendChild(launcher);
   document.body.appendChild(panel);
@@ -132,7 +132,15 @@
   var greeted = false;
   var formOpen = false;
 
-  function scrollLog() { log.scrollTop = log.scrollHeight; }
+  function scrollLog() {
+    log.scrollTop = log.scrollHeight;
+    var last = log.lastElementChild;
+    if (last && last.scrollIntoView) {
+      try { last.scrollIntoView({ block: "end" }); } catch (e) { /* older engines */ }
+    }
+    /* once more after layout/entrance animation settles */
+    window.setTimeout(function () { log.scrollTop = log.scrollHeight; }, 60);
+  }
 
   function addMsg(text, who, isHTML) {
     var m = el("div", "chevis-chat-msg " + who);
@@ -142,18 +150,63 @@
     return m;
   }
 
-  function renderChips() {
+  var typingEl = null;
+  function showTyping() {
+    hideTyping();
+    typingEl = el("div", "chevis-chat-msg bot chevis-chat-typing");
+    typingEl.setAttribute("aria-hidden", "true");
+    typingEl.innerHTML = "<span></span><span></span><span></span>";
+    log.appendChild(typingEl);
+    scrollLog();
+  }
+  function hideTyping() {
+    if (typingEl) { typingEl.remove(); typingEl = null; }
+  }
+
+  function renderOptions(nodeKey) {
     chipsRow.innerHTML = "";
-    CHIPS.forEach(function (chip) {
-      var b = el("button", "chevis-chat-chip" + (chip.cta ? " cta" : ""), chip.label);
+    (NODES[nodeKey] || NODES.start).forEach(function (key) {
+      var b = el("button", "chevis-chat-chip" + (key === "lead" ? " cta" : ""), OPTION_LABELS[key]);
       b.type = "button";
-      b.addEventListener("click", function () {
-        if (chip.key === "lead") { showLeadForm(); return; }
-        addMsg(chip.label, "user");
-        window.setTimeout(function () { addMsg(ANSWERS[chip.key], "bot", true); }, 180);
-      });
+      b.setAttribute("data-node", key);
+      b.addEventListener("click", function () { chooseOption(key); });
       chipsRow.appendChild(b);
     });
+  }
+
+  /* Long answers (3+ paragraphs) arrive in two steps: the first paragraph,
+     a brief typing pause, then the rest. */
+  function splitSteps(text) {
+    var parts = text.split("\n\n");
+    if (parts.length >= 3) return [parts[0], parts.slice(1).join("\n\n")];
+    return [text];
+  }
+
+  function botReply(text, nodeKey) {
+    chipsRow.innerHTML = "";
+    showTyping();
+    window.setTimeout(function () {
+      hideTyping();
+      var steps = splitSteps(text);
+      addMsg(steps[0], "bot", true);
+      if (steps.length > 1) {
+        showTyping();
+        window.setTimeout(function () {
+          hideTyping();
+          addMsg(steps[1], "bot", true);
+          renderOptions(nodeKey);
+        }, STEP_MS);
+      } else {
+        renderOptions(nodeKey);
+      }
+    }, TYPING_MS);
+  }
+
+  function chooseOption(key) {
+    if (key === "lead") { showLeadForm(); return; }
+    addMsg(OPTION_LABELS[key], "user");
+    if (key === "start") { botReply(ANSWERS.home, "start"); return; }
+    botReply(ANSWERS[key], key);
   }
 
   function greet() {
@@ -163,29 +216,14 @@
       "Hello — this is the studio's quick chat. It answers the questions we get most, instantly, and takes your details if you would like a callback.\n\nWhat can it help with?",
       "bot"
     );
-    renderChips();
+    renderOptions("start");
   }
-
-  function answer(text) {
-    var key = route(text);
-    addMsg(key ? ANSWERS[key] : ANSWERS.fallback, "bot", true);
-  }
-
-  inputRow.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var text = input.value.trim();
-    if (!text) return;
-    input.value = "";
-    addMsg(text, "user");
-    window.setTimeout(function () { answer(text); }, 180);
-  });
 
   /* ---------- lead capture ---------- */
   function showLeadForm() {
-    if (formOpen) { input.focus(); return; }
+    if (formOpen) return;
     formOpen = true;
     chipsRow.style.display = "none";
-    inputRow.style.display = "none";
 
     var wrap = el("div", "chevis-chat-msg bot");
     wrap.style.maxWidth = "94%";
@@ -228,8 +266,7 @@
       wrap.remove();
       formOpen = false;
       chipsRow.style.display = "";
-      inputRow.style.display = "";
-      renderChips();
+      renderOptions("start");
       scrollLog();
     });
     form.appendChild(back);
@@ -296,7 +333,11 @@
 
     wrap.appendChild(form);
     log.appendChild(wrap);
-    scrollLog();
+    /* bring the top of the form into view, not the bottom of the log */
+    if (wrap.scrollIntoView) {
+      try { wrap.scrollIntoView({ block: "start" }); } catch (e) { /* older engines */ }
+    }
+    log.scrollTop = Math.max(0, wrap.offsetTop - log.offsetTop - 12);
     nameIn.focus();
   }
 
@@ -309,7 +350,9 @@
     launcher.classList.add("is-hidden");
     launcher.setAttribute("aria-expanded", "true");
     greet();
-    window.setTimeout(function () { input.focus(); }, 60);
+    /* re-scroll once the open transition has settled so the greeting
+       sits fully in view */
+    window.setTimeout(scrollLog, 340);
   }
   function closePanel() {
     panel.classList.remove("is-open");
