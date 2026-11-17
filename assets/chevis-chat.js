@@ -109,8 +109,7 @@
   headImg.width = 200; headImg.height = 170;
   var headText = el("div");
   var h2 = el("h2", null, "Chevis quick chat");
-  var headSub = el("p", null, "Instant answers to common questions, straight from the studio. Not a live person — leave your details and we will email you back.");
-  headText.appendChild(h2); headText.appendChild(headSub);
+  headText.appendChild(h2);
   var closeBtn = el("button", "chevis-chat-close", "×");
   closeBtn.type = "button";
   closeBtn.setAttribute("aria-label", "Close chat");
@@ -213,7 +212,7 @@
     if (greeted) return;
     greeted = true;
     addMsg(
-      "Hello — this is the studio's quick chat. It answers the questions we get most, instantly, and takes your details if you would like a callback.\n\nWhat can it help with?",
+      "Hello — this is the studio's quick chat. It answers the questions we get most, instantly, and takes your details if you would like a callback. Not a live person — leave your details and we will email you back.\n\nWhat can it help with?",
       "bot"
     );
     renderOptions("start");
