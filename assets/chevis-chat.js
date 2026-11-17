@@ -18,7 +18,7 @@
     build:
       "We build two things:\n\n" +
       "• Websites for local businesses — designed, built, and looked after month to month.\n" +
-      "• Games and apps for Android — Royal Spades, Royal Stacks, and Tome, all made in-house.\n\n" +
+      "• Games and apps for Android, all made in-house — Royal Spades and Royal Stacks are the games, and Tome is our audiobook player app.\n\n" +
       "Tap “What's the AI Setup?” for the newest thing we offer, or tap “Start a project” and we will email you back.",
     cost:
       "Straight numbers:\n\n" +
@@ -44,11 +44,14 @@
       "It answers your customers' common questions instantly, day or night, and captures the name, email, and details of anyone who wants a callback, straight to your inbox. No backend, nothing for you to maintain.\n\n" +
       "It is <span class=\"price\">$299</span> one time — and free with any website build. After that it is looked after under the Care Plan, <span class=\"price\">$199/mo</span>.",
     games:
-      "Three titles, one standard:\n\n" +
+      "Two games, one standard:\n\n" +
       "• Royal Spades — the classic card game, dealt properly. Free on Google Play, with a playable demo right in your browser.\n" +
-      "• Royal Stacks — a poker roguelike deck-builder. Crown your face cards, fuse your jokers, and climb the court. Supporter Edition on itch.io.\n" +
-      "• Tome — an audiobook player for the library you already own, streaming your audiobooks from your own Google Drive. Coming soon.\n\n" +
-      "The games are all on the home page if you want a closer look.",
+      "• Royal Stacks — a poker roguelike deck-builder. Crown your face cards, fuse your jokers, and climb the court. Supporter Edition on itch.io.\n\n" +
+      "Both games are on the home page if you want a closer look.",
+    apps:
+      "One app, made to the same standard:\n\n" +
+      "• Tome — our audiobook player for Android. Not a game: it plays the audiobook library you already own, streaming your files from your own Google Drive, and it is built for the car, with Android Auto. Free for a 30-day trial, then a one-time unlock — no ads, no subscription. Coming soon.\n\n" +
+      "Tome is on the home page too, right under the games.",
     home:
       "Back to the start — what would you like to know?"
   };
@@ -64,18 +67,20 @@
     careplan: "What's the Care Plan?",
     ai: "What's the AI Setup?",
     games: "Tell me about your games",
+    apps: "Tell me about your apps",
     lead: "Start a project →",
     start: "Back to start"
   };
 
   var NODES = {
-    start: ["build", "cost", "ai", "games", "lead"],
-    build: ["cost", "ai", "lead", "start"],
+    start: ["build", "cost", "ai", "games", "apps", "lead"],
+    build: ["cost", "ai", "apps", "lead", "start"],
     cost: ["included", "careplan", "ai", "lead", "start"],
     included: ["careplan", "lead", "start"],
     careplan: ["cost", "ai", "lead", "start"],
     ai: ["careplan", "cost", "lead", "start"],
-    games: ["lead", "cost", "start"]
+    games: ["apps", "lead", "cost", "start"],
+    apps: ["games", "lead", "start"]
   };
 
   var TYPING_MS = 550; /* typing-dots pause before an answer */
