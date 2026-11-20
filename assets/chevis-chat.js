@@ -18,7 +18,7 @@
     build:
       "We build two things:\n\n" +
       "• Websites for local businesses — designed, built, and looked after month to month.\n" +
-      "• Games and apps for Android, all made in-house — Royal Spades and Dead Man’s Hand are the games, and Tome is our audiobook player app.\n\n" +
+      "• Games and apps for Android, all made in-house — Royal Spades is our card game, and Tome is our audiobook player app.\n\n" +
       "Tap “What's the AI Setup?” for the newest thing we offer, or tap “Start a project” and we will email you back.",
     cost:
       "Straight numbers:\n\n" +
@@ -44,10 +44,9 @@
       "It answers your customers' common questions instantly, day or night, and captures the name, email, and details of anyone who wants a callback, straight to your inbox. No backend, nothing for you to maintain.\n\n" +
       "It is <span class=\"price\">$299</span> one time — and free with any website build. After that it is looked after under the Care Plan, <span class=\"price\">$199/mo</span>.",
     games:
-      "Two games, one standard:\n\n" +
+      "One game, one standard:\n\n" +
       "• Royal Spades — the classic card game, dealt properly. Free on Google Play, with a playable demo right in your browser.\n" +
-      "• Dead Man’s Hand — a poker roguelike deck-builder set in a dead casino. Crown cards with the dead man’s hand and climb from the pits to the king’s table. Supporter Edition on itch.io.\n\n" +
-      "Both games are on the home page if you want a closer look.",
+      "It’s on the home page if you want a closer look.",
     apps:
       "One app, made to the same standard:\n\n" +
       "• Tome — our audiobook player for Android. Not a game: it plays the audiobook library you already own, streaming your files from your own Google Drive, and it is built for the car, with Android Auto. Free for a 30-day trial, then a one-time unlock — no ads, no subscription. Coming soon.\n\n" +

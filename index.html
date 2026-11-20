@@ -6,18 +6,18 @@
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#05080F">
 <title>Chevis Interactive — Games built like we mean it</title>
-<meta name="description" content="Chevis Interactive is an independent game studio. Royal Spades, Dead Man’s Hand, and Tome — polished, honest games and apps for Android.">
+<meta name="description" content="Chevis Interactive is an independent game studio. Royal Spades and Tome — polished, honest games and apps for Android.">
 <link rel="icon" type="image/png" href="assets/chevis-monogram.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Chevis Interactive">
-<meta property="og:description" content="An independent studio making polished, honest games and apps for Android. Royal Spades · Dead Man’s Hand · Tome.">
+<meta property="og:description" content="An independent studio making polished, honest games and apps for Android. Royal Spades · Tome.">
 <meta property="og:image" content="https://chevisinteractive.github.io/assets/chevis-banner.jpg">
 <meta property="og:image:width" content="1500">
 <meta property="og:image:height" content="500">
 <meta property="og:image:alt" content="Chevis Interactive banner">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Chevis Interactive">
-<meta name="twitter:description" content="An independent studio making polished, honest games and apps for Android. Royal Spades · Dead Man’s Hand · Tome.">
+<meta name="twitter:description" content="An independent studio making polished, honest games and apps for Android. Royal Spades · Tome.">
 <meta name="twitter:image" content="https://chevisinteractive.github.io/assets/chevis-banner.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -172,15 +172,6 @@
   .scene-media .phone-wrap{position:relative;width:min(238px,64vw);margin:0 auto}
   .scene-media .phone-wrap .phone{width:100%}
   .scene-media .phone-wrap .icon-badge{left:-20px;bottom:20px;z-index:2}
-  /* Dead Man’s Hand — real gameplay leads in the phone frame; cover art steps down to a thumbnail */
-  .scene-media .stacks-duo{position:relative;width:min(252px,68vw);margin:0 auto}
-  .scene-media .stacks-duo .phone{width:100%}
-  .scene-media .stacks-cover{position:absolute;right:-72px;bottom:34px;width:142px;height:auto;aspect-ratio:1260/1000;object-fit:cover;
-    border-radius:14px;border:1px solid rgba(148,184,255,.25);box-shadow:0 18px 36px rgba(0,0,0,.55);z-index:2}
-  /* height:auto above is load-bearing: without an explicit CSS height, the
-     img's height="1000" attribute wins as a presentational hint and the
-     thumbnail stretches into a 142x1000 panel that overlaps both scenes */
-  @media (max-width:560px){.scene-media .stacks-cover{right:-8px;bottom:18px;width:108px}}
   .chip{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.14em;padding:6px 11px;border-radius:999px;text-transform:uppercase;white-space:nowrap}
   .chip.live{color:#67e8f9;border:1px solid rgba(67,223,242,.45);background:rgba(67,223,242,.08)}
   .chip.soon{color:#c4b5fd;border:1px solid rgba(128,102,245,.45);background:rgba(128,102,245,.10)}
@@ -335,7 +326,7 @@
 <section id="games">
   <div class="wrap">
     <div class="kicker">The Lineup</div>
-    <h2>Three titles, one standard</h2>
+    <h2>Two titles, one standard</h2>
     <p class="sub">Every Chevis title is held to the same bar: obnoxiously smooth, clean to play, and respectful of the person holding the phone.</p>
     <div class="divider" aria-hidden="true"></div>
 
@@ -361,20 +352,6 @@
       </div>
     </article>
 
-    <article class="scene flip reveal">
-      <div class="scene-media">
-        <div class="stacks-duo">
-          <div class="phone"><img src="assets/dead-mans-hand-gameplay.jpg" alt="Dead Man’s Hand gameplay — a boss fight on the first floor of the climb" width="945" height="2048" loading="lazy" decoding="async"></div>
-          <img class="stacks-cover" src="assets/dead-mans-hand-icon.webp" alt="Dead Man’s Hand — the Void King, who has waited a hundred years for a worthy hand" width="1260" height="1000" loading="lazy" decoding="async">
-        </div>
-      </div>
-      <div class="scene-body">
-        <div class="title-row"><h3>Dead Man’s Hand</h3><span class="chip itch">Supporter Edition · itch.io</span></div>
-        <p>A poker roguelike deck-builder in a dead casino. You found the dead man’s hand — the only hand that can crown cards — and you climb from the pits to the king’s table, past the players who bet everything and never left. Every run a new hand. Everyone at the table thinks they’re climbing out. Nobody ever has.</p>
-        <div class="scene-foot"><span class="price">$4.99 <small>Supporter Edition</small></span><a class="go" href="https://chevisinteractive.itch.io/dead-mans-hand" target="_blank" rel="noopener">Get the Supporter Edition →</a></div>
-        <p class="fact">Supporter Edition buyers get the Google Play version free at launch.</p>
-      </div>
-    </article>
 
     <article class="scene reveal">
       <div class="scene-media">
