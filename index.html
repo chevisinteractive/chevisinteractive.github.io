@@ -5,682 +5,308 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#05080F">
-<title>Chevis Interactive — Games built like we mean it</title>
-<meta name="description" content="Chevis Interactive is an independent game studio. Royal Spades and Tome — polished, honest games and apps for Android.">
+<title>Chevis Interactive | Small Business Websites & Website Care</title>
+<meta name="description" content="Build a professional website for your business with Chevis Interactive. Custom website design, launch, hosting management, updates, and ongoing care — without the technical hassle.">
+<link rel="canonical" href="https://chevisinteractive.github.io/index.html">
 <link rel="icon" type="image/png" href="assets/chevis-monogram.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Chevis Interactive">
-<meta property="og:description" content="An independent studio making polished, honest games and apps for Android. Royal Spades · Tome.">
+<meta property="og:title" content="Chevis Interactive | Small Business Websites & Website Care">
+<meta property="og:description" content="We build professional websites for small businesses and take care of hosting, maintenance, and updates after launch. Build $2,500 · Care $199/mo.">
 <meta property="og:image" content="https://chevisinteractive.github.io/assets/chevis-banner.jpg">
-<meta property="og:image:width" content="1500">
-<meta property="og:image:height" content="500">
 <meta property="og:image:alt" content="Chevis Interactive banner">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Chevis Interactive">
-<meta name="twitter:description" content="An independent studio making polished, honest games and apps for Android. Royal Spades · Tome.">
-<meta name="twitter:image" content="https://chevisinteractive.github.io/assets/chevis-banner.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#05080f; --surface:#0a101e; --surface2:#0d1526; --line:#1b2740;
-    --ink:#f5f2eb; --muted:#aab4c8; --faint:#8b99b5;
-    --cyan:#43DFF2; --teal:#5EDBD3; --blue:#4A90E2; --violet:#8066F5; --gold:#e8b34b;
-    --grad:linear-gradient(92deg,#43DFF2 0%,#5EDBD3 32%,#4A90E2 66%,#8066F5 100%);
-    --grad-diag:linear-gradient(140deg,#43DFF2 0%,#5EDBD3 34%,#4A90E2 66%,#8066F5 100%);
-    --ease:cubic-bezier(.22,1,.36,1);
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth;scroll-padding-top:84px}
-  body{background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-  ::selection{background:rgba(128,102,245,.55);color:#fff}
-  ::-webkit-scrollbar{width:9px;height:9px}
-  ::-webkit-scrollbar-track{background:#05080f}
-  ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#43DFF2,#8066F5);border-radius:99px;border:2px solid #05080f}
-  *{scrollbar-width:thin;scrollbar-color:#4A90E2 #05080f}
-  a{color:inherit;text-decoration:none}
-  a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
-  img{max-width:100%}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-
-  /* ambient background — the banner's particle field, extended */
-  .ambient{position:fixed;inset:0;z-index:-2;background:
-    radial-gradient(900px 520px at 85% -10%, rgba(128,102,245,.16), transparent 60%),
-    radial-gradient(820px 500px at 8% 12%, rgba(67,223,242,.12), transparent 60%),
-    radial-gradient(1000px 700px at 50% 115%, rgba(74,144,226,.07), transparent 60%),
-    linear-gradient(180deg,#05080f 0%,#060a13 55%,#05080f 100%)}
-  .orb{position:fixed;border-radius:50%;filter:blur(2px);z-index:-1;opacity:.5;pointer-events:none;animation:rise linear infinite}
-  @keyframes rise{0%{transform:translate3d(0,12vh,0)}50%{transform:translate3d(2.5vw,-46vh,0)}100%{transform:translate3d(-1vw,-105vh,0)}}
-
-  /* scroll progress — a thin thread of the logo gradient */
-  .progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:120;pointer-events:none}
-  .progress-bar{height:100%;background:var(--grad);transform-origin:left;transform:scaleX(0);will-change:transform}
-
-  /* nav */
-  nav{position:fixed;top:3px;left:0;right:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    background:rgba(5,8,15,.66);border-bottom:1px solid rgba(27,39,64,.7);transition:background .4s var(--ease),box-shadow .4s var(--ease)}
-  nav.scrolled{background:rgba(5,8,15,.92);box-shadow:0 12px 36px rgba(0,0,0,.4)}
-  .navin{display:flex;align-items:center;gap:13px;height:64px}
-  .navhome{display:flex;align-items:center;gap:13px;min-height:44px}
-  .avatar{width:38px;height:38px;border-radius:11px;object-fit:cover;display:block;
-    box-shadow:0 0 0 1px rgba(255,255,255,.10),0 6px 16px rgba(67,223,242,.28)}
-  .brand{font-family:"Poppins",sans-serif;font-size:16.5px;line-height:1.15}
-  .brand b{font-weight:700;letter-spacing:.01em}
-  .brand span{display:block;font-weight:300;font-size:10.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--muted)}
-  .links{margin-left:auto;display:flex;gap:6px;font-size:14px;font-weight:500;color:var(--muted);align-items:center}
-  .links a{padding:10px 12px;min-height:44px;display:flex;align-items:center;transition:color .2s;position:relative}
-  .links a::after{content:"";position:absolute;left:12px;right:12px;bottom:5px;height:2px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
-  .links a:hover{color:var(--ink)}
-  .links a:hover::after,.links a.active::after{transform:scaleX(1)}
-  .links a.active{color:var(--ink)}
-  @media (max-width:560px){.links a{padding:10px 8px}.links{gap:2px}}
-  @media (max-width:380px){.navin{gap:8px}.brand{font-size:15px}.brand span{display:none}.links a{padding:10px 5px;font-size:12.5px}}
-
-  /* hero */
-  header{padding:118px 0 76px;text-align:center;position:relative;overflow:hidden}
-  /* living geometric mesh (restored from the v5 demo, 2026-11-11) — two parallax
-     canvas layers of gradient diamond nodes that react to the pointer */
-  #meshBack,#mesh{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;
-    /* fade out at the header's bottom edge so the hero field hands off to the
-       identical full-page field with no hard line (Patrick, 2026-11-11) */
-    mask-image:linear-gradient(to bottom, black 80%, transparent 99%);
-    -webkit-mask-image:linear-gradient(to bottom, black 80%, transparent 99%)}
-  #meshBack{z-index:0;opacity:.55}
-  #mesh{z-index:1}
-  /* full-page mesh (Patrick, 2026-11-11) — the same geometric diamond-node
-     field at the SAME strength as the hero pair, extended past the hero as
-     a fixed viewport layer behind all content, so the effect runs through
-     the whole page with no seam at the header's edge. */
-  #meshPage{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
-  .cursor-glow{position:absolute;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:1;
-    background:radial-gradient(circle, rgba(74,144,226,.13) 0%, transparent 65%);
-    transform:translate(-50%,-50%);left:50%;top:32%;opacity:0;transition:opacity .6s ease}
-  header:hover .cursor-glow{opacity:1}
-  /* (the old square .hero-grid graph-paper layer was removed 2026-11-11 at
-     Patrick's word — "weird square grid"; the diamond mesh is the geometry) */
-  .hero-diamonds{position:absolute;left:50%;top:190px;transform:translateX(-50%);width:min(920px,96vw);height:300px;pointer-events:none}
-  .hero-diamonds::before,.hero-diamonds::after{content:"";position:absolute;width:150px;height:150px;transform:rotate(45deg);
-    border:1.5px solid transparent;background:linear-gradient(#060a13,#060a13) padding-box,var(--grad-diag) border-box;opacity:.22}
-  .hero-diamonds::before{left:0;top:60px}
-  .hero-diamonds::after{right:0;top:60px;opacity:.14}
-  @media (max-width:820px){.hero-diamonds{display:none}}
-  /* Fixed 16:9 box from the first frame: the intro video is 1280x720, so the
-     reveal plays uncropped, and settling crossfades to the banner image
-     inside the SAME box — tagline and CTAs never move. The 1500x500
-     banner's centred lockup survives the 16:9 cover crop (lockup x
-     420-1050 of 1500 sits inside the visible 306-1194 window); only the
-     side particle fields are trimmed. */
-  .bannerpanel{position:relative;border-radius:26px;overflow:hidden;aspect-ratio:16/9;
-    border:1px solid rgba(148,184,255,.10);
-    box-shadow:0 24px 70px rgba(0,0,0,.45),0 0 110px rgba(74,144,226,.10),0 0 170px rgba(128,102,245,.08)}
-  .bannerpanel img,.bannerpanel video{position:absolute;inset:0;z-index:1;display:block;width:100%;height:100%;object-fit:cover}
-  @media (pointer:coarse){
-    .bannerpanel video,.bannerpanel .bannerimg{transition:opacity .6s ease}
-  }
-  .bannerpanel .bannerimg{opacity:0;transform:scale(1.05);
-    transition:opacity 1.4s ease,transform 2.4s ease}
-  .bannerpanel video{transition:opacity 1.4s ease}
-  .bannerpanel.settled video{opacity:0}
-  .bannerpanel.settled .bannerimg{opacity:1;transform:scale(1)}
-  .bannerpanel::after{content:"";position:absolute;inset:0;z-index:2;border-radius:26px;pointer-events:none;
-    box-shadow:inset 0 0 0 1px rgba(255,255,255,.06),inset 0 -60px 80px -40px rgba(5,8,15,.55)}
-  .soundbtn{position:absolute;right:16px;bottom:16px;z-index:4;display:inline-flex;align-items:center;gap:8px;
-    padding:10px 16px;min-height:44px;border-radius:999px;border:1px solid rgba(125,211,252,.45);cursor:pointer;
-    background:rgba(5,8,15,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-    color:var(--ink);font-family:"Inter",sans-serif;font-size:13px;font-weight:600;letter-spacing:.04em;
-    transition:opacity .6s ease,transform .2s ease,border-color .2s}
-  .soundbtn:hover{transform:translateY(-1px);border-color:rgba(125,211,252,.8)}
-  .soundbtn.hide{opacity:0;pointer-events:none}
-  .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-  .tag{margin:38px auto 0;max-width:640px;font-size:clamp(19px,2.6vw,23px);line-height:1.55;color:var(--muted)}
-  .tag strong{color:var(--ink);font-weight:600}
-  .cta{margin-top:34px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;gap:9px;padding:14px 26px;border-radius:14px;font-weight:600;font-size:15px;min-height:52px;transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease)}
-  .btn.grad{background:var(--grad);color:#081120;box-shadow:0 10px 30px rgba(74,144,226,.35),inset 0 1px 0 rgba(255,255,255,.35)}
-  .btn.grad:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(74,144,226,.45),inset 0 1px 0 rgba(255,255,255,.35)}
-  .btn.ghost{border:1px solid var(--line);color:var(--ink);background:rgba(13,21,38,.5)}
-  .btn.ghost:hover{transform:translateY(-2px);border-color:#2c3d63}
-  @media (max-width:680px){
-    header{padding:94px 0 58px}
-    .tag{font-size:18px;margin-top:26px}
-    .cta{margin-top:24px}
-    .soundbtn{right:10px;bottom:10px;padding:8px 13px;font-size:12px}
-  }
-
-  /* sections */
-  section{padding:84px 0 8px}
-  .kicker{text-align:center;font-size:12.5px;font-weight:700;letter-spacing:.32em;color:var(--faint);text-transform:uppercase}
-  h2{font-family:"Poppins",sans-serif;font-weight:700;text-align:center;font-size:clamp(29px,4.4vw,42px);margin-top:12px;letter-spacing:.01em}
-  .sub{text-align:center;color:var(--muted);max-width:560px;margin:14px auto 0;font-size:16.5px}
-  .divider{height:1px;max-width:1120px;margin:44px auto 0;background:linear-gradient(90deg,transparent,rgba(148,184,255,.28),transparent);position:relative}
-  .divider::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;transform:translate(-50%,-50%) rotate(45deg);
-    border:1.5px solid transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,var(--grad-diag) border-box}
-
-  /* product scenes — the original's lineup, shown with real art */
-  .scene{display:grid;grid-template-columns:1.08fr .92fr;gap:44px;align-items:center;margin-top:40px}
-  .scene.flip{grid-template-columns:.92fr 1.08fr}
-  .scene.flip .scene-media{order:2}
-  .scene.flip .scene-body{order:1}
-  @media (max-width:880px){.scene,.scene.flip{grid-template-columns:1fr;gap:26px}.scene .scene-media,.scene.flip .scene-media{order:2}.scene .scene-body,.scene.flip .scene-body{order:1}}
-  .scene-media{position:relative}
-  .scene-media .phone{margin:0 auto;width:min(238px,64vw);aspect-ratio:945/2048;overflow:hidden;border-radius:26px;
-    box-shadow:0 24px 48px rgba(0,0,0,.5),0 0 0 1px rgba(148,184,255,.22)}
-  .scene-media .phone img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 0}
-  .scene-media .icon-badge{position:absolute;left:16px;bottom:16px;width:56px;height:56px;border-radius:14px;
-    box-shadow:0 10px 30px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.14)}
-  .scene-media .phone-wrap{position:relative;width:min(238px,64vw);margin:0 auto}
-  .scene-media .phone-wrap .phone{width:100%}
-  .scene-media .phone-wrap .icon-badge{left:-20px;bottom:20px;z-index:2}
-  .chip{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.14em;padding:6px 11px;border-radius:999px;text-transform:uppercase;white-space:nowrap}
-  .chip.live{color:#67e8f9;border:1px solid rgba(67,223,242,.45);background:rgba(67,223,242,.08)}
-  .chip.soon{color:#c4b5fd;border:1px solid rgba(128,102,245,.45);background:rgba(128,102,245,.10)}
-  .chip.itch{color:#dbe4f5;border:1px solid rgba(148,184,255,.35);background:rgba(148,184,255,.08)}
-  .chip.browser{color:var(--ink);border:1.5px solid transparent;background:linear-gradient(#0a101e,#0a101e) padding-box,var(--grad-diag) border-box}
-  /* browser-editions announcement band */
-  .websoon{margin:26px auto 6px;max-width:760px;padding:16px 22px;border-radius:16px;text-align:center;
-    border:1.5px solid transparent;background:linear-gradient(#0a101e,#0a101e) padding-box,var(--grad-diag) border-box;
-    font-size:15.5px;line-height:1.55;color:var(--muted)}
-  .websoon strong{color:var(--ink)}
-  .websoon .ws-tag{display:block;font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px;
-    background:var(--grad-diag);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .scene-body h3{font-family:"Poppins",sans-serif;font-size:clamp(23px,3vw,30px);font-weight:700;margin-top:16px}
-  .title-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-  .title-row h3{margin-top:0}
-  .scene-body p{color:var(--muted);font-size:15.5px;margin-top:12px;line-height:1.7;max-width:52ch}
-  .scene-body p .gold{color:var(--gold);font-weight:600}
-  .scene-foot{margin-top:22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-  .price{font-weight:700;font-size:18px;color:var(--gold)}
-  .price small{font-weight:500;font-size:12px;color:var(--muted)}
-  .free{font-weight:700;font-size:18px;color:var(--cyan)}
-  .fact{margin-top:14px;font-size:13.5px;color:var(--faint)}
-  .go{margin-left:auto;font-weight:600;font-size:14.5px;color:#7dd3fc;display:inline-flex;align-items:center;min-height:44px;padding:6px 2px}
-  .go:hover{text-decoration:underline}
-
-  /* Royal Spades web demo slot — a playable demo of the Play Store game.
-     Same gradient-border band language as .websoon; gold is not used here
-     (gold is for currency/rewards only). */
-  .demo-slot{margin-top:22px;padding:20px 22px;border-radius:18px;
-    border:1.5px solid transparent;background:linear-gradient(#0a101e,#0a101e) padding-box,var(--grad-diag) border-box}
-  .demo-slot .ds-tag{display:block;font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-    background:var(--grad-diag);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .demo-slot p{margin-top:8px;color:var(--muted);font-size:15px;line-height:1.6}
-  .demo-slot p strong{color:var(--ink)}
-  .demo-actions{margin-top:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-  .demo-actions .btn{flex:0 0 auto}
-  .play-badge{display:inline-flex;align-items:center;min-height:52px}
-  .play-badge img{display:block;height:52px;width:auto}
-  @media (max-width:560px){
-    .demo-slot{padding:16px 18px}
-    .play-badge img{height:46px}
-  }
-
-  /* Demo hero — the playable demo leads the page (Patrick's order,
-     2026-11-14): demo first, hero video directly below it. Same
-     gradient tag and button language as the demo slot; gold is not
-     used here (gold is for currency/rewards only). */
-  .hero-demo{margin:0 auto 38px;max-width:780px}
-  .hero-demo .ds-tag{display:block;font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
-    background:var(--grad-diag);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero-title{font-family:"Poppins",sans-serif;font-weight:700;font-size:clamp(34px,5.4vw,54px);line-height:1.12;margin-top:16px;letter-spacing:.005em}
-  .hero-demo .hero-sub{margin:16px auto 0;max-width:600px;color:var(--muted);font-size:clamp(16px,2.2vw,18.5px);line-height:1.6}
-  .hero-demo .hero-sub strong{color:var(--ink)}
-  .hero-demo .demo-actions{margin-top:26px;justify-content:center}
-  @media (max-width:680px){
-    .hero-demo{margin-bottom:30px}
-    .hero-demo .demo-actions{gap:14px}
-  }
-
-  .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
-  @media (max-width:920px){.principles{grid-template-columns:1fr}}
-  .principle{padding:28px;border-radius:20px;background:rgba(10,16,30,.6);border:1px solid rgba(27,39,64,.8);transition:transform .3s var(--ease),border-color .3s var(--ease)}
-  .principle:hover{transform:translateY(-4px);border-color:#2c3d63}
-  .principle .num{font-family:"Poppins",sans-serif;font-size:15px;font-weight:700;letter-spacing:.2em;color:var(--cyan)}
-  .principle h3{font-size:18.5px;font-weight:700;margin-top:12px;font-family:"Poppins",sans-serif}
-  .principle p{color:var(--muted);font-size:15px;margin-top:8px}
-
-  .manifesto{padding:96px 0 32px;text-align:center}
-  .manifesto p{font-family:"Poppins",sans-serif;font-weight:700;font-size:clamp(27px,4.8vw,44px);line-height:1.25;max-width:820px;margin:0 auto}
-  .manifesto .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-
-  footer{margin-top:96px;border-top:1px solid rgba(27,39,64,.8);background:rgba(6,10,19,.7)}
-  .footin{padding:46px 0 40px;display:flex;flex-direction:column;gap:22px;align-items:center;text-align:center}
-  .footlogo{width:64px;height:64px;border-radius:17px;object-fit:cover;
-    box-shadow:0 0 0 1px rgba(255,255,255,.10),0 10px 26px rgba(67,223,242,.25)}
-  .socials{display:flex;gap:8px 26px;flex-wrap:wrap;justify-content:center;font-size:14.5px;font-weight:500;color:var(--muted)}
-  .socials a{padding:8px 2px;min-height:44px;display:inline-flex;align-items:center}
-  .socials a:hover{color:var(--ink)}
-  .legal{display:flex;gap:8px 22px;flex-wrap:wrap;justify-content:center;font-size:13.5px;color:var(--faint)}
-  .legal a{padding:6px 2px;min-height:44px;display:inline-flex;align-items:center}
-  .legal a:hover{color:var(--muted)}
-  .fine{font-size:13px;color:var(--faint)}
-  .fine a{color:#7dd3fc}
-
-  /* reveal — transform only, so content is never hidden from any user */
-  .reveal{transform:translateY(22px);transition:transform .8s var(--ease)}
-  .reveal.on{transform:none}
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto}
-    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
-    .orb{animation:none}
-    .reveal{transform:none}
-  }
-</style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7SKG3GVFEY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-7SKG3GVFEY');
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","name":"Chevis Interactive","url":"https://chevisinteractive.github.io/","email":"chevisinteractive@gmail.com","logo":"https://chevisinteractive.github.io/assets/chevis-monogram.png","address":{"@type":"PostalAddress","addressLocality":"Norman","addressRegion":"OK","addressCountry":"US"}},
+{"@type":"WebSite","name":"Chevis Interactive","url":"https://chevisinteractive.github.io/"},
+{"@type":"Service","name":"Small Business Website Design","provider":{"@type":"Organization","name":"Chevis Interactive"},"areaServed":"Oklahoma City metropolitan area","offers":{"@type":"Offer","price":"2500","priceCurrency":"USD","description":"One-time professional website build"}},
+{"@type":"Service","name":"Website Care Plan","provider":{"@type":"Organization","name":"Chevis Interactive"},"offers":{"@type":"Offer","price":"199","priceCurrency":"USD","description":"Monthly website hosting management, maintenance, updates, and support"}}
+]}
 </script>
 </head>
 <body>
-<div class="ambient"></div>
-<canvas id="meshPage" aria-hidden="true"></canvas>
-<div class="progress" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+<div class="ambient" aria-hidden="true"></div>
 
-<nav id="mainNav">
+<nav aria-label="Main">
   <div class="wrap navin">
-    <a class="navhome" href="#top" aria-label="Chevis Interactive — back to top">
-      <img class="avatar" src="assets/chevis-monogram.png" alt="Chevis Interactive monogram" width="200" height="170">
-      <span class="brand"><b>Chevis</b><span>Interactive</span></span>
+    <a class="navhome" href="index.html" aria-label="Chevis Interactive home">
+      <img class="avatar" src="assets/chevis-monogram.png" alt="Chevis Interactive monogram" width="38" height="38">
+      <span class="brand"><b>Chevis</b> Interactive<span>Websites · Games</span></span>
     </a>
     <div class="links">
-      <a href="#games" data-spy="games">Games</a>
-      <a href="#craft" data-spy="craft">Craft</a>
-      <a href="services.html">Services</a>
-      <a href="#contact" data-spy="contact">Contact</a>
+      <a href="websites.html">Websites</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="games.html">Games</a>
+      <a class="btn btn-primary btn-nav" href="index.html#start">Start a Project</a>
     </div>
   </div>
 </nav>
 
-<header id="top">
-  <canvas id="meshBack" aria-hidden="true"></canvas>
-  <canvas id="mesh" aria-hidden="true"></canvas>
-  <div class="hero-diamonds" aria-hidden="true"></div>
-  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
-  <div class="wrap" style="position:relative;z-index:2">
-    <div class="hero-demo">
-      <span class="ds-tag">Playable demo · Royal Spades Light</span>
-      <p class="hero-title">Play Royal Spades free, right in your browser</p>
-      <p class="hero-sub"><strong>Royal Spades Light</strong> is a free taste of the full Android game. No install, no account.</p>
-      <div class="demo-actions">
-        <a class="btn grad" href="https://royal-spades-web.pages.dev" target="_blank" rel="noopener">Play the web demo</a>
-        <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.chevisinteractive.myapp&referrer=utm_source%3Dwebsite%26utm_medium%3Dweb%26utm_campaign%3Droyal-spades" target="_blank" rel="noopener"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" height="52" loading="lazy" decoding="async"></a>
-      </div>
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Websites for local businesses</p>
+    <h1>Your website shouldn't be <span class="grad-text">another job.</span></h1>
+    <p class="lede">We build professional websites for small businesses, then handle hosting, updates, and maintenance after launch. You run your business. The website is our problem, happily.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="index.html#start">Start Your Project</a>
+      <a class="btn btn-ghost" href="portfolio.html">Explore Our Work</a>
     </div>
-    <div class="bannerpanel reveal" id="heroPanel">
-      <img class="bannerimg" src="assets/chevis-banner.jpg" alt="Chevis Interactive — interlocking gradient monogram over a network of light" width="1500" height="500" fetchpriority="high">
-      <video id="introVideo" autoplay muted playsinline preload="auto" poster="assets/chevis-banner.jpg" src="assets/chevis-intro-audio2.mp4" aria-label="Chevis Interactive logo reveal — particles of light form the gradient monogram and wordmark"></video>
-      <button class="soundbtn" id="soundBtn" type="button"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>&ensp;Play with sound</button>
-    </div>
-    <h1 class="visually-hidden">Chevis Interactive</h1>
-    <p class="tag">An independent studio making <strong>polished, honest games</strong> for Android — built slowly, finished properly, and priced fairly.</p>
-    <div class="cta">
-      <a class="btn grad" href="https://play.google.com/store/apps/details?id=com.chevisinteractive.myapp&referrer=utm_source%3Dwebsite%26utm_medium%3Dweb%26utm_campaign%3Droyal-spades" target="_blank" rel="noopener">Play Royal Spades — free</a>
-      <a class="btn ghost" href="#games">See the games</a>
-    </div>
+    <p class="price-line">Website build <b>$2,500</b> one time · Care Plan <b>$199/month</b> · You own your site and domain</p>
   </div>
 </header>
-<section id="games">
+
+<section class="tight" aria-label="Our commitments">
   <div class="wrap">
-    <div class="kicker">The Lineup</div>
-    <h2>Two titles, one standard</h2>
-    <p class="sub">Every Chevis title is held to the same bar: obnoxiously smooth, clean to play, and respectful of the person holding the phone.</p>
-    <div class="divider" aria-hidden="true"></div>
-
-    <article class="scene reveal">
-      <div class="scene-media">
-        <div class="phone-wrap">
-          <div class="phone"><img src="assets/royal-spades-gameplay.jpg" alt="Royal Spades gameplay — bidding phase at a full table" width="945" height="2048" loading="eager" decoding="async"></div>
-          <img class="icon-badge" src="assets/royal-spades-icon.png" alt="Royal Spades app icon" width="512" height="512" loading="eager" decoding="async">
-        </div>
-      </div>
-      <div class="scene-body">
-        <div class="title-row"><h3>Royal Spades</h3><span class="chip live">Live · Google Play</span></div>
-        <p>The classic card game, dealt properly. Bid, trump, and outplay sharp opponents — solo or at coin tables with friends. Daily quests, <span class="gold">coins to win</span>, and a full Royal Pass season.</p>
-        <div class="demo-slot">
-          <span class="ds-tag">Playable demo</span>
-          <p>Play a free demo right in your browser — <strong>Royal Spades Light</strong>, a taste of the full Android game. No install, no account.</p>
-          <div class="demo-actions">
-            <a class="btn grad" href="https://royal-spades-web.pages.dev" target="_blank" rel="noopener">Play the web demo</a>
-            <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.chevisinteractive.myapp&referrer=utm_source%3Dwebsite%26utm_medium%3Dweb%26utm_campaign%3Droyal-spades" target="_blank" rel="noopener"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" height="52" loading="lazy" decoding="async"></a>
-          </div>
-        </div>
-        <div class="scene-foot"><span class="free">FREE</span><a class="go" href="https://play.google.com/store/apps/details?id=com.chevisinteractive.myapp&referrer=utm_source%3Dwebsite%26utm_medium%3Dweb%26utm_campaign%3Droyal-spades" target="_blank" rel="noopener">Play free →</a></div>
-      </div>
-    </article>
-
-
-    <article class="scene reveal">
-      <div class="scene-media">
-        <div class="phone"><img src="assets/tome-home.png" alt="Tome home screen — the fictional audiobook The Ninth Tide now playing, with The Ninth Tide, Empires of Glass, and Static Bloom in Recently Played" width="945" height="2048" loading="lazy" decoding="async"></div>
-      </div>
-      <div class="scene-body">
-        <div class="title-row"><h3>Tome</h3><span class="chip soon">Coming soon</span></div>
-        <p>An audiobook player for the library you already own. Tome streams your .m4b audiobooks straight from your own Google Drive and always remembers your place. No ads, no trackers — Google Drive player, it just works.</p>
-        <div class="scene-foot"><a class="go" href="https://chevisinteractive.github.io/privacy-policy.html" target="_blank" rel="noopener">Privacy policy →</a></div>
-      </div>
-    </article>
-  </div>
-</section>
-
-<section id="craft">
-  <div class="wrap">
-    <div class="kicker">The Craft</div>
-    <h2>How we build</h2>
-    <div class="principles">
-      <div class="principle reveal">
-        <div class="num">01</div>
-        <h3>Polish is the product</h3>
-        <p>Motion, typography, and the feel of every tap are the feature — not the garnish. If a screen doesn't feel finished, it isn't.</p>
-      </div>
-      <div class="principle reveal">
-        <div class="num">02</div>
-        <h3>Honest by default</h3>
-        <p>No dark patterns, no bought reviews, no pay-to-win. Free means free, a price means one price, and our listings only claim what the game actually does.</p>
-      </div>
-      <div class="principle reveal">
-        <div class="num">03</div>
-        <h3>Your stuff stays yours</h3>
-        <p>Tome plays files from your Drive and keeps no copies. Our apps collect the minimum, say exactly what it is, and let you delete it.</p>
-      </div>
+    <div class="trust">
+      <div><b>You own everything</b><span>Your domain, your website, your content. Registered in your name, not ours.</span></div>
+      <div><b>No hostage situations</b><span>No exit fees and no lock-in. If you ever move on, everything goes with you.</span></div>
+      <div><b>No surprise fees</b><span>The price on this page is the price. Anything extra is quoted and approved by you first.</span></div>
+      <div><b>Honest advice</b><span>If a refresh will do the job, we will say so instead of selling you a rebuild.</span></div>
     </div>
   </div>
 </section>
 
-<section id="services">
+<section aria-label="Our work">
   <div class="wrap">
-    <div class="kicker">Website Services</div>
-    <h2>We build websites, too</h2>
-    <p class="sub">The same studio polish, pointed at your business. We build fast, modern websites for local businesses and look after them month to month: hosting, updates, and small changes handled. World class service, start to finish.</p>
-    <div class="cta">
-      <a class="btn ghost" href="services.html">See website services</a>
+    <p class="eyebrow">See the work</p>
+    <h2>Don't take our word for it. <span class="grad-text">Look at it.</span></h2>
+    <p class="lede" style="margin-bottom:30px">Every example below is shown on desktop and phone, the way your customers will actually see it.</p>
+    <div class="grid c3">
+      <article class="card">
+        <span class="badge real">Real · Our own site</span>
+        <h3>Chevis Interactive</h3>
+        <p>Our own studio website, designed, built, and looked after the same way we would handle yours. The full case study walks through the problem, the decisions, and the result.</p>
+        <p style="margin-top:16px"><a href="portfolio.html#case-study" style="color:var(--cyan);font-weight:600">Read the case study →</a></p>
+      </article>
+      <article class="card">
+        <span class="badge">Concept project</span>
+        <h3>Ember &amp; Oak — Restaurant</h3>
+        <p>A complete concept site for a wood-fired restaurant: menu up front, hours and directions one tap away, and a reservation form that takes under a minute. Clearly a concept, built to show the standard.</p>
+        <p style="margin-top:16px"><a href="demo/restaurant.html" style="color:var(--cyan);font-weight:600">View the concept →</a></p>
+      </article>
+      <article class="card">
+        <span class="badge">Concept project</span>
+        <h3>More concepts in progress</h3>
+        <p>Concept builds for a plumbing company and a landscaping company are in progress, following the same pattern: the phone call, the services, and the price signals a customer needs, all on the first screen.</p>
+        <p style="margin-top:16px"><a href="portfolio.html" style="color:var(--cyan);font-weight:600">See the portfolio →</a></p>
+      </article>
     </div>
   </div>
 </section>
 
-<div class="manifesto reveal">
+<section aria-label="What you get">
   <div class="wrap">
-    <p>Games built like <span class="grad">we mean it</span>.<br>Because we do.</p>
+    <p class="eyebrow">What you get</p>
+    <h2>Built around <span class="grad-text">your customers</span>, not our portfolio</h2>
+    <div class="grid c3" style="margin-top:26px">
+      <article class="card">
+        <div class="icon" aria-hidden="true">📞</div>
+        <h3>Designed for your customers</h3>
+        <p>Your phone number is one tap to call. Your services and prices are easy to understand. Your hours and location are easy to find. Nobody has to hunt for the reason to choose you.</p>
+      </article>
+      <article class="card">
+        <div class="icon" aria-hidden="true">📱</div>
+        <h3>Built for phones first</h3>
+        <p>Most of your customers will find you on a phone, so your site is designed for that screen first and every screen after it. Readable text, comfortable buttons, no pinching or squinting.</p>
+      </article>
+      <article class="card">
+        <div class="icon" aria-hidden="true">🛠️</div>
+        <h3>We take care of it</h3>
+        <p>Hosting, backups, security updates, and small changes are handled for you month to month. You never have to log into anything, update anything, or figure out hosting. Ever.</p>
+      </article>
+    </div>
   </div>
-</div>
+</section>
 
-<footer id="contact">
-  <div class="wrap footin">
-    <img class="footlogo" src="assets/chevis-logo.jpg" alt="Chevis Interactive logo" width="400" height="400" loading="lazy" decoding="async">
-    <div class="socials">
-      <a href="https://x.com/ChevisInteract" target="_blank" rel="noopener">X</a>
-      <a href="https://www.instagram.com/chevisinteractive" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.threads.com/@chevisinteractive" target="_blank" rel="noopener">Threads</a>
-      <a href="https://www.facebook.com/profile.php?id=61596224104801" target="_blank" rel="noopener">Facebook</a>
-      <a href="https://www.youtube.com/@ChevisInteractive" target="_blank" rel="noopener">YouTube</a>
-      <a href="https://chevisinteractive.itch.io" target="_blank" rel="noopener">itch.io</a>
+<section id="pricing" aria-label="Pricing">
+  <div class="wrap">
+    <p class="eyebrow">Pricing</p>
+    <h2>Straightforward pricing. <span class="grad-text">No surprises.</span></h2>
+    <p class="lede" style="margin-bottom:30px">Three offers, priced in the open. What each one includes is listed right on the card.</p>
+    <div class="grid c3">
+      <article class="card price-card featured">
+        <span class="badge real">Most start here</span>
+        <h3>Website Build</h3>
+        <p class="amount">$2,500</p>
+        <p class="per">One time</p>
+        <ul>
+          <li>Custom design, never a template</li>
+          <li>Mobile-first layout</li>
+          <li>Your pages, written and structured with you</li>
+          <li>Contact and inquiry flow built in</li>
+          <li>Domain and hosting set up for you</li>
+          <li>Search basics done right</li>
+          <li>Launch handled for you</li>
+          <li>Your approval before anything goes live</li>
+        </ul>
+        <a class="btn btn-primary" href="websites.html">See the build in detail</a>
+      </article>
+      <article class="card price-card">
+        <span class="badge">Ongoing · Optional</span>
+        <h3>Website Care Plan</h3>
+        <p class="amount">$199<span style="font-size:1.1rem;color:var(--faint)">/month</span></p>
+        <p class="per">Billed monthly · Cancel anytime</p>
+        <ul>
+          <li>Hosting managed for you</li>
+          <li>Monitoring, backups, and security updates</li>
+          <li>Small changes done for you: text, photos, hours, prices</li>
+          <li>Monthly report on your site</li>
+          <li>Direct support from the people who built it</li>
+          <li>Larger changes quoted separately, never a surprise</li>
+        </ul>
+        <a class="btn btn-ghost" href="website-care.html">See how Care works</a>
+      </article>
+      <article class="card price-card">
+        <span class="badge gold">Optional add-on</span>
+        <h3>AI Setup</h3>
+        <p class="amount">$299</p>
+        <p class="per">One time · Add to any build</p>
+        <ul>
+          <li>An assistant on your site, trained on your business</li>
+          <li>Answers common questions: hours, services, prices</li>
+          <li>Captures inquiries when you can't answer</li>
+          <li>Set up, installed, and walked through with you</li>
+          <li>Any third-party fees quoted before we start</li>
+        </ul>
+        <a class="btn btn-ghost" href="ai-setup.html">See the AI Setup</a>
+      </article>
     </div>
-    <div class="fine">Say hello: <a href="mailto:chevisinteractive@gmail.com">chevisinteractive@gmail.com</a></div>
-    <div class="legal">
-      <a href="https://chevisinteractive.github.io/privacy-policy.html" target="_blank" rel="noopener">Tome Privacy Policy</a>
-      <a href="https://chevisinteractive.github.io/delete-account.html" target="_blank" rel="noopener">Delete Account</a>
-      <a href="https://chevisinteractive.github.io/delete-data.html" target="_blank" rel="noopener">Delete Data</a>
+    <p class="muted" style="margin-top:22px">Your domain and website belong to you from day one. If you ever leave, everything goes with you, and we will help you hand it over. <a href="website-care.html" style="color:var(--cyan)">Care Plan terms, in plain words →</a></p>
+  </div>
+</section>
+
+<section aria-label="How it works">
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2>A simple process. <span class="grad-text">No surprises.</span></h2>
+    <div class="steps" style="margin-top:26px">
+      <div class="step"><span class="n">01</span><h3>Tell us what you need</h3><p>One short form, under a minute. We review it and reply with a straightforward next step.</p></div>
+      <div class="step"><span class="n">02</span><h3>We build it</h3><p>You get progress you can look at, not promises. We check in as the site takes shape.</p></div>
+      <div class="step"><span class="n">03</span><h3>You review it</h3><p>Nothing ships without your say so. Changes you want are made before launch, not after.</p></div>
+      <div class="step"><span class="n">04</span><h3>We launch</h3><p>Domain, hosting, and launch handled for you. Your site goes live under your name.</p></div>
+      <div class="step"><span class="n">05</span><h3>We look after it</h3><p>With the Care Plan, updates and small changes are a message away, month after month.</p></div>
     </div>
-    <div class="fine">This site uses Google Analytics to count visits and understand which pages people read.</div>
-    <div class="fine">© 2026 Chevis Interactive. All rights reserved.</div>
+  </div>
+</section>
+
+<section aria-label="Ownership">
+  <div class="wrap center">
+    <p class="eyebrow">Ownership</p>
+    <h2>You own what we build</h2>
+    <p class="lede">Your domain and website belong to you. No hostage situations. No hidden exit fees. If you leave, your website goes with you, and we will make the handover painless. That is the deal, in writing, before anything starts.</p>
+  </div>
+</section>
+
+<section aria-label="Games">
+  <div class="wrap">
+    <p class="eyebrow">Also from the studio</p>
+    <h2>We make games, too — <span class="grad-text">on their own page</span></h2>
+    <p class="lede" style="margin-bottom:26px">Chevis Interactive started as a game studio, and still is one. The games live on their own page so this one can stay about your business.</p>
+    <div class="grid c2">
+      <article class="card">
+        <span class="badge real">Live · Google Play</span>
+        <h3>Royal Spades</h3>
+        <p>The classic card game, dealt properly. Free on Google Play, plays offline, no account needed.</p>
+        <p style="margin-top:14px"><a href="games.html" style="color:var(--cyan);font-weight:600">See the games →</a></p>
+      </article>
+      <article class="card">
+        <span class="badge">Coming soon</span>
+        <h3>Tome</h3>
+        <p>An audiobook player for the library you already own. Your files stay yours, streamed from your own Google Drive.</p>
+        <p style="margin-top:14px"><a href="games.html" style="color:var(--cyan);font-weight:600">See the games →</a></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Questions">
+  <div class="wrap">
+    <p class="eyebrow">Questions</p>
+    <h2>Before you ask</h2>
+    <div style="margin-top:22px">
+      <details><summary>How much does a website cost, all in?</summary><div class="a">The build is $2,500 one time. After that, the optional Care Plan is $199/month and covers hosting management, maintenance, and small changes. Your domain name renews at cost, in your name. Anything beyond that is quoted and approved by you before work starts. There are no other charges hiding anywhere.</div></details>
+      <details><summary>Do I have to take the Care Plan?</summary><div class="a">No. It is optional. Some owners want a website person on call; some would rather take the keys and drive. Either way the site and domain are yours, and you can start Care later if you change your mind.</div></details>
+      <details><summary>What counts as a "small change" on the Care Plan?</summary><div class="a">Routine updates: text and photo swaps, hours, contact details, service and price updates, seasonal notices. Bigger work, like a new page, a booking system, or a redesign, is quoted separately at a fair price before we start. <a href="website-care.html" style="color:var(--cyan)">The full Care Plan, defined →</a></div></details>
+      <details><summary>I already have a website. Can you fix it instead?</summary><div class="a">Often, yes. We will look at what you have and tell you honestly whether a refresh will do the job or a rebuild is worth it. If a refresh will do, we will say so.</div></details>
+      <details><summary>Do I own my website and domain?</summary><div class="a">Yes. Both are registered in your name. If you ever move on, everything goes with you, with no exit fee and no hard feelings.</div></details>
+      <details><summary>How do we start?</summary><div class="a">Fill in the short form below. We review every inquiry ourselves and reply within one business day with a straightforward next step: a price confirmed in writing, what we would build, and when it could launch.</div></details>
+    </div>
+  </div>
+</section>
+
+<section id="start" aria-label="Start your project">
+  <div class="wrap center">
+    <p class="eyebrow">Start a project</p>
+    <h2>Let's get your website sorted</h2>
+    <p class="lede" style="margin-bottom:28px">Tell us a little about your business. We review it ourselves and reply within one business day with a straightforward next step.</p>
+    <form class="project" id="project-form" action="https://formsubmit.co/chevisinteractive@gmail.com" method="POST">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_subject" value="New project inquiry — Chevis Interactive website">
+      <div class="row">
+        <div><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+        <div><label for="f-business">Business name</label><input id="f-business" name="business" type="text" autocomplete="organization" required></div>
+      </div>
+      <div class="row">
+        <div><label for="f-email">Email address</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        <div><label for="f-website">Current website (optional)</label><input id="f-website" name="website" type="url" inputmode="url" placeholder="https://"></div>
+      </div>
+      <div><label for="f-need">What do you need?</label>
+        <select id="f-need" name="need" required>
+          <option value="New website">New website</option>
+          <option value="Redesign">Redesign of my current site</option>
+          <option value="Website care">Website care for a site I have</option>
+          <option value="AI setup">AI Setup add-on</option>
+          <option value="Not sure yet">Not sure yet</option>
+        </select></div>
+      <div><label for="f-msg">Anything else? (optional)</label><textarea id="f-msg" name="message" placeholder="A few details about your business and what you are hoping for…"></textarea></div>
+      <button class="btn btn-primary" type="submit" style="width:100%">Send Project Inquiry</button>
+      <p class="form-note">Prefer email? Write to us at <a href="mailto:chevisinteractive@gmail.com" style="color:var(--cyan)">chevisinteractive@gmail.com</a>. No spam, no list, no obligation.</p>
+      <div class="form-ok" id="form-ok" role="status">Thank you — your inquiry is on its way. We reply within one business day with a straightforward next step.</div>
+      <div class="form-err" id="form-err" role="alert">That didn't send. Please try again, or email us directly at chevisinteractive@gmail.com.</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="navhome" href="index.html"><img class="avatar" src="assets/chevis-monogram.png" alt="Chevis Interactive monogram" width="38" height="38"><span class="brand"><b>Chevis</b> Interactive<span>Websites · Games</span></span></a>
+        <p class="muted small" style="margin-top:14px;max-width:280px">Professional websites for small businesses, built and looked after by a small studio in Norman, Oklahoma.</p>
+      </div>
+      <div><h4>Services</h4><ul>
+        <li><a href="websites.html">Website design</a></li>
+        <li><a href="website-care.html">Website care</a></li>
+        <li><a href="ai-setup.html">AI Setup</a></li>
+        <li><a href="index.html#pricing">Pricing</a></li>
+      </ul></div>
+      <div><h4>Studio</h4><ul>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="games.html">Games</a></li>
+        <li><a href="index.html#start">Start a Project</a></li>
+      </ul></div>
+      <div><h4>Contact</h4><ul>
+        <li><a href="mailto:chevisinteractive@gmail.com">chevisinteractive@gmail.com</a></li>
+        <li><a href="index.html#start">Project inquiry form</a></li>
+        <li><a href="https://x.com/ChevisInteract" rel="noopener">X</a> · <a href="https://instagram.com/chevisinteractive" rel="noopener">Instagram</a></li>
+        <li><a href="https://youtube.com/@ChevisInteractive" rel="noopener">YouTube</a> · <a href="https://www.tiktok.com/@chevis.interactive" rel="noopener">TikTok</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Chevis Interactive · Norman, Oklahoma</span>
+      <span><a href="https://chevisinteractive.github.io/privacy-policy.html">Privacy policy</a></span>
+    </div>
   </div>
 </footer>
 
-<script>
-  // The reveal plays once (muted autoplay — browsers forbid autoplay with
-  // sound), then tucks away into the still banner. Sound NEVER unmutes the
-  // autoplay element: on Android, unmuting a muted-autoplay video stalls the
-  // decoder and freezes the picture. Instead, a tap on the SOUND BUTTON ONLY
-  // swaps in a FRESH video element, created inside the tap, which is allowed
-  // to play with sound and starts in the normal pipeline. (Taps on the panel
-  // itself do nothing — a stray tap while aiming for a CTA must not replay.)
-  (function(){
-    var v=document.getElementById('introVideo'), panel=document.getElementById('heroPanel'), btn=document.getElementById('soundBtn');
-    if(!v||!panel) return;
-    var settled=false, lockUntil=0;
-    function settle(){ if(settled) return; settled=true; panel.classList.add('settled');
-      if(btn){ btn.classList.remove('hide'); btn.innerHTML='↻&ensp;Replay with sound'; }
-      setTimeout(function(){ v.pause(); },1500); }
-    v.addEventListener('ended', settle);
-    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(reduced){ v.removeAttribute('autoplay'); v.pause(); panel.classList.add('settled'); settled=true;
-      if(btn) btn.innerHTML='▶&ensp;Play the reveal with sound'; }
-    function startWithSound(){
-      var now=Date.now(); if(now<lockUntil) return; lockUntil=now+700;
-      settled=false; panel.classList.remove('settled'); if(btn) btn.classList.add('hide');
-      var nv=document.createElement('video');
-      nv.id='introVideo'; nv.src=v.src; nv.poster=v.poster; nv.preload='auto';
-      nv.playsInline=true; nv.setAttribute('playsinline',''); nv.muted=false; nv.autoplay=false;
-      nv.setAttribute('aria-label','Chevis Interactive logo reveal — particles of light form the gradient monogram and wordmark');
-      nv.addEventListener('ended', settle);
-      try{ v.pause(); }catch(e){}
-      panel.replaceChild(nv, v); v=nv;
-      var p=v.play();
-      if(p && p.catch) p.catch(function(){ v.muted=true; var q=v.play(); if(q&&q.catch) q.catch(function(){});
-        if(btn){ btn.classList.remove('hide'); } });
-    }
-    if(btn) btn.addEventListener('click', startWithSound);
-  })();
-  // ambient orbs — slow rising motes in cyan and violet, echoing the banner's particle field
-  (function(){
-    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(reduced) return;
-    var colors=['rgba(67,223,242,.55)','rgba(128,102,245,.55)','rgba(74,144,226,.45)','rgba(94,219,211,.45)'];
-    for(var i=0;i<16;i++){
-      var o=document.createElement('div'); o.className='orb';
-      var s=3+Math.random()*7;
-      o.style.width=o.style.height=s+'px';
-      o.style.left=(Math.random()*100)+'vw';
-      o.style.top=(62+Math.random()*45)+'vh';
-      o.style.background=colors[i%colors.length];
-      o.style.boxShadow='0 0 '+(s*2.4)+'px '+colors[i%colors.length];
-      o.style.animationDuration=(26+Math.random()*30)+'s';
-      o.style.animationDelay=(-Math.random()*40)+'s';
-      document.body.appendChild(o);
-    }
-  })();
-  // scroll progress + nav state + section spy
-  (function(){
-    var bar=document.getElementById('progressBar');
-    var nav=document.getElementById('mainNav');
-    var links=document.querySelectorAll('[data-spy]');
-    var secs=['games','craft','contact'].map(function(id){ return document.getElementById(id); });
-    var ticking=false;
-    function onScroll(){
-      if(ticking) return; ticking=true;
-      requestAnimationFrame(function(){
-        var h=document.documentElement;
-        var max=h.scrollHeight-h.clientHeight;
-        var p=max>0?(h.scrollTop/max):0;
-        if(bar) bar.style.transform='scaleX('+p+')';
-        if(nav) nav.classList.toggle('scrolled', h.scrollTop>12);
-        var y=window.scrollY+190, cur=null;
-        secs.forEach(function(s){ if(s && s.offsetTop<=y) cur=s.id; });
-        links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('data-spy')===cur); });
-        ticking=false;
-      });
-    }
-    window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
-  })();
-  // reveal on scroll — transform only; content is visible even if this never runs its course
-  (function(){
-    var els=document.querySelectorAll('.reveal');
-    if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('on')});return;}
-    var io=new IntersectionObserver(function(entries){
-      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('on'); io.unobserve(en.target);} });
-    },{threshold:.12});
-    els.forEach(function(e){io.observe(e)});
-    setTimeout(function(){ els.forEach(function(e){ e.classList.add('on'); }); }, 2200);
-  })();
-</script>
-
-<script>
-  /* hero — two-layer parallax mesh, pulsing diamond nodes (restored from the
-     v5 demo at Patrick's request, 2026-11-11). Pauses off-screen; reduced
-     motion gets one static frame. */
-  (function(){
-    var canvas=document.getElementById('mesh');
-    var canvasBack=document.getElementById('meshBack');
-    var hero=document.getElementById('top');
-    if(!canvas||!hero) return;
-    var glow=document.getElementById('cursorGlow');
-    var reduced=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var isMobile=window.innerWidth<680;
-    var ctx=canvas.getContext('2d');
-    var ctxB=canvasBack?canvasBack.getContext('2d'):null;
-    var W=0,H=0, nodes=[], nodesBack=[], mouse={x:-9999,y:-9999}, smx=0,smy=0, DPR=Math.min(window.devicePixelRatio||1,1.75);
-    var LINK=isMobile?118:150, MOUSE_R=isMobile?150:215;
-    var STOPS=[[67,223,242],[94,219,211],[74,144,226],[128,102,245]];
-    function lerpColor(t){ var seg=Math.min(2,Math.floor(t*3)), f=t*3-seg; var a=STOPS[seg], b=STOPS[seg+1]; return Math.round(a[0]+(b[0]-a[0])*f)+','+Math.round(a[1]+(b[1]-a[1])*f)+','+Math.round(a[2]+(b[2]-a[2])*f); }
-    function makeNodes(count, speed, rMax){
-      var arr=[];
-      for(var i=0;i<count;i++) arr.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*speed,vy:(Math.random()-.5)*speed,r:.8+Math.random()*rMax,hue:Math.random(),ph:Math.random()*Math.PI*2,ps:.6+Math.random()*1.1});
-      return arr;
-    }
-    function build(){
-      var rect=hero.getBoundingClientRect(); W=rect.width; H=rect.height;
-      [canvas,canvasBack].forEach(function(c){ if(!c) return; c.width=W*DPR; c.height=H*DPR; c.style.width=W+'px'; c.style.height=H+'px'; });
-      ctx.setTransform(DPR,0,0,DPR,0,0); if(ctxB) ctxB.setTransform(DPR,0,0,DPR,0,0);
-      var mobile=window.innerWidth<680;
-      var nearCount=mobile?22:Math.max(30,Math.min(52,Math.floor(W*H/24000)));
-      var farCount=mobile?16:Math.max(20,Math.min(36,Math.floor(W*H/38000)));
-      nodes=makeNodes(nearCount,.30,1.9);
-      nodesBack=makeNodes(farCount,.14,1.2);
-    }
-    function drawLayer(c, arr, par, alphaMul, t){
-      if(!c) return;
-      c.clearRect(0,0,W,H);
-      var ox=smx*par, oy=smy*par;
-      var i,j,a,b,dx,dy,d;
-      for(i=0;i<arr.length;i++) for(j=i+1;j<arr.length;j++){
-        a=arr[i]; b=arr[j]; dx=a.x-b.x; dy=a.y-b.y; d=Math.sqrt(dx*dx+dy*dy);
-        if(d<LINK){
-          var al=(1-d/LINK)*.30*alphaMul;
-          var mx=(a.x+b.x)/2-mouse.x, my=(a.y+b.y)/2-mouse.y, md=Math.sqrt(mx*mx+my*my);
-          var boost=md<MOUSE_R?(1-md/MOUSE_R)*.5:0;
-          c.strokeStyle='rgba('+lerpColor((a.hue+b.hue)/2)+','+(al+boost*alphaMul)+')';
-          c.lineWidth=boost>.05?1.3:1;
-          c.beginPath(); c.moveTo(a.x+ox,a.y+oy); c.lineTo(b.x+ox,b.y+oy); c.stroke();
-        }
-      }
-      for(i=0;i<arr.length;i++){
-        a=arr[i]; dx=a.x-mouse.x; dy=a.y-mouse.y; d=Math.sqrt(dx*dx+dy*dy);
-        var near=d<MOUSE_R?(1-d/MOUSE_R):0;
-        var pulse=1+Math.sin(t*.0012*a.ps+a.ph)*.28;
-        var rad=a.r*pulse+near*2.4;
-        c.fillStyle='rgba('+lerpColor(a.hue)+','+(0.48+near*.5)*alphaMul+')';
-        var px=a.x+ox, py=a.y+oy;
-        c.beginPath(); c.moveTo(px,py-rad*1.4); c.lineTo(px+rad,py); c.lineTo(px,py+rad*1.4); c.lineTo(px-rad,py); c.closePath(); c.fill();
-        if(near>.28){ c.strokeStyle='rgba('+lerpColor(a.hue)+','+near*.6+')'; c.lineWidth=1; c.beginPath(); c.arc(px,py,rad*3.1,0,Math.PI*2); c.stroke(); }
-        if(!reduced){ a.x+=a.vx; a.y+=a.vy; if(a.x<0||a.x>W) a.vx*=-1; if(a.y<0||a.y>H) a.vy*=-1; a.x=Math.max(0,Math.min(W,a.x)); a.y=Math.max(0,Math.min(H,a.y)); if(near>0&&d>0){ a.x+=dx/d*-.10*near; a.y+=dy/d*-.10*near; } }
-      }
-    }
-    var frame=0, running=false, inView=true;
-    function draw(t){
-      if(!inView){ running=false; return; }
-      frame++;
-      smx+=(((mouse.x-W/2)/(W/2||1))*-1 - smx)*.045;
-      smy+=(((mouse.y-H/2)/(H/2||1))*-1 - smy)*.045;
-      if(glow && mouse.x>-1000){ glow.style.left=mouse.x+'px'; glow.style.top=mouse.y+'px'; }
-      drawLayer(ctxB, nodesBack, 6, .55, t||0);
-      drawLayer(ctx, nodes, 14, 1, t||0);
-      if(!reduced) requestAnimationFrame(draw); else running=false;
-    }
-    function kick(){ if(!running && inView){ running=true; requestAnimationFrame(draw); } }
-    hero.addEventListener('pointermove', function(e){ var r=canvas.getBoundingClientRect(); mouse.x=e.clientX-r.left; mouse.y=e.clientY-r.top; });
-    hero.addEventListener('pointerleave', function(){ mouse.x=-9999; mouse.y=-9999; });
-    hero.addEventListener('touchmove', function(e){ var r=canvas.getBoundingClientRect(); var tt=e.touches[0]; if(tt){ mouse.x=tt.clientX-r.left; mouse.y=tt.clientY-r.top; } }, {passive:true});
-    if('IntersectionObserver' in window){
-      new IntersectionObserver(function(en){ inView=en[0].isIntersecting; if(inView) kick(); },{threshold:0}).observe(hero);
-    }
-    var resizeT; window.addEventListener('resize', function(){ clearTimeout(resizeT); resizeT=setTimeout(function(){ isMobile=window.innerWidth<680; LINK=isMobile?118:150; build(); if(reduced) draw(0); else kick(); },180); });
-    build(); draw(0); running=!reduced;
-  })();
-</script>
-
-<script>
-  /* full-page mesh — fixed viewport canvas behind all content (Patrick,
-     2026-11-11: the hero effect "through and through", no hard line at the
-     header's edge). A direct port of the hero mesh at the SAME strength:
-     two parallax layers, same node density, link distance, and alphas, so
-     what is going on up top is simply what is going on everywhere. The
-     hero pair fades out at the header's bottom edge (CSS mask) and hands
-     off to this field. Reacts to the pointer anywhere on the page; pauses
-     when the tab is hidden; reduced motion gets one static frame. */
-  (function(){
-    var canvas=document.getElementById('meshPage');
-    if(!canvas) return;
-    var reduced=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var ctx=canvas.getContext('2d');
-    var W=0,H=0, nodes=[], nodesBack=[], mouse={x:-9999,y:-9999}, smx=0, smy=0, DPR=Math.min(window.devicePixelRatio||1,1.75);
-    var LINK=150, MOUSE_R=215;
-    var STOPS=[[67,223,242],[94,219,211],[74,144,226],[128,102,245]];
-    function lerpColor(t){ var seg=Math.min(2,Math.floor(t*3)), f=t*3-seg; var a=STOPS[seg], b=STOPS[seg+1]; return Math.round(a[0]+(b[0]-a[0])*f)+','+Math.round(a[1]+(b[1]-a[1])*f)+','+Math.round(a[2]+(b[2]-a[2])*f); }
-    function makeNodes(count, speed, rMax){
-      var arr=[];
-      for(var i=0;i<count;i++) arr.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*speed,vy:(Math.random()-.5)*speed,r:.8+Math.random()*rMax,hue:Math.random(),ph:Math.random()*Math.PI*2,ps:.6+Math.random()*1.1});
-      return arr;
-    }
-    function build(){
-      W=window.innerWidth; H=window.innerHeight;
-      canvas.width=W*DPR; canvas.height=H*DPR; canvas.style.width=W+'px'; canvas.style.height=H+'px';
-      ctx.setTransform(DPR,0,0,DPR,0,0);
-      var mobile=W<680;
-      LINK=mobile?118:150; MOUSE_R=mobile?150:215;
-      var nearCount=mobile?22:Math.max(30,Math.min(52,Math.floor(W*H/24000)));
-      var farCount=mobile?16:Math.max(20,Math.min(36,Math.floor(W*H/38000)));
-      nodes=makeNodes(nearCount,.30,1.9);
-      nodesBack=makeNodes(farCount,.14,1.2);
-    }
-    function drawLayer(arr, par, alphaMul, t){
-      var ox=smx*par, oy=smy*par;
-      var i,j,a,b,dx,dy,d;
-      for(i=0;i<arr.length;i++) for(j=i+1;j<arr.length;j++){
-        a=arr[i]; b=arr[j]; dx=a.x-b.x; dy=a.y-b.y; d=Math.sqrt(dx*dx+dy*dy);
-        if(d<LINK){
-          var al=(1-d/LINK)*.30*alphaMul;
-          var mx=(a.x+b.x)/2-mouse.x, my=(a.y+b.y)/2-mouse.y, md=Math.sqrt(mx*mx+my*my);
-          var boost=md<MOUSE_R?(1-md/MOUSE_R)*.5:0;
-          ctx.strokeStyle='rgba('+lerpColor((a.hue+b.hue)/2)+','+(al+boost*alphaMul)+')';
-          ctx.lineWidth=boost>.05?1.3:1;
-          ctx.beginPath(); ctx.moveTo(a.x+ox,a.y+oy); ctx.lineTo(b.x+ox,b.y+oy); ctx.stroke();
-        }
-      }
-      for(i=0;i<arr.length;i++){
-        a=arr[i]; dx=a.x-mouse.x; dy=a.y-mouse.y; d=Math.sqrt(dx*dx+dy*dy);
-        var near=d<MOUSE_R?(1-d/MOUSE_R):0;
-        var pulse=1+Math.sin(t*.0012*a.ps+a.ph)*.28;
-        var rad=a.r*pulse+near*2.4;
-        ctx.fillStyle='rgba('+lerpColor(a.hue)+','+(0.48+near*.5)*alphaMul+')';
-        var px=a.x+ox, py=a.y+oy;
-        ctx.beginPath(); ctx.moveTo(px,py-rad*1.4); ctx.lineTo(px+rad,py); ctx.lineTo(px,py+rad*1.4); ctx.lineTo(px-rad,py); ctx.closePath(); ctx.fill();
-        if(near>.28){ ctx.strokeStyle='rgba('+lerpColor(a.hue)+','+near*.6+')'; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(px,py,rad*3.1,0,Math.PI*2); ctx.stroke(); }
-        if(!reduced){ a.x+=a.vx; a.y+=a.vy; if(a.x<0||a.x>W) a.vx*=-1; if(a.y<0||a.y>H) a.vy*=-1; a.x=Math.max(0,Math.min(W,a.x)); a.y=Math.max(0,Math.min(H,a.y)); if(near>0&&d>0){ a.x+=dx/d*-.10*near; a.y+=dy/d*-.10*near; } }
-      }
-    }
-    var running=false;
-    function draw(t){
-      if(document.hidden){ running=false; return; }
-      running=true;
-      ctx.clearRect(0,0,W,H);
-      smx+=(((mouse.x-W/2)/(W/2||1))*-1 - smx)*.045;
-      smy+=(((mouse.y-H/2)/(H/2||1))*-1 - smy)*.045;
-      drawLayer(nodesBack, 6, .55, t||0);
-      drawLayer(nodes, 14, 1, t||0);
-      if(!reduced && !document.hidden) requestAnimationFrame(draw); else running=false;
-    }
-    function kick(){ if(!running && !reduced && !document.hidden){ running=true; requestAnimationFrame(draw); } }
-    window.addEventListener('pointermove', function(e){ mouse.x=e.clientX; mouse.y=e.clientY; }, {passive:true});
-    window.addEventListener('pointerleave', function(){ mouse.x=-9999; mouse.y=-9999; });
-    document.addEventListener('visibilitychange', function(){ kick(); });
-    var resizeT; window.addEventListener('resize', function(){ clearTimeout(resizeT); resizeT=setTimeout(function(){ LINK=window.innerWidth<680?118:150; build(); if(reduced) draw(0); else kick(); },180); });
-    build(); draw(0); running=!reduced;
-  })();
-</script>
-
+<div class="sticky-cta"><a href="index.html#start">Start Your Project — $2,500</a></div>
+<script src="assets/form.js"></script>
 <link rel="stylesheet" href="assets/chevis-chat.css">
 <script src="assets/chevis-chat.js" defer></script>
 </body>

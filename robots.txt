@@ -1,2 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /demo/
+
+Sitemap: https://chevisinteractive.github.io/sitemap.xml
