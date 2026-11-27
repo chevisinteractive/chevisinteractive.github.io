@@ -60,7 +60,9 @@
   @media (max-width:640px){.sticky-call{display:block;position:fixed;left:12px;right:12px;bottom:12px;z-index:60}
     .sticky-call a{display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:99px;background:linear-gradient(92deg,var(--ember),var(--ember2));color:#22100a;font-weight:700}
     body{padding-bottom:74px}}
+  html.embed .sticky-call{display:none!important}
 </style>
+<script>if(new URLSearchParams(location.search).has("embed")){document.documentElement.classList.add("embed")}</script>
 </head>
 <body>
 <div class="concept-bar">Concept demo built by Chevis Interactive to show our work. Ember &amp; Oak is not a real business. <a href="../portfolio.html">Back to the portfolio →</a></div>

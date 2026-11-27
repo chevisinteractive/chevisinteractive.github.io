@@ -3,20 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#05080F">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ffffff">
 <title>Chevis Interactive | Small Business Websites & Website Care</title>
 <meta name="description" content="Build a professional website for your business with Chevis Interactive. Custom website design, launch, hosting management, updates, and ongoing care — without the technical hassle.">
 <link rel="canonical" href="https://chevisinteractive.github.io/index.html">
-<link rel="icon" type="image/png" href="assets/chevis-monogram.png">
+<link rel="icon" type="image/png" href="assets/chevis-monogram-gradient.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Chevis Interactive | Small Business Websites & Website Care">
 <meta property="og:description" content="We build professional websites for small businesses and take care of hosting, maintenance, and updates after launch. Build $2,500 · Care $199/mo.">
 <meta property="og:image" content="https://chevisinteractive.github.io/assets/chevis-banner.jpg">
 <meta property="og:image:alt" content="Chevis Interactive banner">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -26,224 +23,187 @@
 {"@type":"Service","name":"Website Care Plan","provider":{"@type":"Organization","name":"Chevis Interactive"},"offers":{"@type":"Offer","price":"199","priceCurrency":"USD","description":"Monthly website hosting management, maintenance, updates, and support"}}
 ]}
 </script>
+<script>if(new URLSearchParams(location.search).has("embed")){document.documentElement.classList.add("embed")}</script>
 </head>
 <body>
-<div class="ambient" aria-hidden="true"></div>
 
 <nav aria-label="Main">
   <div class="wrap navin">
     <a class="navhome" href="index.html" aria-label="Chevis Interactive home">
-      <img class="avatar" src="assets/chevis-monogram.png" alt="Chevis Interactive monogram" width="38" height="38">
+      <img class="avatar" src="assets/chevis-monogram-gradient.png" alt="Chevis Interactive monogram" width="38" height="38">
       <span class="brand"><b>Chevis</b> Interactive<span>Websites · Games</span></span>
     </a>
     <div class="links">
-      <a href="websites.html">Websites</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="index.html#pricing">Pricing</a>
-      <a href="about.html">About</a>
-      <a href="games.html">Games</a>
-      <a class="btn btn-primary btn-nav" href="index.html#start">Start a Project</a>
+      <a href="websites.html" class="hide-xs">Websites</a>
+      <a href="website-care.html" class="hide-s">Care</a>
+      <a href="ai-setup.html" class="hide-s">AI Setup</a>
+      <a href="portfolio.html" class="hide-s">Portfolio</a>
+      <a href="about.html" class="hide-s">About</a>
+      <a href="games.html" class="hide-s">Games</a>
+      <a class="btn btn-primary btn-nav" href="index.html#start">Start Your Project</a>
     </div>
   </div>
 </nav>
 
+<!-- ================= HERO ================= -->
 <header class="hero">
-  <div class="wrap">
-    <p class="eyebrow">Websites for local businesses</p>
-    <h1>Your website shouldn't be <span class="grad-text">another job.</span></h1>
-    <p class="lede">We build professional websites for small businesses, then handle hosting, updates, and maintenance after launch. You run your business. The website is our problem, happily.</p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="index.html#start">Start Your Project</a>
-      <a class="btn btn-ghost" href="portfolio.html">Explore Our Work</a>
+  <div class="wrap narrow center reveal">
+    <h1>Your website shouldn&rsquo;t<br>be another job.</h1>
+    <p class="subhead">We build professional websites for small businesses, then handle hosting, updates, and maintenance after launch. You run your business. The website is our problem, happily.</p>
+    <div class="cta-links">
+      <a href="index.html#start">Start Your Project</a>
+      <a href="websites.html">See what&rsquo;s included</a>
     </div>
-    <p class="price-line">Website build <b>$2,500</b> one time · Care Plan <b>$199/month</b> · You own your site and domain</p>
+  </div>
+  <div class="wrap reveal">
+    <div class="tile tile-hero">
+      <div class="browser" aria-hidden="true">
+        <div class="bar"><i></i><i></i><i></i><div class="url"></div></div>
+        <div class="page">
+          <b>Your business, beautifully online.</b>
+          <span>Services, hours, and one tap to call &mdash; exactly where your customers expect them.</span>
+          <span class="pill">Call now</span>
+        </div>
+      </div>
+      <div class="phone" aria-hidden="true">
+        <div class="screen">
+          <b>Open today until 6 PM</b>
+          <span>Tap to call, get directions, or send an inquiry in under a minute.</span>
+          <span class="pill">Call</span>
+        </div>
+      </div>
+      <div class="caption">Designed for phones first.<small>Because that is where your customers find you.</small></div>
+    </div>
   </div>
 </header>
 
-<section class="tight" aria-label="Our commitments">
-  <div class="wrap">
-    <div class="trust">
-      <div><b>You own everything</b><span>Your domain, your website, your content. Registered in your name, not ours.</span></div>
-      <div><b>No hostage situations</b><span>No exit fees and no lock-in. If you ever move on, everything goes with you.</span></div>
-      <div><b>No surprise fees</b><span>The price on this page is the price. Anything extra is quoted and approved by you first.</span></div>
-      <div><b>Honest advice</b><span>If a refresh will do the job, we will say so instead of selling you a rebuild.</span></div>
+<!-- ================= WEBSITES / PRICING ANCHOR ================= -->
+<section id="pricing" class="alt" aria-label="Website Build">
+  <div class="wrap narrow center reveal">
+    <p class="eyebrow">Website Build</p>
+    <h2>A professional website.<br>Built for you. Launched for you.</h2>
+    <p class="subhead">Custom design, never a template. Your pages written and structured with you, a contact flow built in, and your approval before anything goes live.</p>
+    <p class="price">$2,500 <span>one time</span></p>
+    <div class="cta-links">
+      <a href="index.html#start">Start Your Project</a>
+      <a href="index.html#care">Add ongoing care</a>
+    </div>
+  </div>
+  <div class="wrap reveal">
+    <div class="tile tile-web">
+      <div class="browser" aria-hidden="true">
+        <div class="bar"><i></i><i></i><i></i><div class="url"></div></div>
+        <div class="page">
+          <b>Home. Services. About. Contact.</b>
+          <span>Domain and hosting set up in your name. Search basics done right. Launch handled, start to finish.</span>
+          <span class="pill">Get an inquiry</span>
+        </div>
+      </div>
+      <div class="caption">Everything included. Nothing rented.<small>Your domain, your website, your content &mdash; registered in your name.</small></div>
     </div>
   </div>
 </section>
 
-<section aria-label="Our work">
-  <div class="wrap">
-    <p class="eyebrow">See the work</p>
-    <h2>Don't take our word for it. <span class="grad-text">Look at it.</span></h2>
-    <p class="lede" style="margin-bottom:30px">Every example below is shown on desktop and phone, the way your customers will actually see it.</p>
-    <div class="grid c3">
-      <article class="card">
-        <span class="badge real">Real · Our own site</span>
-        <h3>Chevis Interactive</h3>
-        <p>Our own studio website, designed, built, and looked after the same way we would handle yours. The full case study walks through the problem, the decisions, and the result.</p>
-        <p style="margin-top:16px"><a href="portfolio.html#case-study" style="color:var(--cyan);font-weight:600">Read the case study →</a></p>
-      </article>
-      <article class="card">
-        <span class="badge">Concept project</span>
-        <h3>Ember &amp; Oak — Restaurant</h3>
-        <p>A complete concept site for a wood-fired restaurant: menu up front, hours and directions one tap away, and a reservation form that takes under a minute. Clearly a concept, built to show the standard.</p>
-        <p style="margin-top:16px"><a href="demo/restaurant.html" style="color:var(--cyan);font-weight:600">View the concept →</a></p>
-      </article>
-      <article class="card">
-        <span class="badge">Concept project</span>
-        <h3>More concepts in progress</h3>
-        <p>Concept builds for a plumbing company and a landscaping company are in progress, following the same pattern: the phone call, the services, and the price signals a customer needs, all on the first screen.</p>
-        <p style="margin-top:16px"><a href="portfolio.html" style="color:var(--cyan);font-weight:600">See the portfolio →</a></p>
-      </article>
+<!-- ================= CARE ================= -->
+<section id="care" aria-label="Website Care">
+  <div class="wrap narrow center reveal">
+    <p class="eyebrow plain">Website Care</p>
+    <h2>Your own website person.<br>For $199 a month.</h2>
+    <p class="subhead">Hosting managed, monitoring and backups running, security updates applied, and small changes done for you. You send a message. It gets done.</p>
+    <p class="price">$199<span>/month &middot; Billed monthly &middot; Cancel anytime</span></p>
+    <div class="cta-links">
+      <a href="index.html#start">Start Your Project</a>
+      <a href="index.html#why">Why owners choose Chevis</a>
+    </div>
+  </div>
+  <div class="wrap reveal">
+    <div class="tile tile-care">
+      <div class="carecard" aria-hidden="true">
+        <p>Hosting managed for you</p>
+        <p>Monitoring, backups, and security updates</p>
+        <p>Small changes: text, photos, hours, prices</p>
+        <p>A short report on your site, every month</p>
+      </div>
+      <div class="caption">Looked after by the people who built it.<small>Optional, and never required. The site is yours either way.</small></div>
     </div>
   </div>
 </section>
 
-<section aria-label="What you get">
-  <div class="wrap">
-    <p class="eyebrow">What you get</p>
-    <h2>Built around <span class="grad-text">your customers</span>, not our portfolio</h2>
-    <div class="grid c3" style="margin-top:26px">
-      <article class="card">
-        <div class="icon" aria-hidden="true">📞</div>
-        <h3>Designed for your customers</h3>
-        <p>Your phone number is one tap to call. Your services and prices are easy to understand. Your hours and location are easy to find. Nobody has to hunt for the reason to choose you.</p>
-      </article>
-      <article class="card">
-        <div class="icon" aria-hidden="true">📱</div>
-        <h3>Built for phones first</h3>
-        <p>Most of your customers will find you on a phone, so your site is designed for that screen first and every screen after it. Readable text, comfortable buttons, no pinching or squinting.</p>
-      </article>
-      <article class="card">
-        <div class="icon" aria-hidden="true">🛠️</div>
-        <h3>We take care of it</h3>
-        <p>Hosting, backups, security updates, and small changes are handled for you month to month. You never have to log into anything, update anything, or figure out hosting. Ever.</p>
-      </article>
+<!-- ================= AI SETUP ================= -->
+<section id="ai" class="alt" aria-label="AI Setup">
+  <div class="wrap narrow center reveal">
+    <p class="eyebrow plain">AI Setup</p>
+    <h2>A front desk for your website<br>that never closes.</h2>
+    <p class="subhead">An assistant on your site, trained on your business. It answers hours, services, and prices &mdash; and captures inquiries while you are busy. Even at 10 PM. Even on Sunday.</p>
+    <p class="price">$299 <span>one time &middot; Free with any website build</span></p>
+    <div class="cta-links">
+      <a href="index.html#start">Start Your Project</a>
+      <a href="index.html#start">Add it to a build</a>
+    </div>
+  </div>
+  <div class="wrap reveal">
+    <div class="tile tile-ai">
+      <div class="chat" aria-hidden="true">
+        <div class="bubble q"><small>Visitor &middot; 9:47 PM</small>Are you open on Saturdays?</div>
+        <div class="bubble a"><small>Your assistant</small>We are &mdash; 9 AM to 2 PM. Would you like me to pass your details along for a callback?</div>
+      </div>
+      <div class="caption">Answers the everyday questions.<small>Hands everything else to you. It never invents a price.</small></div>
     </div>
   </div>
 </section>
 
-<section id="pricing" aria-label="Pricing">
-  <div class="wrap">
-    <p class="eyebrow">Pricing</p>
-    <h2>Straightforward pricing. <span class="grad-text">No surprises.</span></h2>
-    <p class="lede" style="margin-bottom:30px">Three offers, priced in the open. What each one includes is listed right on the card.</p>
-    <div class="grid c3">
-      <article class="card price-card featured">
-        <span class="badge real">Most start here</span>
-        <h3>Website Build</h3>
-        <p class="amount">$2,500</p>
-        <p class="per">One time</p>
-        <ul>
-          <li>Custom design, never a template</li>
-          <li>Mobile-first layout</li>
-          <li>Your pages, written and structured with you</li>
-          <li>Contact and inquiry flow built in</li>
-          <li>Domain and hosting set up for you</li>
-          <li>Search basics done right</li>
-          <li>Launch handled for you</li>
-          <li>Your approval before anything goes live</li>
-        </ul>
-        <a class="btn btn-primary" href="websites.html">See the build in detail</a>
-      </article>
-      <article class="card price-card">
-        <span class="badge">Ongoing · Optional</span>
-        <h3>Website Care Plan</h3>
-        <p class="amount">$199<span style="font-size:1.1rem;color:var(--faint)">/month</span></p>
-        <p class="per">Billed monthly · Cancel anytime</p>
-        <ul>
-          <li>Hosting managed for you</li>
-          <li>Monitoring, backups, and security updates</li>
-          <li>Small changes done for you: text, photos, hours, prices</li>
-          <li>Monthly report on your site</li>
-          <li>Direct support from the people who built it</li>
-          <li>Larger changes quoted separately, never a surprise</li>
-        </ul>
-        <a class="btn btn-ghost" href="website-care.html">See how Care works</a>
-      </article>
-      <article class="card price-card">
-        <span class="badge gold">Optional add-on</span>
-        <h3>AI Setup</h3>
-        <p class="amount">$299</p>
-        <p class="per">One time · Add to any build</p>
-        <ul>
-          <li>An assistant on your site, trained on your business</li>
-          <li>Answers common questions: hours, services, prices</li>
-          <li>Captures inquiries when you can't answer</li>
-          <li>Set up, installed, and walked through with you</li>
-          <li>Any third-party fees quoted before we start</li>
-        </ul>
-        <a class="btn btn-ghost" href="ai-setup.html">See the AI Setup</a>
-      </article>
-    </div>
-    <p class="muted" style="margin-top:22px">Your domain and website belong to you from day one. If you ever leave, everything goes with you, and we will help you hand it over. <a href="website-care.html" style="color:var(--cyan)">Care Plan terms, in plain words →</a></p>
+<!-- ================= WHY CHEVIS ================= -->
+<section id="why" aria-label="Why Chevis">
+  <div class="wrap narrow center reveal">
+    <h2>The deal, in plain words.</h2>
+    <p class="subhead">Four commitments, kept on every project.</p>
   </div>
-</section>
-
-<section aria-label="How it works">
-  <div class="wrap">
-    <p class="eyebrow">How it works</p>
-    <h2>A simple process. <span class="grad-text">No surprises.</span></h2>
-    <div class="steps" style="margin-top:26px">
-      <div class="step"><span class="n">01</span><h3>Tell us what you need</h3><p>One short form, under a minute. We review it and reply with a straightforward next step.</p></div>
-      <div class="step"><span class="n">02</span><h3>We build it</h3><p>You get progress you can look at, not promises. We check in as the site takes shape.</p></div>
-      <div class="step"><span class="n">03</span><h3>You review it</h3><p>Nothing ships without your say so. Changes you want are made before launch, not after.</p></div>
-      <div class="step"><span class="n">04</span><h3>We launch</h3><p>Domain, hosting, and launch handled for you. Your site goes live under your name.</p></div>
-      <div class="step"><span class="n">05</span><h3>We look after it</h3><p>With the Care Plan, updates and small changes are a message away, month after month.</p></div>
+  <div class="wrap reveal">
+    <div class="why">
+      <div>
+        <b>You own everything</b>
+        <p>Your domain, your website, your content. Registered in your name, not ours.</p>
+      </div>
+      <div>
+        <b>No hostage situations</b>
+        <p>No exit fees and no lock-in. If you ever move on, everything goes with you.</p>
+      </div>
+      <div>
+        <b>No surprise fees</b>
+        <p>The price on this page is the price. Anything extra is quoted and approved by you first.</p>
+      </div>
+      <div>
+        <b>Honest advice</b>
+        <p>If a refresh will do the job, we will say so instead of selling you a rebuild.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section aria-label="Ownership">
-  <div class="wrap center">
-    <p class="eyebrow">Ownership</p>
-    <h2>You own what we build</h2>
-    <p class="lede">Your domain and website belong to you. No hostage situations. No hidden exit fees. If you leave, your website goes with you, and we will make the handover painless. That is the deal, in writing, before anything starts.</p>
+<!-- ================= GAMES ================= -->
+<section id="games" class="alt" aria-label="Games">
+  <div class="wrap narrow center reveal">
+    <h2>Also from the studio.</h2>
+    <p class="subhead">Chevis Interactive started as a game studio, and still is one. The games live on their own page &mdash; this one stays about your business.</p>
   </div>
-</section>
-
-<section aria-label="Games">
-  <div class="wrap">
-    <p class="eyebrow">Also from the studio</p>
-    <h2>We make games, too — <span class="grad-text">on their own page</span></h2>
-    <p class="lede" style="margin-bottom:26px">Chevis Interactive started as a game studio, and still is one. The games live on their own page so this one can stay about your business.</p>
-    <div class="grid c2">
-      <article class="card">
-        <span class="badge real">Live · Google Play</span>
+  <div class="wrap reveal">
+    <div class="games">
+      <div class="game spades">
         <h3>Royal Spades</h3>
         <p>The classic card game, dealt properly. Free on Google Play, plays offline, no account needed.</p>
-        <p style="margin-top:14px"><a href="games.html" style="color:var(--cyan);font-weight:600">See the games →</a></p>
-      </article>
-      <article class="card">
-        <span class="badge">Coming soon</span>
-        <h3>Tome</h3>
-        <p>An audiobook player for the library you already own. Your files stay yours, streamed from your own Google Drive.</p>
-        <p style="margin-top:14px"><a href="games.html" style="color:var(--cyan);font-weight:600">See the games →</a></p>
-      </article>
+        <a href="games.html">See the games</a>
+      </div>
     </div>
   </div>
 </section>
 
-<section aria-label="Questions">
-  <div class="wrap">
-    <p class="eyebrow">Questions</p>
-    <h2>Before you ask</h2>
-    <div style="margin-top:22px">
-      <details><summary>How much does a website cost, all in?</summary><div class="a">The build is $2,500 one time. After that, the optional Care Plan is $199/month and covers hosting management, maintenance, and small changes. Your domain name renews at cost, in your name. Anything beyond that is quoted and approved by you before work starts. There are no other charges hiding anywhere.</div></details>
-      <details><summary>Do I have to take the Care Plan?</summary><div class="a">No. It is optional. Some owners want a website person on call; some would rather take the keys and drive. Either way the site and domain are yours, and you can start Care later if you change your mind.</div></details>
-      <details><summary>What counts as a "small change" on the Care Plan?</summary><div class="a">Routine updates: text and photo swaps, hours, contact details, service and price updates, seasonal notices. Bigger work, like a new page, a booking system, or a redesign, is quoted separately at a fair price before we start. <a href="website-care.html" style="color:var(--cyan)">The full Care Plan, defined →</a></div></details>
-      <details><summary>I already have a website. Can you fix it instead?</summary><div class="a">Often, yes. We will look at what you have and tell you honestly whether a refresh will do the job or a rebuild is worth it. If a refresh will do, we will say so.</div></details>
-      <details><summary>Do I own my website and domain?</summary><div class="a">Yes. Both are registered in your name. If you ever move on, everything goes with you, with no exit fee and no hard feelings.</div></details>
-      <details><summary>How do we start?</summary><div class="a">Fill in the short form below. We review every inquiry ourselves and reply within one business day with a straightforward next step: a price confirmed in writing, what we would build, and when it could launch.</div></details>
-    </div>
+<!-- ================= START ================= -->
+<section id="start" class="close" aria-label="Start your project">
+  <div class="wrap narrow center reveal">
+    <h2>Let&rsquo;s get your website sorted.</h2>
+    <p class="subhead">Tell us a little about your business. We review every inquiry ourselves and reply within one business day with a straightforward next step.</p>
   </div>
-</section>
-
-<section id="start" aria-label="Start your project">
-  <div class="wrap center">
-    <p class="eyebrow">Start a project</p>
-    <h2>Let's get your website sorted</h2>
-    <p class="lede" style="margin-bottom:28px">Tell us a little about your business. We review it ourselves and reply within one business day with a straightforward next step.</p>
+  <div class="wrap reveal" style="margin-top:44px">
     <form class="project" id="project-form" action="https://formsubmit.co/chevisinteractive@gmail.com" method="POST">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_subject" value="New project inquiry — Chevis Interactive website">
@@ -267,7 +227,7 @@
       <button class="btn btn-primary" type="submit" style="width:100%">Send Project Inquiry</button>
       <p class="form-note">Prefer email? Write to us at <a href="mailto:chevisinteractive@gmail.com" style="color:var(--cyan)">chevisinteractive@gmail.com</a>. No spam, no list, no obligation.</p>
     </form>
-    <div class="form-ok" id="form-ok" role="status">Thank you — your inquiry is on its way. We reply within one business day with a straightforward next step.</div>
+    <div class="form-ok" id="form-ok" role="status" tabindex="-1">Thank you — your inquiry is on its way. We reply within one business day with a straightforward next step.</div>
     <div class="form-err" id="form-err" role="alert">That didn't send. Please try again, or email us directly at chevisinteractive@gmail.com.</div>
   </div>
 </section>
@@ -276,7 +236,7 @@
   <div class="wrap">
     <div class="foot">
       <div>
-        <a class="navhome" href="index.html"><img class="avatar" src="assets/chevis-monogram.png" alt="Chevis Interactive monogram" width="38" height="38"><span class="brand"><b>Chevis</b> Interactive<span>Websites · Games</span></span></a>
+        <a class="navhome" href="index.html"><img class="avatar" src="assets/chevis-monogram-gradient.png" alt="Chevis Interactive monogram" width="38" height="38"><span class="brand"><b>Chevis</b> Interactive<span>Websites · Games</span></span></a>
         <p class="muted small" style="margin-top:14px;max-width:280px">Professional websites for small businesses, built and looked after by a small studio in Norman, Oklahoma.</p>
       </div>
       <div><h4>Services</h4><ul>
@@ -306,6 +266,24 @@
 </footer>
 
 <div class="sticky-cta"><a href="index.html#start">Start Your Project — $2,500</a></div>
+<script>
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      els.forEach(function(el){ el.classList.add('visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    },{threshold:0.12});
+    els.forEach(function(el){ io.observe(el); });
+  })();
+</script>
 <script src="assets/form.js"></script>
 <link rel="stylesheet" href="assets/chevis-chat.css">
 <script src="assets/chevis-chat.js" defer></script>
