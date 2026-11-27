@@ -23,7 +23,7 @@
     }).then(function (r) {
       if (!r.ok) throw new Error("send failed");
       form.style.display = "none";
-      if (ok) ok.style.display = "block";
+      if (ok) { ok.style.display = "block"; ok.focus(); }
     }).catch(function () {
       btn.disabled = false;
       btn.textContent = "Send Project Inquiry";

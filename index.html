@@ -23,6 +23,7 @@
 {"@type":"Service","name":"Website Care Plan","provider":{"@type":"Organization","name":"Chevis Interactive"},"offers":{"@type":"Offer","price":"199","priceCurrency":"USD","description":"Monthly website hosting management, maintenance, updates, and support"}}
 ]}
 </script>
+<script>if(new URLSearchParams(location.search).has("embed")){document.documentElement.classList.add("embed")}</script>
 </head>
 <body>
 
@@ -192,11 +193,6 @@
         <p>The classic card game, dealt properly. Free on Google Play, plays offline, no account needed.</p>
         <a href="games.html">See the games</a>
       </div>
-      <div class="game tome">
-        <h3>Tome</h3>
-        <p>An audiobook player for the library you already own. Your files stay yours, streamed from your own Google Drive.</p>
-        <a href="games.html">See the games</a>
-      </div>
     </div>
   </div>
 </section>
@@ -231,7 +227,7 @@
       <button class="btn btn-primary" type="submit" style="width:100%">Send Project Inquiry</button>
       <p class="form-note">Prefer email? Write to us at <a href="mailto:chevisinteractive@gmail.com" style="color:var(--cyan)">chevisinteractive@gmail.com</a>. No spam, no list, no obligation.</p>
     </form>
-    <div class="form-ok" id="form-ok" role="status">Thank you — your inquiry is on its way. We reply within one business day with a straightforward next step.</div>
+    <div class="form-ok" id="form-ok" role="status" tabindex="-1">Thank you — your inquiry is on its way. We reply within one business day with a straightforward next step.</div>
     <div class="form-err" id="form-err" role="alert">That didn't send. Please try again, or email us directly at chevisinteractive@gmail.com.</div>
   </div>
 </section>

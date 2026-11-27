@@ -40,6 +40,10 @@
   .chevis-chat-launcher{right:12px;bottom:12px}
   .chevis-chat-panel{right:12px;bottom:12px;height:85vh;height:85dvh}
 }
+@media (max-width:760px){
+  .chevis-chat-launcher{bottom:76px}
+}
+html.embed .chevis-chat-launcher,html.embed .chevis-chat-panel{display:none!important}
 
 .chevis-chat-head{
   flex:0 0 auto;display:flex;align-items:center;gap:10px;

@@ -7,7 +7,7 @@
 :root{
   --text:#1d1d1f;
   --secondary:#6e6e73;
-  --faint:#86868b;
+  --faint:#6e6e73;
   --link:#0066cc;
   --button:#0071e3;
   --bg:#ffffff;
@@ -168,7 +168,8 @@ form.project textarea{min-height:96px;resize:vertical}
 form.project input::placeholder,form.project textarea::placeholder{color:#a1a1a6}
 form.project .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media (max-width:640px){form.project .row{grid-template-columns:1fr}}
-.form-note{color:#a1a1a6;font-size:.9rem;text-align:center}
+.form-note{color:var(--secondary);font-size:.9rem;text-align:center}
+form.project .form-note{color:#a1a1a6}
 .form-note a{color:#2997ff}
 .form-ok{display:none;background:rgba(48,164,108,.16);border:1px solid #30a46c;color:#f5f5f7;
   border-radius:14px;padding:18px 20px;text-align:center;max-width:640px;margin:0 auto}
@@ -212,7 +213,7 @@ form.project .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .phone .screen b{font-size:15px;display:block;letter-spacing:-.01em}
 .phone .screen span{font-size:11px;color:#6e6e73;display:block;margin-top:5px;line-height:1.5}
 .phone .screen .pill{display:inline-block;margin-top:12px;background:var(--button);color:#fff;font-size:11px;padding:6px 12px;border-radius:980px;font-weight:500}
-@media (max-width:734px){.phone{display:none}}
+@media (max-width:860px){.phone{display:none}}
 /* Small screens: mocks and captions stack in normal flow, so nothing can overlap */
 @media (max-width:734px){
   .tile{height:auto;padding:26px 18px 24px}
@@ -244,6 +245,7 @@ form.project .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 
 /* games cards (concept) */
 .games{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:48px;text-align:left}
+.games:has(> .game:only-child){grid-template-columns:1fr}
 @media (max-width:734px){.games{grid-template-columns:1fr}}
 .game{border-radius:var(--radius);padding:38px 36px;min-height:210px;color:#fff;position:relative;overflow:hidden}
 .game h3{color:#fff;font-size:28px}
@@ -259,6 +261,7 @@ form.project .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 footer{background:var(--bg-alt);border-top:1px solid var(--hairline);padding:52px 0 40px;margin-top:0;font-size:.93rem}
 .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:26px}
 @media (max-width:860px){.foot{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.foot{grid-template-columns:1fr}}
 footer h4{font-size:.92rem;font-weight:600;color:var(--text);margin-bottom:12px}
 footer ul{list-style:none;display:grid;gap:8px;color:var(--secondary)}
 footer ul a{color:var(--secondary)}
@@ -267,6 +270,7 @@ footer ul a:hover{color:var(--link);text-decoration:none}
 .foot-base a{color:var(--secondary)}
 
 /* sticky mobile CTA */
+html.embed .sticky-cta{display:none!important}
 .sticky-cta{display:none}
 @media (max-width:760px){
   .sticky-cta{display:block;position:fixed;left:12px;right:12px;bottom:12px;z-index:60}
