@@ -1,0 +1,176 @@
+/* Chevis AI front desk: site-wide AI chat widget.
+   Free-text chat backed by the front-desk Worker (front-desk/worker.js).
+   Styled in the site's Apple design language (white panel, #f5f5f7
+   surfaces, #1d1d1f text, single #0066cc / #0071e3 blue accent) with
+   literal values so the file stands alone on any page. */
+
+.front-desk-launcher{
+  position:fixed;right:20px;bottom:20px;z-index:200;
+  display:inline-flex;align-items:center;gap:9px;
+  padding:13px 20px;min-height:52px;border:none;border-radius:999px;cursor:pointer;
+  background:#0071e3;
+  color:#fff;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size:14.5px;font-weight:600;letter-spacing:.01em;
+  box-shadow:0 14px 34px rgba(0,113,227,.35);
+  transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s cubic-bezier(.22,1,.36,1),opacity .3s ease;
+}
+.front-desk-launcher:hover{transform:translateY(-2px);box-shadow:0 20px 42px rgba(0,113,227,.42);background:#0077ed}
+.front-desk-launcher:active{transform:translateY(0) scale(.97)}
+.front-desk-launcher:focus-visible{outline:2px solid #0066cc;outline-offset:3px}
+.front-desk-launcher svg{flex:0 0 auto}
+.front-desk-launcher.is-hidden{opacity:0;pointer-events:none;transform:translateY(10px)}
+
+.front-desk-panel{
+  position:fixed;right:20px;bottom:20px;z-index:201;padding:0;
+  width:min(372px,calc(100vw - 24px));
+  height:min(580px,88vh);
+  height:min(580px,88dvh);
+  display:flex;flex-direction:column;overflow:hidden;
+  border-radius:22px;color:#1d1d1f;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+  border:1px solid #d2d2d7;
+  background:#ffffff;
+  box-shadow:0 30px 70px rgba(0,0,0,.28);
+  opacity:0;transform:translateY(16px) scale(.98);pointer-events:none;
+  transition:opacity .3s cubic-bezier(.22,1,.36,1),transform .3s cubic-bezier(.22,1,.36,1);
+}
+.front-desk-panel.is-open{opacity:1;transform:none;pointer-events:auto}
+@media (max-width:560px){
+  .front-desk-launcher{right:12px;bottom:12px}
+  .front-desk-panel{right:12px;bottom:12px;height:88vh;height:88dvh}
+}
+@media (max-width:760px){
+  .front-desk-launcher{bottom:76px}
+}
+html.embed .front-desk-launcher,html.embed .front-desk-panel{display:none!important}
+
+.front-desk-head{
+  flex:0 0 auto;display:flex;align-items:flex-start;gap:10px;
+  padding:12px 12px 12px 14px;border-bottom:1px solid #e8e8ec;
+  background:#f5f5f7;
+}
+.front-desk-head img{width:34px;height:34px;border-radius:9px;object-fit:cover;
+  box-shadow:0 0 0 1px rgba(0,0,0,.06)}
+.front-desk-headtext h2{font-family:inherit;font-size:15px;font-weight:700;line-height:1.2;margin:0;white-space:nowrap}
+.front-desk-headtext p{font-size:12px;line-height:1.45;color:#6e6e73;margin:3px 0 0}
+.front-desk-close{
+  margin-left:auto;flex:0 0 auto;width:32px;height:32px;border-radius:9px;cursor:pointer;
+  border:1px solid #d2d2d7;background:#ffffff;color:#1d1d1f;
+  font-size:17px;line-height:1;display:flex;align-items:center;justify-content:center;
+  transition:border-color .2s,transform .2s;
+}
+.front-desk-close:hover{border-color:#86868b;transform:translateY(-1px)}
+.front-desk-close:focus-visible{outline:2px solid #0066cc;outline-offset:2px}
+
+.front-desk-log{
+  flex:1 1 0;min-height:0;overflow-y:auto;padding:14px 14px 8px;
+  display:flex;flex-direction:column;gap:10px;
+  scrollbar-width:thin;scrollbar-color:#0066cc transparent;
+}
+.front-desk-log::-webkit-scrollbar{width:6px}
+.front-desk-log::-webkit-scrollbar-thumb{background:#d2d2d7;border-radius:99px}
+
+.front-desk-msg{
+  max-width:88%;padding:11px 14px;border-radius:16px;
+  font-size:14.5px;line-height:1.55;white-space:pre-line;
+  animation:front-desk-in .35s cubic-bezier(.22,1,.36,1);
+}
+@keyframes front-desk-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.front-desk-msg.bot{
+  align-self:flex-start;border-bottom-left-radius:6px;
+  background:#f5f5f7;border:1px solid #e8e8ec;color:#1d1d1f;
+}
+.front-desk-msg.user{
+  align-self:flex-end;border-bottom-right-radius:6px;color:#fff;font-weight:500;
+  background:#0071e3;
+}
+.front-desk-msg a{color:#0066cc;text-decoration:underline}
+
+.front-desk-chips{
+  flex:0 0 auto;display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start;
+  max-height:25%;overflow-y:auto;
+  padding:10px 12px 12px;
+  border-top:1px solid #e8e8ec;background:#fbfbfd;
+  scrollbar-width:thin;scrollbar-color:#0066cc transparent;
+}
+.front-desk-chips:empty{display:none}
+.front-desk-chips::-webkit-scrollbar{width:5px}
+.front-desk-chips::-webkit-scrollbar-thumb{background:#d2d2d7;border-radius:99px}
+.front-desk-chip{
+  margin:0;padding:6px 11px;min-height:32px;border-radius:999px;cursor:pointer;
+  border:1px solid rgba(0,102,204,.45);background:rgba(0,102,204,.05);
+  color:#1d1d1f;font-family:inherit;font-size:12.5px;font-weight:600;line-height:1.25;
+  transition:border-color .2s,background .2s,transform .2s;
+}
+.front-desk-chip:hover{border-color:rgba(0,102,204,.85);background:rgba(0,102,204,.10);transform:translateY(-1px)}
+.front-desk-chip:focus-visible{outline:2px solid #0066cc;outline-offset:2px}
+.front-desk-chip.cta{
+  margin:0;border:1px solid transparent;color:#fff;
+  background:#0071e3;
+}
+
+.front-desk-typing{display:inline-flex;align-items:center;gap:5px;padding:15px 16px}
+.front-desk-typing span{
+  width:7px;height:7px;border-radius:50%;background:#0066cc;opacity:.3;
+  animation:front-desk-dot 1s ease-in-out infinite;
+}
+.front-desk-typing span:nth-child(2){animation-delay:.15s}
+.front-desk-typing span:nth-child(3){animation-delay:.3s}
+@keyframes front-desk-dot{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+
+/* text input row */
+.front-desk-inputrow{
+  flex:0 0 auto;display:flex;gap:8px;align-items:center;
+  padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+  border-top:1px solid #e8e8ec;background:#ffffff;
+}
+.front-desk-input{
+  flex:1 1 auto;min-width:0;padding:11px 13px;border-radius:999px;
+  border:1px solid #d2d2d7;background:#f5f5f7;color:#1d1d1f;
+  font-family:inherit;font-size:14.5px;
+}
+.front-desk-input:focus{outline:2px solid #0066cc;outline-offset:1px;border-color:transparent;background:#ffffff}
+.front-desk-send{
+  flex:0 0 auto;padding:11px 17px;min-height:44px;border:none;border-radius:999px;cursor:pointer;
+  background:#0071e3;
+  color:#fff;font-family:inherit;font-size:14px;font-weight:700;
+  transition:transform .2s,box-shadow .2s,opacity .2s;
+}
+.front-desk-send:hover{transform:translateY(-1px)}
+.front-desk-send:active{transform:scale(.97)}
+.front-desk-send:disabled{opacity:.55;cursor:default;transform:none}
+.front-desk-send:focus-visible{outline:2px solid #0066cc;outline-offset:2px}
+
+/* lead form slot */
+.front-desk-leadslot:empty{display:none}
+.front-desk-leadslot{
+  flex:0 0 auto;max-height:46%;overflow-y:auto;
+  padding:12px 14px 4px;border-top:1px solid #e8e8ec;background:#fbfbfd;
+  scrollbar-width:thin;scrollbar-color:#0066cc transparent;
+}
+.front-desk-form{display:flex;flex-direction:column;gap:11px;padding:2px 0 6px}
+.front-desk-form label{font-size:13px;font-weight:600;color:#6e6e73;display:flex;flex-direction:column;gap:6px}
+.front-desk-form input,.front-desk-form textarea{
+  padding:11px 13px;border-radius:11px;border:1px solid #d2d2d7;
+  background:#ffffff;color:#1d1d1f;
+  font-family:inherit;font-size:14.5px;font-weight:400;width:100%;
+}
+.front-desk-form textarea{resize:vertical;min-height:64px}
+.front-desk-form input:focus,.front-desk-form textarea:focus{
+  outline:2px solid #0066cc;outline-offset:1px;border-color:transparent;
+}
+.front-desk-form .front-desk-formsend{width:100%;padding:13px 17px;border-radius:12px}
+.front-desk-status{font-size:13.5px;line-height:1.55;color:#6e6e73;margin:0}
+.front-desk-status strong{color:#1d1d1f}
+.front-desk-back{
+  align-self:flex-start;padding:8px 4px;min-height:38px;border:none;background:none;cursor:pointer;
+  color:#0066cc;font-family:inherit;font-size:13.5px;font-weight:600;
+}
+.front-desk-back:hover{text-decoration:underline}
+.front-desk-back:focus-visible{outline:2px solid #0066cc;outline-offset:2px;border-radius:4px}
+
+@media (prefers-reduced-motion: reduce){
+  .front-desk-launcher,.front-desk-panel,.front-desk-chip,.front-desk-close{transition-duration:.01ms !important}
+  .front-desk-msg{animation:none}
+  .front-desk-typing span{animation:none;opacity:.6}
+}
