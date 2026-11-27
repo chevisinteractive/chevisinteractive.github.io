@@ -194,7 +194,7 @@ form.project .form-note{color:#a1a1a6}
 .frame-desktop .bar i{width:10px;height:10px;border-radius:50%;background:#d2d2d7;display:block}
 .frame-desktop iframe,.frame-phone iframe{width:100%;border:0;display:block;pointer-events:none}
 .frame-desktop iframe{height:380px}
-.frame-phone{border:1px solid var(--hairline);border-radius:30px;overflow:hidden;background:var(--bg-alt);max-width:250px;margin:0 auto;width:100%}
+.frame-phone{border:1px solid var(--hairline);border-radius:30px;overflow:hidden;background:var(--bg-alt);max-width:320px;margin:0 auto;width:100%}
 .frame-phone iframe{height:430px}
 .frame-cap{text-align:center;color:var(--faint);font-size:.88rem;margin-top:10px}
 .shot{border:1px solid var(--hairline);border-radius:20px;overflow:hidden}
