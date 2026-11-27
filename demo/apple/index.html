@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chevis Interactive — Websites for local businesses</title>
+<meta name="description" content="Apple-style redesign concept for the Chevis Interactive homepage. Concept only — not the live site.">
+<style>
+  :root{
+    --text:#1d1d1f;
+    --secondary:#6e6e73;
+    --faint:#86868b;
+    --link:#0066cc;
+    --button:#0071e3;
+    --bg:#ffffff;
+    --bg-alt:#f5f5f7;
+    --hairline:#d2d2d7;
+    --radius:28px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    line-height:1.45;
+  }
+  a{color:var(--link);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .chev{font-size:.92em}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(251,251,253,.8);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
+    backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid rgba(0,0,0,.06);
+  }
+  .nav-in{
+    max-width:1024px;margin:0 auto;padding:0 22px;height:48px;
+    display:flex;align-items:center;gap:34px;
+  }
+  .wordmark{
+    font-size:14px;font-weight:600;letter-spacing:-.01em;color:var(--text);white-space:nowrap;
+    display:flex;align-items:center;gap:9px;
+  }
+  .wordmark img{width:27px;height:27px;border-radius:7px;display:block}
+  .foot-brand{display:flex;align-items:center;gap:12px}
+  .foot-brand img{width:34px;height:34px;border-radius:9px;display:block}
+  .foot-brand b{font-size:15px;color:var(--text)}
+  .wordmark:hover{text-decoration:none}
+  .nav-links{display:flex;gap:28px;margin-left:auto;align-items:center}
+  .nav-links a{font-size:12px;color:var(--text);opacity:.85;white-space:nowrap}
+  .nav-links a:hover{opacity:1;text-decoration:none}
+  .nav-links a.cta{color:var(--link);opacity:1}
+  @media (max-width:734px){ .nav-links a.hide-s{display:none} }
+  @media (max-width:734px){
+    .nav-in{gap:18px;padding:0 16px}
+    .nav-links{gap:18px}
+  }
+  @media (max-width:560px){
+    .nav-links a.hide-xs{display:none}
+    .wordmark{font-size:13px}
+  }
+
+  /* ---------- Layout ---------- */
+  section{padding:120px 22px}
+  .wrap{max-width:980px;margin:0 auto;text-align:center}
+  .wrap-wide{max-width:1120px;margin:0 auto;text-align:center}
+
+  .eyebrow{
+    font-size:21px;font-weight:600;color:#b64400;letter-spacing:0;margin-bottom:14px;
+  }
+  .eyebrow.plain{color:var(--faint);font-size:19px}
+  h1{
+    font-size:clamp(44px,7.2vw,80px);line-height:1.05;font-weight:700;letter-spacing:-.015em;
+  }
+  h2{
+    font-size:clamp(38px,5.6vw,64px);line-height:1.08;font-weight:700;letter-spacing:-.015em;
+  }
+  h3{font-size:clamp(26px,3.4vw,36px);line-height:1.15;font-weight:700;letter-spacing:-.012em}
+  .subhead{
+    font-size:clamp(19px,2.4vw,26px);line-height:1.35;color:var(--text);font-weight:400;
+    max-width:720px;margin:22px auto 0;
+  }
+  .small{
+    font-size:14px;color:var(--secondary);max-width:640px;margin:16px auto 0;line-height:1.5;
+  }
+  .price{
+    font-size:clamp(19px,2.4vw,24px);color:var(--text);margin-top:18px;font-weight:600;
+  }
+  .price span{color:var(--secondary);font-weight:400}
+  .links{margin-top:18px;font-size:19px;display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
+  .links a::after{content:" ›";color:var(--link)}
+
+  /* ---------- Imagery tiles (CSS only) ---------- */
+  .tile{
+    margin:56px auto 0;max-width:980px;height:480px;border-radius:var(--radius);
+    position:relative;overflow:hidden;
+  }
+  @media (max-width:734px){ .tile{height:340px} }
+  .tile .caption{
+    position:absolute;left:34px;bottom:28px;text-align:left;color:#fff;
+    font-size:15px;font-weight:600;letter-spacing:.01em;text-shadow:0 1px 8px rgba(0,0,0,.25);
+  }
+  .tile .caption small{display:block;font-weight:400;opacity:.85;font-size:13px;margin-top:2px}
+
+  /* abstract "browser window" used inside tiles */
+  .browser{
+    position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);
+    width:min(620px,78%);background:#fff;border-radius:16px;
+    box-shadow:0 30px 80px rgba(0,0,0,.22);overflow:hidden;text-align:left;
+  }
+  .browser .bar{
+    height:34px;background:#f5f5f7;border-bottom:1px solid #e8e8ec;
+    display:flex;align-items:center;gap:6px;padding:0 14px;
+  }
+  .browser .bar i{width:10px;height:10px;border-radius:50%;background:#d2d2d7;display:block}
+  .browser .bar .url{
+    margin-left:10px;flex:1;max-width:300px;height:20px;border-radius:6px;background:#e8e8ec;
+  }
+  .browser .page{padding:30px 34px 36px}
+  .browser .page b{display:block;font-size:24px;letter-spacing:-.01em;color:#1d1d1f}
+  .browser .page span{display:block;margin-top:8px;font-size:14px;color:#6e6e73;line-height:1.5}
+  .browser .page .pill{
+    display:inline-block;margin-top:18px;background:var(--button);color:#fff;
+    font-size:13px;font-weight:500;padding:8px 18px;border-radius:980px;
+  }
+  .phone{
+    position:absolute;right:9%;bottom:-30px;width:170px;height:340px;background:#1d1d1f;
+    border-radius:34px;box-shadow:0 30px 60px rgba(0,0,0,.28);padding:12px;
+  }
+  .phone .screen{background:#fff;border-radius:24px;height:100%;padding:20px 16px;text-align:left}
+  .phone .screen b{font-size:15px;display:block;letter-spacing:-.01em}
+  .phone .screen span{font-size:11px;color:#6e6e73;display:block;margin-top:5px;line-height:1.5}
+  .phone .screen .pill{
+    display:inline-block;margin-top:12px;background:var(--button);color:#fff;font-size:11px;
+    padding:6px 12px;border-radius:980px;font-weight:500;
+  }
+  @media (max-width:734px){ .phone{display:none} }
+
+  /* Small screens: mocks and captions stack in normal flow, so nothing can overlap */
+  @media (max-width:734px){
+    .tile{height:auto;padding:26px 18px 24px}
+    .tile .browser,.tile .chat,.tile .carecard{
+      position:relative;left:auto;top:auto;transform:none;width:100%;margin:0 auto;
+    }
+    .tile .caption{position:static;margin-top:22px}
+    .browser .page{padding:22px 20px 26px}
+    .carecard{padding:22px 20px}
+    .bubble.q{margin-left:24px}
+    .bubble.a{margin-right:24px}
+  }
+
+  .tile-hero{background:linear-gradient(160deg,#fbfbfd 0%,#eef1f6 55%,#dde5ee 100%)}
+  .tile-hero .caption{color:#1d1d1f;text-shadow:none}
+  .tile-web{background:linear-gradient(150deg,#fdfdfd 0%,#f0f0f3 60%,#e2e2e8 100%)}
+  .tile-web .caption{color:#1d1d1f;text-shadow:none}
+  .tile-care{background:linear-gradient(150deg,#2e2e30 0%,#1d1d1f 70%)}
+  .tile-ai{background:linear-gradient(150deg,#f6f6f9 0%,#e9e9f0 60%,#dcdce6 100%)}
+  .tile-ai .caption{color:#1d1d1f;text-shadow:none}
+
+  /* chat mock inside AI tile */
+  .chat{
+    position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);
+    width:min(440px,82%);text-align:left;
+  }
+  .bubble{
+    background:#fff;border-radius:18px;padding:14px 18px;font-size:15px;color:#1d1d1f;
+    box-shadow:0 12px 32px rgba(0,0,0,.10);margin-bottom:12px;line-height:1.45;
+  }
+  .bubble.q{background:#e9e9ee;margin-left:56px}
+  .bubble.a{margin-right:56px}
+  .bubble small{display:block;color:var(--faint);font-size:12px;margin-bottom:3px;font-weight:600}
+
+  /* care checklist card */
+  .carecard{
+    position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);
+    width:min(520px,84%);background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:30px 34px;text-align:left;
+  }
+  .carecard p{color:#f5f5f7;font-size:17px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.10)}
+  .carecard p:last-child{border-bottom:none}
+  .carecard p::before{content:"✓  ";color:#7ee2a0;font-weight:700}
+
+  /* ---------- Sections ---------- */
+  .alt{background:var(--bg-alt)}
+  .hero{padding:110px 22px 130px}
+  .hero .tile{margin-top:64px}
+
+  .why{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:36px;text-align:left;margin-top:64px;
+  }
+  @media (max-width:900px){ .why{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:560px){ .why{grid-template-columns:1fr} }
+  .why b{display:block;font-size:19px;font-weight:600;letter-spacing:-.01em;margin-bottom:6px}
+  .why p{font-size:14px;color:var(--secondary);line-height:1.55}
+
+  .games{
+    display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:48px;text-align:left;
+  }
+  @media (max-width:734px){ .games{grid-template-columns:1fr} }
+  .game{
+    border-radius:var(--radius);padding:38px 36px;min-height:210px;color:#fff;position:relative;overflow:hidden;
+  }
+  .game h3{color:#fff;font-size:28px}
+  .game p{color:rgba(255,255,255,.82);font-size:15px;margin-top:8px;max-width:340px;line-height:1.55}
+  .game a{color:#fff;font-size:15px;display:inline-block;margin-top:16px}
+  .game a::after{content:" ›"}
+  .game.spades{background:linear-gradient(150deg,#3a3a3f,#17171a)}
+  .game.dmh{background:linear-gradient(150deg,#4a3436,#1c1416)}
+
+  /* ---------- Dark close ---------- */
+  .close{background:#000;color:#f5f5f7;padding:140px 22px}
+  .close h2{color:#f5f5f7}
+  .close .subhead{color:#a1a1a6}
+  .btn{
+    display:inline-block;margin-top:36px;background:var(--button);color:#fff;
+    font-size:17px;font-weight:500;padding:14px 30px;border-radius:980px;
+  }
+  .btn:hover{text-decoration:none;background:#0077ed}
+  .close .small{color:#86868b}
+  .close .small a{color:#2997ff}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--bg-alt);padding:44px 22px 34px;font-size:12px;color:var(--secondary)}
+  .foot{max-width:980px;margin:0 auto}
+  .foot .rule{border-top:1px solid var(--hairline);padding:16px 0}
+  .foot .rule:first-child{border-top:none;padding-top:0}
+  .foot-cols{display:flex;gap:60px;flex-wrap:wrap}
+  .foot-cols b{display:block;color:var(--text);font-size:12px;margin-bottom:9px}
+  .foot-cols a{display:block;color:var(--secondary);margin-bottom:7px}
+  .foot-base{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+  /* ---------- Reveal ---------- */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
+  .reveal.visible{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a class="wordmark" href="#"><img src="../../assets/chevis-monogram.png" alt="Chevis Interactive logo" width="27" height="27">Chevis Interactive</a>
+    <div class="nav-links">
+      <a href="#websites" class="hide-xs">Websites</a>
+      <a href="#care" class="hide-s">Care</a>
+      <a href="#ai" class="hide-s">AI Setup</a>
+      <a href="#games" class="hide-s">Games</a>
+      <a href="#start" class="cta">Start Your Project</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="wrap reveal">
+    <h1>Your website shouldn&rsquo;t<br>be another job.</h1>
+    <p class="subhead">We build professional websites for small businesses, then handle hosting, updates, and maintenance after launch. You run your business. The website is our problem, happily.</p>
+    <div class="links">
+      <a href="#start">Start Your Project</a>
+      <a href="#websites">See what&rsquo;s included</a>
+    </div>
+  </div>
+  <div class="wrap-wide reveal">
+    <div class="tile tile-hero">
+      <div class="browser" aria-hidden="true">
+        <div class="bar"><i></i><i></i><i></i><div class="url"></div></div>
+        <div class="page">
+          <b>Your business, beautifully online.</b>
+          <span>Services, hours, and one tap to call &mdash; exactly where your customers expect them.</span>
+          <span class="pill">Call now</span>
+        </div>
+      </div>
+      <div class="phone" aria-hidden="true">
+        <div class="screen">
+          <b>Open today until 6 PM</b>
+          <span>Tap to call, get directions, or send an inquiry in under a minute.</span>
+          <span class="pill">Call</span>
+        </div>
+      </div>
+      <div class="caption">Designed for phones first.<small>Because that is where your customers find you.</small></div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= WEBSITES ================= -->
+<section id="websites" class="alt">
+  <div class="wrap reveal">
+    <p class="eyebrow">Website Build</p>
+    <h2>A professional website.<br>Built for you. Launched for you.</h2>
+    <p class="subhead">Custom design, never a template. Your pages written and structured with you, a contact flow built in, and your approval before anything goes live.</p>
+    <p class="price">$2,500 <span>one time</span></p>
+    <div class="links">
+      <a href="#start">Start Your Project</a>
+      <a href="#care">Add ongoing care</a>
+    </div>
+  </div>
+  <div class="wrap-wide reveal">
+    <div class="tile tile-web">
+      <div class="browser" aria-hidden="true">
+        <div class="bar"><i></i><i></i><i></i><div class="url"></div></div>
+        <div class="page">
+          <b>Home. Services. About. Contact.</b>
+          <span>Domain and hosting set up in your name. Search basics done right. Launch handled, start to finish.</span>
+          <span class="pill">Get an inquiry</span>
+        </div>
+      </div>
+      <div class="caption">Everything included. Nothing rented.<small>Your domain, your website, your content &mdash; registered in your name.</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CARE ================= -->
+<section id="care">
+  <div class="wrap reveal">
+    <p class="eyebrow plain">Website Care</p>
+    <h2>Your own website person.<br>For $199 a month.</h2>
+    <p class="subhead">Hosting managed, monitoring and backups running, security updates applied, and small changes done for you. You send a message. It gets done.</p>
+    <p class="price">$199<span>/month &middot; Billed monthly &middot; Cancel anytime</span></p>
+    <div class="links">
+      <a href="#start">Start Your Project</a>
+      <a href="#why">Why owners choose Chevis</a>
+    </div>
+  </div>
+  <div class="wrap-wide reveal">
+    <div class="tile tile-care">
+      <div class="carecard" aria-hidden="true">
+        <p>Hosting managed for you</p>
+        <p>Monitoring, backups, and security updates</p>
+        <p>Small changes: text, photos, hours, prices</p>
+        <p>A short report on your site, every month</p>
+      </div>
+      <div class="caption">Looked after by the people who built it.<small>Optional, and never required. The site is yours either way.</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AI SETUP ================= -->
+<section id="ai" class="alt">
+  <div class="wrap reveal">
+    <p class="eyebrow plain">AI Setup</p>
+    <h2>A front desk for your website<br>that never closes.</h2>
+    <p class="subhead">An assistant on your site, trained on your business. It answers hours, services, and prices &mdash; and captures inquiries while you are busy. Even at 10 PM. Even on Sunday.</p>
+    <p class="price">$299 <span>one time &middot; Free with any website build</span></p>
+    <div class="links">
+      <a href="#start">Start Your Project</a>
+      <a href="#start">Add it to a build</a>
+    </div>
+  </div>
+  <div class="wrap-wide reveal">
+    <div class="tile tile-ai">
+      <div class="chat" aria-hidden="true">
+        <div class="bubble q"><small>Visitor &middot; 9:47 PM</small>Are you open on Saturdays?</div>
+        <div class="bubble a"><small>Your assistant</small>We are &mdash; 9 AM to 2 PM. Would you like me to pass your details along for a callback?</div>
+      </div>
+      <div class="caption">Answers the everyday questions.<small>Hands everything else to you. It never invents a price.</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY CHEVIS ================= -->
+<section id="why">
+  <div class="wrap reveal">
+    <h2>The deal, in plain words.</h2>
+    <p class="subhead">Four commitments, kept on every project.</p>
+  </div>
+  <div class="wrap-wide reveal">
+    <div class="why">
+      <div>
+        <b>You own everything</b>
+        <p>Your domain, your website, your content. Registered in your name, not ours.</p>
+      </div>
+      <div>
+        <b>No hostage situations</b>
+        <p>No exit fees and no lock-in. If you ever move on, everything goes with you.</p>
+      </div>
+      <div>
+        <b>No surprise fees</b>
+        <p>The price on this page is the price. Anything extra is quoted and approved by you first.</p>
+      </div>
+      <div>
+        <b>Honest advice</b>
+        <p>If a refresh will do the job, we will say so instead of selling you a rebuild.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GAMES ================= -->
+<section id="games" class="alt">
+  <div class="wrap reveal">
+    <h2>Also from the studio.</h2>
+    <p class="subhead">Chevis Interactive started as a game studio, and still is one. The games live on their own page &mdash; this one stays about your business.</p>
+  </div>
+  <div class="wrap-wide reveal">
+    <div class="games">
+      <div class="game spades">
+        <h3>Royal Spades</h3>
+        <p>The classic card game, dealt properly. Free on Google Play, plays offline, no account needed.</p>
+        <a href="#">See the games</a>
+      </div>
+      <div class="game dmh">
+        <h3>Dead Man&rsquo;s Hand</h3>
+        <p>Our card battler, built in the same studio, with the same obsession over getting the details right.</p>
+        <a href="#">See the games</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CLOSE ================= -->
+<section id="start" class="close">
+  <div class="wrap reveal">
+    <h2>Let&rsquo;s get your website sorted.</h2>
+    <p class="subhead">Tell us a little about your business. We review every inquiry ourselves and reply within one business day with a straightforward next step.</p>
+    <a class="btn" href="mailto:chevisinteractive@gmail.com">Start Your Project</a>
+    <p class="small">Prefer email? Write to us at <a href="mailto:chevisinteractive@gmail.com">chevisinteractive@gmail.com</a>. No spam, no list, no obligation.</p>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="foot">
+    <div class="rule foot-brand">
+      <img src="../../assets/chevis-monogram.png" alt="Chevis Interactive logo" width="34" height="34">
+      <b>Chevis Interactive</b>
+    </div>
+    <div class="rule">
+      Website build $2,500 one time. Website Care $199/month, billed monthly, cancel anytime. AI Setup $299 one time, free with any website build. Your domain renews at cost, in your name.
+    </div>
+    <div class="rule foot-cols">
+      <div>
+        <b>Services</b>
+        <a href="#websites">Website Build</a>
+        <a href="#care">Website Care</a>
+        <a href="#ai">AI Setup</a>
+      </div>
+      <div>
+        <b>Studio</b>
+        <a href="#why">Why Chevis</a>
+        <a href="#games">Games</a>
+        <a href="#start">Start Your Project</a>
+      </div>
+      <div>
+        <b>Contact</b>
+        <a href="mailto:chevisinteractive@gmail.com">chevisinteractive@gmail.com</a>
+        <a href="#start">Project inquiry</a>
+      </div>
+    </div>
+    <div class="rule foot-base">
+      <span>&copy; 2026 Chevis Interactive &middot; Norman, Oklahoma</span>
+      <span>Redesign concept &mdash; not the live site.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      els.forEach(function(el){ el.classList.add('visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    },{threshold:0.12});
+    els.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+</body>
+</html>

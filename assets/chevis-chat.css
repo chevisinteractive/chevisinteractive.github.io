@@ -1,22 +1,23 @@
 /* Chevis quick chat — site-wide chat / lead-capture widget.
    Fully static: scripted quick answers from a local knowledge base
    (chevis-chat.js), lead capture via a zero-cost form endpoint with a
-   mailto fallback. Styled on the site's own tokens (same values as the
-   pages' :root, with fallbacks so the file stands alone). */
+   mailto fallback. Restyled to the site's Apple design language
+   (white panel, #1d1d1f text, single #0066cc / #0071e3 blue) with
+   literal values so the file stands alone on any page. */
 
 .chevis-chat-launcher{
   position:fixed;right:20px;bottom:20px;z-index:200;
   display:inline-flex;align-items:center;gap:9px;
   padding:13px 20px;min-height:52px;border:none;border-radius:999px;cursor:pointer;
-  background:var(--grad,linear-gradient(92deg,#43DFF2 0%,#5EDBD3 32%,#4A90E2 66%,#8066F5 100%));
-  color:#081120;font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  font-size:14.5px;font-weight:700;letter-spacing:.01em;
-  box-shadow:0 14px 34px rgba(74,144,226,.42),inset 0 1px 0 rgba(255,255,255,.35);
+  background:#0071e3;
+  color:#fff;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size:14.5px;font-weight:600;letter-spacing:.01em;
+  box-shadow:0 14px 34px rgba(0,113,227,.35);
   transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s cubic-bezier(.22,1,.36,1),opacity .3s ease;
 }
-.chevis-chat-launcher:hover{transform:translateY(-2px);box-shadow:0 20px 42px rgba(74,144,226,.5),inset 0 1px 0 rgba(255,255,255,.35)}
+.chevis-chat-launcher:hover{transform:translateY(-2px);box-shadow:0 20px 42px rgba(0,113,227,.42);background:#0077ed}
 .chevis-chat-launcher:active{transform:translateY(0) scale(.97)}
-.chevis-chat-launcher:focus-visible{outline:2px solid var(--cyan,#43DFF2);outline-offset:3px}
+.chevis-chat-launcher:focus-visible{outline:2px solid #0066cc;outline-offset:3px}
 .chevis-chat-launcher svg{flex:0 0 auto}
 .chevis-chat-launcher.is-hidden{opacity:0;pointer-events:none;transform:translateY(10px)}
 
@@ -26,12 +27,11 @@
   height:min(560px,85vh);
   height:min(560px,85dvh);
   display:flex;flex-direction:column;overflow:hidden;
-  border-radius:22px;color:var(--ink,#f5f2eb);
-  font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  border:1.5px solid transparent;
-  background:linear-gradient(#0a101e,#0a101e) padding-box,
-    var(--grad-diag,linear-gradient(140deg,#43DFF2 0%,#5EDBD3 34%,#4A90E2 66%,#8066F5 100%)) border-box;
-  box-shadow:0 30px 70px rgba(0,0,0,.6),0 0 60px rgba(74,144,226,.12);
+  border-radius:22px;color:#1d1d1f;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+  border:1px solid #d2d2d7;
+  background:#ffffff;
+  box-shadow:0 30px 70px rgba(0,0,0,.28);
   opacity:0;transform:translateY(16px) scale(.98);pointer-events:none;
   transition:opacity .3s cubic-bezier(.22,1,.36,1),transform .3s cubic-bezier(.22,1,.36,1);
 }
@@ -43,28 +43,28 @@
 
 .chevis-chat-head{
   flex:0 0 auto;display:flex;align-items:center;gap:10px;
-  padding:10px 12px 10px 14px;border-bottom:1px solid rgba(27,39,64,.9);
-  background:rgba(13,21,38,.65);
+  padding:10px 12px 10px 14px;border-bottom:1px solid #e8e8ec;
+  background:#f5f5f7;
 }
 .chevis-chat-head img{width:28px;height:28px;border-radius:9px;object-fit:cover;
-  box-shadow:0 0 0 1px rgba(255,255,255,.10),0 4px 10px rgba(67,223,242,.25)}
-.chevis-chat-head h2{font-family:"Poppins",sans-serif;font-size:15px;font-weight:700;line-height:1.2;margin:0;white-space:nowrap}
+  box-shadow:0 0 0 1px rgba(0,0,0,.06)}
+.chevis-chat-head h2{font-family:inherit;font-size:15px;font-weight:700;line-height:1.2;margin:0;white-space:nowrap}
 .chevis-chat-close{
   margin-left:auto;flex:0 0 auto;width:32px;height:32px;border-radius:9px;cursor:pointer;
-  border:1px solid var(--line,#1b2740);background:rgba(13,21,38,.6);color:var(--ink,#f5f2eb);
+  border:1px solid #d2d2d7;background:#ffffff;color:#1d1d1f;
   font-size:17px;line-height:1;display:flex;align-items:center;justify-content:center;
   transition:border-color .2s,transform .2s;
 }
-.chevis-chat-close:hover{border-color:#2c3d63;transform:translateY(-1px)}
-.chevis-chat-close:focus-visible{outline:2px solid var(--cyan,#43DFF2);outline-offset:2px}
+.chevis-chat-close:hover{border-color:#86868b;transform:translateY(-1px)}
+.chevis-chat-close:focus-visible{outline:2px solid #0066cc;outline-offset:2px}
 
 .chevis-chat-log{
   flex:1 1 0;min-height:0;overflow-y:auto;padding:14px 14px 8px;
   display:flex;flex-direction:column;gap:10px;
-  scrollbar-width:thin;scrollbar-color:#4A90E2 transparent;
+  scrollbar-width:thin;scrollbar-color:#0066cc transparent;
 }
 .chevis-chat-log::-webkit-scrollbar{width:6px}
-.chevis-chat-log::-webkit-scrollbar-thumb{background:#2c3d63;border-radius:99px}
+.chevis-chat-log::-webkit-scrollbar-thumb{background:#d2d2d7;border-radius:99px}
 
 .chevis-chat-msg{
   max-width:88%;padding:11px 14px;border-radius:16px;
@@ -74,41 +74,40 @@
 @keyframes chevis-chat-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .chevis-chat-msg.bot{
   align-self:flex-start;border-bottom-left-radius:6px;
-  background:rgba(13,21,38,.9);border:1px solid rgba(27,39,64,.9);color:var(--ink,#f5f2eb);
+  background:#f5f5f7;border:1px solid #e8e8ec;color:#1d1d1f;
 }
 .chevis-chat-msg.user{
-  align-self:flex-end;border-bottom-right-radius:6px;color:#081120;font-weight:500;
-  background:var(--grad,linear-gradient(92deg,#43DFF2 0%,#5EDBD3 32%,#4A90E2 66%,#8066F5 100%));
+  align-self:flex-end;border-bottom-right-radius:6px;color:#fff;font-weight:500;
+  background:#0071e3;
 }
-.chevis-chat-msg .price{color:var(--gold,#e8b34b);font-weight:700}
-.chevis-chat-msg a{color:#7dd3fc;text-decoration:underline}
+.chevis-chat-msg .price{color:#b64400;font-weight:700}
+.chevis-chat-msg a{color:#0066cc;text-decoration:underline}
 
 .chevis-chat-chips{
   flex:0 0 auto;display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start;
   max-height:25%;overflow-y:auto;
   padding:10px 12px 12px;
-  border-top:1px solid rgba(27,39,64,.9);background:rgba(6,10,19,.55);
-  scrollbar-width:thin;scrollbar-color:#4A90E2 transparent;
+  border-top:1px solid #e8e8ec;background:#fbfbfd;
+  scrollbar-width:thin;scrollbar-color:#0066cc transparent;
 }
 .chevis-chat-chips::-webkit-scrollbar{width:5px}
-.chevis-chat-chips::-webkit-scrollbar-thumb{background:#2c3d63;border-radius:99px}
+.chevis-chat-chips::-webkit-scrollbar-thumb{background:#d2d2d7;border-radius:99px}
 .chevis-chat-chip{
   margin:0;padding:6px 11px;min-height:32px;border-radius:999px;cursor:pointer;
-  border:1px solid rgba(67,223,242,.4);background:rgba(67,223,242,.07);
-  color:var(--ink,#f5f2eb);font-family:inherit;font-size:12.5px;font-weight:600;line-height:1.25;
+  border:1px solid rgba(0,102,204,.45);background:rgba(0,102,204,.05);
+  color:#1d1d1f;font-family:inherit;font-size:12.5px;font-weight:600;line-height:1.25;
   transition:border-color .2s,background .2s,transform .2s;
 }
-.chevis-chat-chip:hover{border-color:rgba(67,223,242,.85);background:rgba(67,223,242,.13);transform:translateY(-1px)}
-.chevis-chat-chip:focus-visible{outline:2px solid var(--cyan,#43DFF2);outline-offset:2px}
+.chevis-chat-chip:hover{border-color:rgba(0,102,204,.85);background:rgba(0,102,204,.10);transform:translateY(-1px)}
+.chevis-chat-chip:focus-visible{outline:2px solid #0066cc;outline-offset:2px}
 .chevis-chat-chip.cta{
-  margin:0;border:1.5px solid transparent;color:var(--ink,#f5f2eb);
-  background:linear-gradient(#0d1526,#0d1526) padding-box,
-    var(--grad-diag,linear-gradient(140deg,#43DFF2 0%,#5EDBD3 34%,#4A90E2 66%,#8066F5 100%)) border-box;
+  margin:0;border:1px solid transparent;color:#fff;
+  background:#0071e3;
 }
 
 .chevis-chat-typing{display:inline-flex;align-items:center;gap:5px;padding:15px 16px}
 .chevis-chat-typing span{
-  width:7px;height:7px;border-radius:50%;background:#7dd3fc;opacity:.3;
+  width:7px;height:7px;border-radius:50%;background:#0066cc;opacity:.3;
   animation:chevis-chat-dot 1s ease-in-out infinite;
 }
 .chevis-chat-typing span:nth-child(2){animation-delay:.15s}
@@ -116,35 +115,35 @@
 @keyframes chevis-chat-dot{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
 .chevis-chat-send{
   flex:0 0 auto;padding:11px 17px;min-height:44px;border:none;border-radius:12px;cursor:pointer;
-  background:var(--grad,linear-gradient(92deg,#43DFF2 0%,#5EDBD3 32%,#4A90E2 66%,#8066F5 100%));
-  color:#081120;font-family:inherit;font-size:14px;font-weight:700;
+  background:#0071e3;
+  color:#fff;font-family:inherit;font-size:14px;font-weight:700;
   transition:transform .2s,box-shadow .2s;
 }
 .chevis-chat-send:hover{transform:translateY(-1px)}
 .chevis-chat-send:active{transform:scale(.97)}
-.chevis-chat-send:focus-visible{outline:2px solid var(--cyan,#43DFF2);outline-offset:2px}
+.chevis-chat-send:focus-visible{outline:2px solid #0066cc;outline-offset:2px}
 
 /* lead form view */
 .chevis-chat-form{display:flex;flex-direction:column;gap:11px;padding:2px 0 6px}
-.chevis-chat-form label{font-size:13px;font-weight:600;color:var(--muted,#aab4c8);display:flex;flex-direction:column;gap:6px}
+.chevis-chat-form label{font-size:13px;font-weight:600;color:#6e6e73;display:flex;flex-direction:column;gap:6px}
 .chevis-chat-form input,.chevis-chat-form select,.chevis-chat-form textarea{
-  padding:11px 13px;border-radius:11px;border:1px solid var(--line,#1b2740);
-  background:rgba(13,21,38,.85);color:var(--ink,#f5f2eb);
+  padding:11px 13px;border-radius:11px;border:1px solid #d2d2d7;
+  background:#ffffff;color:#1d1d1f;
   font-family:inherit;font-size:14.5px;font-weight:400;width:100%;
 }
 .chevis-chat-form textarea{resize:vertical;min-height:74px}
 .chevis-chat-form input:focus,.chevis-chat-form select:focus,.chevis-chat-form textarea:focus{
-  outline:2px solid var(--cyan,#43DFF2);outline-offset:1px;border-color:transparent;
+  outline:2px solid #0066cc;outline-offset:1px;border-color:transparent;
 }
 .chevis-chat-form .chevis-chat-send{width:100%;padding:13px 17px}
-.chevis-chat-status{font-size:13.5px;line-height:1.55;color:var(--muted,#aab4c8)}
-.chevis-chat-status strong{color:var(--ink,#f5f2eb)}
+.chevis-chat-status{font-size:13.5px;line-height:1.55;color:#6e6e73}
+.chevis-chat-status strong{color:#1d1d1f}
 .chevis-chat-back{
   align-self:flex-start;padding:8px 4px;min-height:38px;border:none;background:none;cursor:pointer;
-  color:#7dd3fc;font-family:inherit;font-size:13.5px;font-weight:600;
+  color:#0066cc;font-family:inherit;font-size:13.5px;font-weight:600;
 }
 .chevis-chat-back:hover{text-decoration:underline}
-.chevis-chat-back:focus-visible{outline:2px solid var(--cyan,#43DFF2);outline-offset:2px;border-radius:4px}
+.chevis-chat-back:focus-visible{outline:2px solid #0066cc;outline-offset:2px;border-radius:4px}
 
 @media (prefers-reduced-motion: reduce){
   .chevis-chat-launcher,.chevis-chat-panel,.chevis-chat-chip,.chevis-chat-close{transition-duration:.01ms !important}
