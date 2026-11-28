@@ -17,7 +17,7 @@
      CONFIG: set this to the deployed front-desk Worker URL.
      Placeholder until the Worker is deployed (see front-desk/README.md).
      ================================================================ */
-  var WORKER_ENDPOINT = "https://chevis-front-desk.PLACEHOLDER.workers.dev/";
+  var WORKER_ENDPOINT = "https://chevis-front-desk.chevisinteractive.workers.dev/";
 
   var STUDIO_EMAIL = "chevisinteractive@gmail.com";
   var FORMSUBMIT_AJAX = "https://formsubmit.co/ajax/" + STUDIO_EMAIL;
