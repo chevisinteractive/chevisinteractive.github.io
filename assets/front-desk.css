@@ -36,11 +36,18 @@
 }
 .front-desk-panel.is-open{opacity:1;transform:none;pointer-events:auto}
 @media (max-width:560px){
-  .front-desk-launcher{right:12px;bottom:12px}
+  /* Compact circular icon button on phones: the full pill (~190px wide)
+     blanketed headings and body text mid-scroll. The sticky CTA bar's
+     footprint is 64px (bottom:12px + 52px tall), so bottom:84px clears
+     it with 20px of breathing room. Label stays in the accessibility
+     tree, visually hidden. */
+  .front-desk-launcher{right:12px;bottom:84px;width:52px;height:52px;padding:0;gap:0;justify-content:center}
+  .front-desk-launcher svg{width:22px;height:22px}
+  .front-desk-launcher span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
   .front-desk-panel{right:12px;bottom:12px;height:88vh;height:88dvh}
 }
 @media (max-width:760px){
-  .front-desk-launcher{bottom:76px}
+  .front-desk-launcher{bottom:84px}
 }
 html.embed .front-desk-launcher,html.embed .front-desk-panel{display:none!important}
 
