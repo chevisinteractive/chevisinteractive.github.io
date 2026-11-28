@@ -1,0 +1,17 @@
+# Chevis Interactive front desk Worker.
+# Lives in front-desk/ alongside worker.js and brain.md.
+# Deploy from this directory:  wrangler deploy
+# Set the key first:           wrangler secret put GEMINI_API_KEY
+# See README.md in this folder for the full go-live checklist.
+
+name = "chevis-front-desk"
+main = "worker.js"
+compatibility_date = "2026-11-27"
+workers_dev = true
+
+# Import brain.md (and any other .md beside the worker) as a text module,
+# so worker.js can do:  import BRAIN from "./brain.md";
+[[rules]]
+type = "Text"
+globs = ["**/*.md"]
+fallthrough = true
