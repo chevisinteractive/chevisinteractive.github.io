@@ -88,7 +88,6 @@ html.embed .front-desk-launcher,html.embed .front-desk-panel{display:none!import
 
 .front-desk-chips{
   flex:0 0 auto;display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start;
-  max-height:25%;overflow-y:auto;
   padding:10px 12px 12px;
   border-top:1px solid #e8e8ec;background:#fbfbfd;
   scrollbar-width:thin;scrollbar-color:#0066cc transparent;

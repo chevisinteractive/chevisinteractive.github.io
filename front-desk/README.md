@@ -16,7 +16,7 @@ $299 AI Setup, running on the studio's own site first.
    brain.
 2. **The middleman** (`worker.js`, this folder): a Cloudflare Worker. The
    browser posts the conversation to it; it adds the brain as the Gemini
-   system instruction, calls Google Gemini (`gemini-2.5-flash`,
+   system instruction, calls Google Gemini (the model chain in worker.js,
    generateContent), caps history and reply length, soft rate-limits per IP,
    and returns `{ reply, showLeadForm }`. CORS allows only
    `https://chevisinteractive.github.io` and

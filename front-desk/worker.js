@@ -33,11 +33,19 @@ const ALLOWED_ORIGINS = [
   "https://chevisinteractive.pages.dev",
 ];
 
-const GEMINI_MODEL = "gemini-3.5-flash-lite";
-const GEMINI_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/" +
-  GEMINI_MODEL +
-  ":generateContent";
+/* Model chain: the primary answers; if it refuses or fails (quota,
+   overload, network), the backup answers instead. Each model carries its
+   own per-project daily quota, so the fallback message only shows when
+   every lane is down. Both lanes passed the hostile-customer battery
+   against this brain (2026-11-27). */
+const GEMINI_MODELS = ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"];
+function geminiUrl(model) {
+  return (
+    "https://generativelanguage.googleapis.com/v1beta/models/" +
+    model +
+    ":generateContent"
+  );
+}
 
 const MAX_MESSAGES = 12; /* conversation turns forwarded to Gemini */
 const MAX_MESSAGE_CHARS = 1000; /* per message */
@@ -165,50 +173,55 @@ export default {
       return json({ reply: FALLBACK_REPLY, showLeadForm: true }, 200, origin);
     }
 
-    try {
-      const res = await fetch(GEMINI_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-goog-api-key": env.GEMINI_API_KEY,
-        },
-        body: JSON.stringify({
-          system_instruction: { parts: [{ text: BRAIN }] },
-          contents: contents,
-          generationConfig: {
-            maxOutputTokens: MAX_OUTPUT_TOKENS,
-            temperature: 0.4,
+    const payload = JSON.stringify({
+      system_instruction: { parts: [{ text: BRAIN }] },
+      contents: contents,
+      generationConfig: {
+        maxOutputTokens: MAX_OUTPUT_TOKENS,
+        temperature: 0.4,
+      },
+    });
+    for (const model of GEMINI_MODELS) {
+      try {
+        const res = await fetch(geminiUrl(model), {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-goog-api-key": env.GEMINI_API_KEY,
           },
-        }),
-      });
-      if (!res.ok) {
-        console.error("front-desk: Gemini returned HTTP " + res.status);
-        return json({ reply: FALLBACK_REPLY, showLeadForm: true }, 200, origin);
+          body: payload,
+        });
+        if (!res.ok) {
+          console.error(
+            "front-desk: " + model + " returned HTTP " + res.status
+          );
+          continue;
+        }
+        const data = await res.json();
+        const parts =
+          data &&
+          data.candidates &&
+          data.candidates[0] &&
+          data.candidates[0].content &&
+          data.candidates[0].content.parts;
+        let reply = "";
+        if (Array.isArray(parts)) {
+          reply = parts
+            .map((p) => (p && typeof p.text === "string" ? p.text : ""))
+            .join("")
+            .trim();
+        }
+        if (!reply) continue;
+        const showLeadForm = reply.includes(LEAD_MARKER);
+        if (showLeadForm) reply = reply.split(LEAD_MARKER).join("").trim();
+        reply = reply.slice(0, MAX_REPLY_CHARS);
+        return json({ reply: reply, showLeadForm: showLeadForm }, 200, origin);
+      } catch (e) {
+        console.error(
+          "front-desk: " + model + " call failed: " + (e && e.message)
+        );
       }
-      const data = await res.json();
-      const parts =
-        data &&
-        data.candidates &&
-        data.candidates[0] &&
-        data.candidates[0].content &&
-        data.candidates[0].content.parts;
-      let reply = "";
-      if (Array.isArray(parts)) {
-        reply = parts
-          .map((p) => (p && typeof p.text === "string" ? p.text : ""))
-          .join("")
-          .trim();
-      }
-      if (!reply) {
-        return json({ reply: FALLBACK_REPLY, showLeadForm: true }, 200, origin);
-      }
-      const showLeadForm = reply.includes(LEAD_MARKER);
-      if (showLeadForm) reply = reply.split(LEAD_MARKER).join("").trim();
-      reply = reply.slice(0, MAX_REPLY_CHARS);
-      return json({ reply: reply, showLeadForm: showLeadForm }, 200, origin);
-    } catch (e) {
-      console.error("front-desk: Gemini call failed: " + (e && e.message));
-      return json({ reply: FALLBACK_REPLY, showLeadForm: true }, 200, origin);
     }
+    return json({ reply: FALLBACK_REPLY, showLeadForm: true }, 200, origin);
   },
 };
