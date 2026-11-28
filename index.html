@@ -56,24 +56,17 @@
     </div>
   </div>
   <div class="wrap reveal">
-    <div class="tile tile-hero">
-      <div class="browser" aria-hidden="true">
-        <div class="bar"><i></i><i></i><i></i><div class="url"></div></div>
-        <div class="page">
-          <b>Your business, beautifully online.</b>
-          <span>Services, hours, and one tap to call &mdash; exactly where your customers expect them.</span>
-          <span class="pill">Call now</span>
-        </div>
+    <div class="frames showcase">
+      <div>
+        <div class="frame-desktop" aria-hidden="true"><div class="bar"><i></i><i></i><i></i></div><iframe src="https://prospect-previews-4vz.pages.dev/skinner-heating-air" title="Skinner Heating and Air concept preview, desktop view" loading="lazy" tabindex="-1"></iframe></div>
+        <p class="frame-cap">A concept preview for a real Norman business, live in the browser</p>
       </div>
-      <div class="phone" aria-hidden="true">
-        <div class="screen">
-          <b>Open today until 6 PM</b>
-          <span>Tap to call, get directions, or send an inquiry in under a minute.</span>
-          <span class="pill">Call</span>
-        </div>
+      <div>
+        <div class="frame-phone" aria-hidden="true"><iframe src="https://prospect-previews-4vz.pages.dev/bobs-plumbing" title="Bob's Plumbing concept preview, phone view" loading="lazy" tabindex="-1"></iframe></div>
+        <p class="frame-cap">The same standard, on a phone</p>
       </div>
-      <div class="caption">Designed for phones first.<small>Because that is where your customers find you.</small></div>
     </div>
+    <p class="showcase-note">Designed for phones first.<small>Because that is where your customers find you.</small></p>
   </div>
 </header>
 
@@ -85,22 +78,13 @@
     <p class="subhead">Custom design, never a template. Your pages written and structured with you, a contact flow built in, and your approval before anything goes live.</p>
     <p class="price">$2,500 <span>one time</span></p>
     <div class="cta-links">
-      <a href="index.html#start">Start Your Project</a>
+      <a href="websites.html">See what&rsquo;s included</a>
       <a href="index.html#care">Add ongoing care</a>
     </div>
   </div>
   <div class="wrap reveal">
-    <div class="tile tile-web">
-      <div class="browser" aria-hidden="true">
-        <div class="bar"><i></i><i></i><i></i><div class="url"></div></div>
-        <div class="page">
-          <b>Home. Services. About. Contact.</b>
-          <span>Domain and hosting set up in your name. Search basics done right. Launch handled, start to finish.</span>
-          <span class="pill">Get an inquiry</span>
-        </div>
-      </div>
-      <div class="caption">Everything included. Nothing rented.<small>Your domain, your website, your content &mdash; registered in your name.</small></div>
-    </div>
+    <div class="frame-desktop" style="max-width:860px;margin:0 auto" aria-hidden="true"><div class="bar"><i></i><i></i><i></i></div><iframe src="https://prospect-previews-4vz.pages.dev/brads-heating-air" title="Brad's Heating and Air concept preview, desktop view" loading="lazy" tabindex="-1"></iframe></div>
+    <p class="frame-cap">Everything included. Nothing rented. Your domain, your website, your content, registered in your name.</p>
   </div>
 </section>
 
@@ -112,7 +96,7 @@
     <p class="subhead">Hosting managed, monitoring and backups running, security updates applied, and small changes done for you. You send a message. It gets done.</p>
     <p class="price">$199<span>/month &middot; Billed monthly &middot; Cancel anytime</span></p>
     <div class="cta-links">
-      <a href="index.html#start">Start Your Project</a>
+      <a href="website-care.html">See the Care Plan</a>
       <a href="index.html#why">Why owners choose Chevis</a>
     </div>
   </div>
@@ -137,8 +121,8 @@
     <p class="subhead">An assistant on your site, trained on your business. It answers hours, services, and prices &mdash; and captures inquiries while you are busy. Even at 10 PM. Even on Sunday.</p>
     <p class="price">$299 <span>one time &middot; Free with any website build</span></p>
     <div class="cta-links">
-      <a href="index.html#start">Start Your Project</a>
-      <a href="index.html#start">Add it to a build</a>
+      <a href="ai-setup.html">See AI Setup</a>
+      <button class="btn btn-ghost" type="button" data-open-front-desk>Try it now</button>
     </div>
   </div>
   <div class="wrap reveal">
@@ -147,7 +131,7 @@
         <div class="bubble q"><small>Visitor &middot; 9:47 PM</small>Are you open on Saturdays?</div>
         <div class="bubble a"><small>Your assistant</small>We are &mdash; 9 AM to 2 PM. Would you like me to pass your details along for a callback?</div>
       </div>
-      <div class="caption">Answers the everyday questions.<small>Hands everything else to you. It never invents a price.</small></div>
+      <div class="caption">The real thing, running on this page.<small>Tap the round button, bottom right, and ask it something. It answers from our own information, and never invents a price.</small></div>
     </div>
   </div>
 </section>
@@ -285,6 +269,18 @@
   })();
 </script>
 <script src="assets/form.js"></script>
+<script>
+  /* INBOX-036: "Try it now" opens the live front desk panel. */
+  (function(){
+    function openDesk(){
+      var l = document.querySelector('.front-desk-launcher');
+      if(l){ l.click(); }
+    }
+    document.querySelectorAll('[data-open-front-desk]').forEach(function(b){
+      b.addEventListener('click', openDesk);
+    });
+  })();
+</script>
 <link rel="stylesheet" href="assets/front-desk.css">
 <script src="assets/front-desk.js" defer></script>
 </body>

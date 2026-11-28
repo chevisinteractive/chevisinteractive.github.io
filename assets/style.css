@@ -42,8 +42,10 @@ h2{font-size:clamp(32px,4.8vw,52px);line-height:1.1;font-weight:700;letter-spaci
 h3{font-size:1.25rem;line-height:1.25;font-weight:600;letter-spacing:-.01em;margin-bottom:8px}
 p.lede{font-size:clamp(1.06rem,2.2vw,1.3rem);line-height:1.4;color:var(--secondary);max-width:680px}
 .subhead{font-size:clamp(19px,2.4vw,26px);line-height:1.35;color:var(--text);font-weight:400;max-width:720px;margin:22px auto 0}
-.grad-text{background:none;color:inherit}
+.grad-text{background:linear-gradient(90deg,#0071e3,#0066cc);-webkit-background-clip:text;background-clip:text;color:transparent}
 .eyebrow{font-size:21px;font-weight:600;color:var(--orange);letter-spacing:0;margin-bottom:14px;text-transform:none}
+.eyebrow::before{content:"";display:block;width:28px;height:4px;border-radius:2px;background:linear-gradient(90deg,#0071e3,#0066cc);margin-bottom:12px}
+.center .eyebrow::before{margin-left:auto;margin-right:auto}
 .eyebrow.plain{color:var(--faint);font-size:19px}
 section{padding:100px 0}
 section.tight{padding:48px 0}
@@ -122,7 +124,8 @@ header.page p.lede{margin-top:16px}
 .grid.c3{grid-template-columns:repeat(3,1fr)}
 .grid.c2{grid-template-columns:repeat(2,1fr)}
 @media (max-width:860px){.grid.c3,.grid.c2{grid-template-columns:1fr}}
-.card{background:var(--bg-alt);border-radius:24px;padding:28px}
+.card{background:var(--bg-alt);border-radius:24px;padding:28px;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.card:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.08)}
 .card p{color:var(--secondary);font-size:.97rem;line-height:1.6}
 .card .icon{font-size:26px;margin-bottom:12px}
 .badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
@@ -204,34 +207,15 @@ form.project .form-note{color:#a1a1a6}
 .tile{margin:56px auto 0;max-width:980px;height:480px;border-radius:var(--radius);position:relative;overflow:hidden}
 .tile .caption{position:absolute;left:34px;bottom:28px;text-align:left;color:#fff;font-size:15px;font-weight:600;letter-spacing:.01em;text-shadow:0 1px 8px rgba(0,0,0,.25)}
 .tile .caption small{display:block;font-weight:400;opacity:.85;font-size:13px;margin-top:2px}
-.browser{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:min(620px,78%);background:#fff;border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.22);overflow:hidden;text-align:left}
-.browser .bar{height:34px;background:#f5f5f7;border-bottom:1px solid #e8e8ec;display:flex;align-items:center;gap:6px;padding:0 14px}
-.browser .bar i{width:10px;height:10px;border-radius:50%;background:#d2d2d7;display:block}
-.browser .bar .url{margin-left:10px;flex:1;max-width:300px;height:20px;border-radius:6px;background:#e8e8ec}
-.browser .page{padding:30px 34px 36px}
-.browser .page b{display:block;font-size:24px;letter-spacing:-.01em;color:#1d1d1f}
-.browser .page span{display:block;margin-top:8px;font-size:14px;color:#6e6e73;line-height:1.5}
-.browser .page .pill{display:inline-block;margin-top:18px;background:var(--button);color:#fff;font-size:13px;font-weight:500;padding:8px 18px;border-radius:980px}
-.phone{position:absolute;right:9%;bottom:-30px;width:170px;height:340px;background:#1d1d1f;border-radius:34px;box-shadow:0 30px 60px rgba(0,0,0,.28);padding:12px}
-.phone .screen{background:#fff;border-radius:24px;height:100%;padding:20px 16px;text-align:left}
-.phone .screen b{font-size:15px;display:block;letter-spacing:-.01em}
-.phone .screen span{font-size:11px;color:#6e6e73;display:block;margin-top:5px;line-height:1.5}
-.phone .screen .pill{display:inline-block;margin-top:12px;background:var(--button);color:#fff;font-size:11px;padding:6px 12px;border-radius:980px;font-weight:500}
-@media (max-width:860px){.phone{display:none}}
-/* Small screens: mocks and captions stack in normal flow, so nothing can overlap */
+/* Small screens: tiles stack in normal flow, so nothing can overlap */
 @media (max-width:734px){
   .tile{height:auto;padding:26px 18px 24px}
-  .tile .browser,.tile .chat,.tile .carecard{position:relative;left:auto;top:auto;transform:none;width:100%;margin:0 auto}
+  .tile .chat,.tile .carecard{position:relative;left:auto;top:auto;transform:none;width:100%;margin:0 auto}
   .tile .caption{position:static;margin-top:22px}
-  .browser .page{padding:22px 20px 26px}
   .carecard{padding:22px 20px}
   .bubble.q{margin-left:24px}
   .bubble.a{margin-right:24px}
 }
-.tile-hero{background:linear-gradient(160deg,#fbfbfd 0%,#eef1f6 55%,#dde5ee 100%)}
-.tile-hero .caption{color:#1d1d1f;text-shadow:none}
-.tile-web{background:linear-gradient(150deg,#fdfdfd 0%,#f0f0f3 60%,#e2e2e8 100%)}
-.tile-web .caption{color:#1d1d1f;text-shadow:none}
 .tile-care{background:linear-gradient(150deg,#2e2e30 0%,#1d1d1f 70%)}
 .tile-ai{background:linear-gradient(150deg,#f6f6f9 0%,#e9e9f0 60%,#dcdce6 100%)}
 .tile-ai .caption{color:#1d1d1f;text-shadow:none}
@@ -294,4 +278,24 @@ html.embed .sticky-cta{display:none!important}
 @media (prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none;transition:none}
   html{scroll-behavior:auto}
+  .card{transition:none}
+  .card:hover{transform:none;box-shadow:none}
 }
+
+/* ---------- INBOX-036: real-proof showcase, preview entries, try-it demo ---------- */
+/* Homepage showcase: real pages in device frames, near the top. */
+.showcase{margin-top:56px}
+.showcase-note{text-align:center;color:var(--faint);font-size:.92rem;margin-top:18px}
+.showcase-note small{display:block;margin-top:2px}
+/* Portfolio preview entries: one real preview per card, phone frame + explore link. */
+.preview-entry .frame-phone{margin:18px auto 0}
+.preview-entry .frame-cap{margin-bottom:4px}
+.preview-entry .btn{margin-top:16px}
+/* AI Setup try-it demo: the live front desk, on this page, invited by name. */
+.tryit{padding-top:56px}
+.tryit-card{max-width:860px;margin:0 auto;text-align:left}
+.tryit-card h2{margin-top:6px}
+.tryit-card p{max-width:640px}
+.tryit-qs{margin-top:18px;font-size:.95rem;color:var(--secondary)}
+.tryit-q{display:inline-block;margin:4px 6px 0 0;padding:9px 16px;border-radius:980px;border:1px solid var(--hairline);background:var(--bg);color:var(--link);font:inherit;font-size:.92rem;font-weight:500;cursor:pointer;transition:border-color .25s var(--ease),transform .25s var(--ease)}
+.tryit-q:hover{border-color:var(--link);transform:translateY(-1px)}

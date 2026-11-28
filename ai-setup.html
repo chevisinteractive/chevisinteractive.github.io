@@ -50,6 +50,22 @@
   </div>
 </header>
 
+<section class="tryit" aria-label="Try the assistant now">
+  <div class="wrap">
+    <div class="card tryit-card">
+      <span class="badge real">Live demo · The real product</span>
+      <h2>Try it now, on this page</h2>
+      <p>The assistant in the round button, bottom right, is the real AI Setup running on this very site. Ask it about our services, our hours, or our pricing, and it answers from our own information. No fictional business, no staged demo. This is the product working.</p>
+      <p style="margin-top:18px"><button class="btn btn-primary" type="button" data-open-front-desk>Try it now</button></p>
+      <p class="tryit-qs">Or ask it one of these:
+        <button type="button" class="tryit-q" data-ask="What does a website cost?">What does a website cost?</button>
+        <button type="button" class="tryit-q" data-ask="What is included in a build?">What is included in a build?</button>
+        <button type="button" class="tryit-q" data-ask="What is the Care Plan?">What is the Care Plan?</button>
+      </p>
+    </div>
+  </div>
+</section>
+
 <section aria-label="What is included">
   <div class="wrap">
     <div class="grid c2">
@@ -71,8 +87,7 @@
       </article>
     </div>
     <div class="center" style="margin-top:34px">
-      <a class="btn btn-primary" href="index.html#start">Start Your Project</a>
-      <p class="form-note" style="margin-top:12px">Choose "AI Setup add-on" in the form, or add it to any website build.</p>
+      <p class="form-note">Choose "AI Setup add-on" in the <a href="index.html#start" style="color:var(--cyan)">inquiry form</a>, or add it to any website build.</p>
     </div>
   </div>
 </section>
@@ -110,6 +125,31 @@
   </div>
 </footer>
 <div class="sticky-cta"><a href="index.html#start">Start Your Project — $2,500</a></div>
+<script>
+  /* INBOX-036: "Try it now" opens the live front desk; a sample question
+     opens it and sends that question through the panel's own starter chip. */
+  (function(){
+    function openDesk(){
+      var l = document.querySelector('.front-desk-launcher');
+      if(l){ l.click(); }
+    }
+    function ask(q){
+      openDesk();
+      window.setTimeout(function(){
+        var chips = document.querySelectorAll('.front-desk-chip');
+        for(var i = 0; i < chips.length; i++){
+          if(chips[i].textContent.trim() === q){ chips[i].click(); return; }
+        }
+      }, 450);
+    }
+    document.querySelectorAll('[data-open-front-desk]').forEach(function(b){
+      b.addEventListener('click', openDesk);
+    });
+    document.querySelectorAll('[data-ask]').forEach(function(b){
+      b.addEventListener('click', function(){ ask(b.getAttribute('data-ask')); });
+    });
+  })();
+</script>
 <link rel="stylesheet" href="assets/front-desk.css">
 <script src="assets/front-desk.js" defer></script>
 </body>
